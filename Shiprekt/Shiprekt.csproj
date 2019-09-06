@@ -49,7 +49,6 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="DataTypes\CollisionHistory.Generated.cs" />
     <Compile Include="DataTypes\RacingEntityValues.Generated.cs" />
     <Compile Include="DataTypes\TileMapInfo.Generated.cs" />
     <Compile Include="Entities\Bird.cs" />
@@ -167,6 +166,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>RacingEntityValues</Name>
     </None>
+    <None Include="Content\globalcontent\BirdChains.achx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\globalcontent\CloudChains.achx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="content\globalcontent\levels\level1map.tmx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Level1Map</Name>
@@ -175,9 +180,16 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>shiprekttiles</Name>
     </None>
+    <None Include="Content\globalcontent\ShipChains.achx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="content\globalcontent\shiprekt.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>shiprekt</Name>
+    </None>
+    <Compile Include="DataTypes\CollisionHistory.Generated.cs" />
+    <None Include="Content\globalcontent\ShotChains.achx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Libraries\DesktopGl\Debug\FlatRedBall.Forms.dll" />
     <None Include="Libraries\DesktopGl\Debug\GumCoreXnaPc.dll" />
