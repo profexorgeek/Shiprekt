@@ -11,9 +11,10 @@ using FlatRedBall.Math.Geometry;
 
 namespace Shiprekt.Entities
 {
-	public partial class Bird
-	{
-        public bool Animating {
+    public partial class Bird
+    {
+        public bool Animating
+        {
             get => BirdSprite.Animate;
             set
             {
@@ -37,22 +38,22 @@ namespace Shiprekt.Entities
         /// This method is called when the Entity is added to managers. Entities which are instantiated but not
         /// added to managers will not have this method called.
         /// </summary>
-		private void CustomInitialize()
-		{
-		}
+        private void CustomInitialize()
+        {
+        }
 
-		private void CustomActivity()
-		{
+        private void CustomActivity()
+        {
             DoFlightStateManagement();
             Velocity.X = (float)Math.Cos(RotationZ) * CurrentFlightSpeed;
             Velocity.Y = (float)Math.Sin(RotationZ) * CurrentFlightSpeed;
         }
 
-		private void CustomDestroy()
-		{
+        private void CustomDestroy()
+        {
 
 
-		}
+        }
 
         private static void CustomLoadStaticContent(string contentManagerName)
         {
@@ -80,5 +81,5 @@ namespace Shiprekt.Entities
             }
             SecondsToNextStateChange -= TimeManager.SecondDifference;
         }
-	}
+    }
 }

@@ -50,6 +50,7 @@ namespace Shiprekt.Screens
             Camera.Main.X = Ship1.X;
             Camera.Main.Y = Ship1.Y;
 
+            MurderLostBirds();
             DoBirdSpawning();
         }
 
@@ -65,12 +66,26 @@ namespace Shiprekt.Screens
 
         }
 
+        const float birdRadiusEstimate = 20;
+        void MurderLostBirds()
+        {
+            for (int i = BirdList.Count - 1; i >= 0; i -= 1)
+            {
+                var bird = BirdList[i];
+                if (bird.X + birdRadiusEstimate > this.Map.Width || bird.Y + birdRadiusEstimate < -this.Map.Height
+                    || bird.X - birdRadiusEstimate < 0 || bird.Y - birdRadiusEstimate > 0)
+                {
+                    bird.Destroy();
+                }
+            }
+        }
+
         void DoBirdSpawning()
         {
-            if (BirdList.Count <= BirdCount)
+            if (BirdList.Count <= BirdCountMax)
             {
-                var x = FlatRedBallServices.Random.Between(0, Map.Width);
-                var y = FlatRedBallServices.Random.Between(0, -Map.Height);
+                var x = FlatRedBallServices.Random.Between(birdRadiusEstimate, Map.Width - birdRadiusEstimate);
+                var y = FlatRedBallServices.Random.Between(birdRadiusEstimate, -Map.Height + birdRadiusEstimate);
                 var altitude = FlatRedBallServices.Random.Between(Bird.MinBirdAltitude, Bird.MaxBirdAltitude);
                 var bird = BirdFactory.CreateNew(x, y);
                 bird.Altitude = altitude;

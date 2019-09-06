@@ -31,7 +31,7 @@
               <ValueAsString>int</ValueAsString>
             </PropertySave>
           </Properties>
-          <Name>BirdCount</Name>
+          <Name>BirdCountMax</Name>
           <Type>int</Type>
           <DefaultValue xsi:type="xsd:int">75</DefaultValue>
         </CustomVariable>
