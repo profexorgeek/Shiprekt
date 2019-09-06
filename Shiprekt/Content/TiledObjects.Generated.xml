@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<objecttypes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <objecttype name="Bird" />
+  <objecttype name="Bullet">
+    <property name="BulletSpeed" type="float" default="300" />
+    <property name="ReloadTimeInSeconds" type="float" default="1" />
+    <property name="BulletDistance" type="float" default="200" />
+    <property name="DamageToDeal" type="float" default="20" />
+  </objecttype>
+  <objecttype name="Cloud" />
+  <objecttype name="Ship">
+    <property name="CarData" type="Shiprekt.DataTypes.RacingEntityValues" default="DefaultValues in RacingEntityValues.csv" />
+  </objecttype>
+  <objecttype name="Wreckage" />
+</objecttypes>
