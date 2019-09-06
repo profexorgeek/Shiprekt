@@ -23,9 +23,29 @@ namespace Shiprekt.Screens
 		{
             DummyShip.InitializeRacingInput(InputManager.Xbox360GamePads[0]);
             DummyShip.TeamIndex = 1;
+
+            FlatRedBallServices.Game.IsMouseVisible = true;
+
+            OffsetTilemapLayers();
 		}
 
-		void CustomActivity(bool firstTimeCalled)
+        private void OffsetTilemapLayers()
+        {
+            foreach(var layer in Map.MapLayers)
+            {
+                var property = layer.Properties.FirstOrDefault(item => item.Name == "PositionZ");
+                var floatValue = layer.RelativeZ;
+
+                if (string.IsNullOrEmpty(property.Name) == false)
+                {
+                    float.TryParse((string)property.Value, out floatValue);
+                }
+
+                layer.RelativeZ = floatValue;
+            }
+        }
+
+        void CustomActivity(bool firstTimeCalled)
 		{
             Camera.Main.X = Ship1.X;
             Camera.Main.Y = Ship1.Y;
