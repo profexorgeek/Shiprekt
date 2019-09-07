@@ -527,7 +527,7 @@
           </Properties>
           <Name>DamageToDeal</Name>
           <Type>int</Type>
-          <DefaultValue xsi:type="xsd:int">0</DefaultValue>
+          <DefaultValue xsi:type="xsd:int">20</DefaultValue>
           <IsShared>true</IsShared>
         </CustomVariable>
       </CustomVariables>

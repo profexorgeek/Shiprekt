@@ -5,7 +5,7 @@
     <property name="BulletSpeed" type="float" default="300" />
     <property name="ReloadTimeInSeconds" type="float" default="1" />
     <property name="BulletDistance" type="float" default="200" />
-    <property name="DamageToDeal" type="float" default="20" />
+    <property name="DamageToDeal" type="int" default="20" />
   </objecttype>
   <objecttype name="Cloud" />
   <objecttype name="Ship">
