@@ -11,6 +11,9 @@ using FlatRedBall.Graphics.Animation;
 using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Math.Geometry;
 using FlatRedBall.Localization;
+
+using Microsoft.Xna.Framework;
+
 using Shiprekt.Factories;
 using Shiprekt.Entities;
 
@@ -22,8 +25,9 @@ namespace Shiprekt.Screens
         void CustomInitialize()
         {
             DummyShip.InitializeRacingInput(InputManager.Xbox360GamePads[0]);
-            DummyShip.TeamIndex = 1;
-
+            DummyShip.SetTeam(1);
+            Ship1.SetTeam(2); 
+			
             FlatRedBallServices.Game.IsMouseVisible = true;
 
             OffsetTilemapLayers();
@@ -52,6 +56,7 @@ namespace Shiprekt.Screens
 
             MurderLostBirds();
             DoBirdSpawning();
+            UpdateShipSailsActivity();
         }
 
         void CustomDestroy()
@@ -92,5 +97,13 @@ namespace Shiprekt.Screens
             }
         }
 
+        private void UpdateShipSailsActivity()
+        {
+            foreach(var ship in ShipList)
+            {
+                ///Placeholder wind until Victor implements it. 
+                ship.ApplyWind(new Vector2(0,1));
+            }
+        }
     }
 }

@@ -1,0 +1,2 @@
+"Name (string, required)",SailRotationSpeed (float),MaxSailRotation (float),MinSpeed (float),ShipDrag (float)
+DefaultValues,2,45,20,2
