@@ -22,14 +22,12 @@ namespace Shiprekt.Entities
         /// </summary>
 		private void CustomInitialize()
 		{
-
-
+			InitializeArc();			
 		}
 
 		private void CustomActivity()
 		{
-
-
+			CannonballSpriteInstance.RelativeYVelocity = Math.Max(-100, CannonballSpriteInstance.RelativeYVelocity); 
 		}
 
 		private void CustomDestroy()
@@ -44,8 +42,17 @@ namespace Shiprekt.Entities
 
         }
 
-        internal void HitSurface()
+		private void InitializeArc()
+		{
+			CannonballSpriteInstance.RelativeYVelocity = 100;
+			var time = BulletDistance / BulletSpeed;
+			CannonballSpriteInstance.RelativeYAcceleration = -(CannonballSpriteInstance.RelativeYVelocity / time) * 2;
+		}
+
+		internal void HitSurface()
         {
+			Instructions.Clear(); 
+
             // todo - add particles
             // broadcast this so that a collision can occur at screen level
             Destroy();

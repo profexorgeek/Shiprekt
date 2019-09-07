@@ -15,6 +15,17 @@ namespace Shiprekt.Entities
 {
 	public partial class Ship
 	{
+		public bool AllowedToDrive
+		{
+			get
+			{
+				return IsAllowedToDrive; 
+			}
+			set
+			{
+				IsAllowedToDrive = value; 
+			}
+		}
 		public int TeamIndex { get; private set; }
 
 		IPressableInput shootLeftInput;
@@ -152,7 +163,7 @@ namespace Shiprekt.Entities
 				CarData.ForwardAcceleration = cachedForwardAcceleration; 
 			}
 			//Hack to account for lack of drag in the racecar plugin. 
-			else if (Velocity.Length() > ShipEntityValuesInstance.MinSpeed && Gas.IsDown)
+			else if (Velocity.Length() > ShipEntityValuesInstance.MinSpeed)
 			{
 				Velocity -= this.Forward * ShipEntityValuesInstance.ShipDrag * TimeManager.SecondDifference;
 			}

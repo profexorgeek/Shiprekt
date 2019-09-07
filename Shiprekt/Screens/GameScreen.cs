@@ -21,13 +21,13 @@ namespace Shiprekt.Screens
 {
     public partial class GameScreen
     {
-
         void CustomInitialize()
         {
             DummyShip.InitializeRacingInput(InputManager.Xbox360GamePads[0]);
-            DummyShip.SetTeam(1);
-            Ship1.SetTeam(2); 
-			
+			DummyShip.SetTeam(1);
+			DummyShip.AllowedToDrive = false; 
+			Ship1.SetTeam(2);
+			Camera.Main.Z = 500; 
             FlatRedBallServices.Game.IsMouseVisible = true;
 
             OffsetTilemapLayers();
@@ -53,7 +53,7 @@ namespace Shiprekt.Screens
         {
             Camera.Main.X = Ship1.X;
             Camera.Main.Y = Ship1.Y;
-
+			
             MurderLostBirds();
             DoBirdSpawning();
             UpdateShipSailsActivity();
