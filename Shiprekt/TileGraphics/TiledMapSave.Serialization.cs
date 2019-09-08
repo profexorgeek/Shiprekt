@@ -464,7 +464,7 @@ namespace TMXGlueLib
 
 
         /// <remarks/>
-        [XmlAttribute("width")]
+        [XmlAttribute()]
         public int width
         {
             get;
@@ -472,7 +472,7 @@ namespace TMXGlueLib
         }
 
         /// <remarks/>
-        [XmlAttribute("height")]
+        [XmlAttribute()]
         public int height
         {
             get;
