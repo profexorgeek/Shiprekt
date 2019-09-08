@@ -22,6 +22,13 @@
           <BeforeOrAfter>Before</BeforeOrAfter>
           <DelegateType />
         </EventResponseSave>
+        <EventResponseSave>
+          <EventName>ShipListVsShipListCollisionOccurred</EventName>
+          <SourceObject>ShipListVsShipList</SourceObject>
+          <SourceObjectEvent>CollisionOccurred</SourceObjectEvent>
+          <BeforeOrAfter>Before</BeforeOrAfter>
+          <DelegateType />
+        </EventResponseSave>
       </Events>
       <CustomVariables>
         <CustomVariable>
@@ -299,7 +306,7 @@
             </PropertySave>
             <PropertySave>
               <Name>CollisionType</Name>
-              <ValueAsInt>2</ValueAsInt>
+              <ValueAsInt>0</ValueAsInt>
             </PropertySave>
           </Properties>
           <SourceType>FlatRedBallType</SourceType>
@@ -1118,35 +1125,35 @@
           <CustomProperty>
             <Type>float</Type>
             <Member>Y</Member>
-            <ValueAsFloat>-5</ValueAsFloat>
+            <ValueAsFloat>-6</ValueAsFloat>
           </CustomProperty>
           <CustomProperty>
             <Type>bool</Type>
             <Member>Visible</Member>
-            <ValueAsBool>false</ValueAsBool>
+            <ValueAsBool>true</ValueAsBool>
           </CustomProperty>
           <CustomProperty>
             <Member>Points</Member>
             <ValueAsListOfVector2>
               <Vector2>
                 <X>-16</X>
-                <Y>32</Y>
+                <Y>18</Y>
               </Vector2>
               <Vector2>
                 <X>16</X>
-                <Y>32</Y>
+                <Y>18</Y>
               </Vector2>
               <Vector2>
                 <X>16</X>
-                <Y>-32</Y>
+                <Y>-26</Y>
               </Vector2>
               <Vector2>
                 <X>-16</X>
-                <Y>-32</Y>
+                <Y>-26</Y>
               </Vector2>
               <Vector2>
                 <X>-16</X>
-                <Y>32</Y>
+                <Y>18</Y>
               </Vector2>
             </ValueAsListOfVector2>
           </CustomProperty>
@@ -1159,6 +1166,60 @@
           <SourceType>FlatRedBallType</SourceType>
           <SourceClassType>Polygon</SourceClassType>
           <InstanceName>PolygonInstance</InstanceName>
+          <HasPublicProperty>true</HasPublicProperty>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+        </NamedObjectSave>
+        <NamedObjectSave>
+          <CustomProperty>
+            <Type>float</Type>
+            <Member>Radius</Member>
+            <ValueAsFloat>16</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>float</Type>
+            <Member>Y</Member>
+            <ValueAsFloat>9</ValueAsFloat>
+          </CustomProperty>
+          <Properties>
+            <PropertySave>
+              <Name>SourceType</Name>
+              <ValueAsObject xsi:type="SourceType">FlatRedBallType</ValueAsObject>
+            </PropertySave>
+          </Properties>
+          <SourceType>FlatRedBallType</SourceType>
+          <SourceFile />
+          <SourceName />
+          <SourceClassType>Circle</SourceClassType>
+          <InstanceName>CircleInstance</InstanceName>
+          <HasPublicProperty>true</HasPublicProperty>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+        </NamedObjectSave>
+        <NamedObjectSave>
+          <CustomProperty>
+            <Type>float</Type>
+            <Member>Radius</Member>
+            <ValueAsFloat>16</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>float</Type>
+            <Member>Y</Member>
+            <ValueAsFloat>-28</ValueAsFloat>
+          </CustomProperty>
+          <Properties>
+            <PropertySave>
+              <Name>SourceType</Name>
+              <ValueAsObject xsi:type="SourceType">FlatRedBallType</ValueAsObject>
+            </PropertySave>
+          </Properties>
+          <SourceType>FlatRedBallType</SourceType>
+          <SourceFile />
+          <SourceName />
+          <SourceClassType>Circle</SourceClassType>
+          <InstanceName>CircleInstance1</InstanceName>
           <HasPublicProperty>true</HasPublicProperty>
           <AttachToContainer>true</AttachToContainer>
           <GenerateTimedEmit>true</GenerateTimedEmit>

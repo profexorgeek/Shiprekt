@@ -26,7 +26,6 @@ namespace Shiprekt.Screens
             DummyShip.InitializeRacingInput(InputManager.Xbox360GamePads[0]);
 			DummyShip.SetTeam(1);
 			DummyShip.AllowedToDrive = false;
-			DummyShip.Destroy(); 
 			Ship1.SetTeam(2);
 			Camera.Main.Z = 500; 
             FlatRedBallServices.Game.IsMouseVisible = true;
