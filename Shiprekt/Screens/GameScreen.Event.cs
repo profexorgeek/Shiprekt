@@ -18,7 +18,7 @@ namespace Shiprekt.Screens
         {
             if(bullet.TeamIndex != ship.TeamIndex)
             {
-                bullet.CollideAgainstBounce(ship, .1f, 1, 1);
+                bullet.CollideAgainstBounce(ship, .05f, 1, 1);
 
                 bullet.Destroy();
 

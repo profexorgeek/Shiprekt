@@ -18,6 +18,8 @@
   <objecttype name="Ship">
     <property name="CarData" type="Shiprekt.DataTypes.RacingEntityValues" default="DefaultValues in RacingEntityValues.csv" />
     <property name="ShipEntityValuesInstance" type="Shiprekt.DataTypes.ShipEntityValues" default="DefaultValues in ShipEntityValues.csv" />
+    <property name="Dead" type="bool" default="false" />
+    <property name="Health" type="int" />
   </objecttype>
   <objecttype name="Wreckage" />
 </objecttypes>

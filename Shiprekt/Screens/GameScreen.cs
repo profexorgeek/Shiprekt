@@ -25,7 +25,8 @@ namespace Shiprekt.Screens
         {
             DummyShip.InitializeRacingInput(InputManager.Xbox360GamePads[0]);
 			DummyShip.SetTeam(1);
-			DummyShip.AllowedToDrive = false; 
+			DummyShip.AllowedToDrive = false;
+			DummyShip.Destroy(); 
 			Ship1.SetTeam(2);
 			Camera.Main.Z = 500; 
             FlatRedBallServices.Game.IsMouseVisible = true;
@@ -33,21 +34,6 @@ namespace Shiprekt.Screens
             OffsetTilemapLayers();
         }
 
-        private void OffsetTilemapLayers()
-        {
-            foreach (var layer in Map.MapLayers)
-            {
-                var property = layer.Properties.FirstOrDefault(item => item.Name == "PositionZ");
-                var floatValue = layer.RelativeZ;
-
-                if (string.IsNullOrEmpty(property.Name) == false)
-                {
-                    float.TryParse((string)property.Value, out floatValue);
-                }
-
-                layer.RelativeZ = floatValue;
-            }
-        }
 
         void CustomActivity(bool firstTimeCalled)
         {
@@ -72,7 +58,7 @@ namespace Shiprekt.Screens
         }
 
         const float birdRadiusEstimate = 20;
-        void MurderLostBirds()
+		internal void MurderLostBirds()
         {
             for (int i = BirdList.Count - 1; i >= 0; i -= 1)
             {
@@ -85,7 +71,7 @@ namespace Shiprekt.Screens
             }
         }
 
-        void DoBirdSpawning()
+		internal void DoBirdSpawning()
         {
             if (BirdList.Count <= BirdCountMax)
             {
@@ -97,7 +83,23 @@ namespace Shiprekt.Screens
             }
         }
 
-        private void UpdateShipSailsActivity()
+		internal void OffsetTilemapLayers()
+		{
+			foreach (var layer in Map.MapLayers)
+			{
+				var property = layer.Properties.FirstOrDefault(item => item.Name == "PositionZ");
+				var floatValue = layer.RelativeZ;
+
+				if (string.IsNullOrEmpty(property.Name) == false)
+				{
+					float.TryParse((string)property.Value, out floatValue);
+				}
+
+				layer.RelativeZ = floatValue;
+			}
+		}
+
+		internal void UpdateShipSailsActivity()
         {
             foreach(var ship in ShipList)
             {
@@ -105,5 +107,5 @@ namespace Shiprekt.Screens
                 ship.ApplyWind(new Vector2(0,1));
             }
         }
-    }
+	}
 }

@@ -33,7 +33,6 @@ namespace Shiprekt.Entities
 		I1DInput sailTurningInput;
 
 		float cachedForwardAcceleration;
-		float cachedBrakeStoppingAcceleration; 
 
 		/// <summary>
 		/// Initialization logic which is execute only one time for this Entity (unless the Entity is pooled).
@@ -43,12 +42,12 @@ namespace Shiprekt.Entities
 		private void CustomInitialize()
 		{
 			CacheShipData();
+			Health = ShipEntityValuesInstance.MaxHealth; 
 		}
 
 		private void CacheShipData()
 		{
 			cachedForwardAcceleration = CarData.ForwardAcceleration;
-			cachedBrakeStoppingAcceleration = CarData.BrakeStoppingAcceleration; 
 		}
 
 		partial void CustomInitializeTopDownInput()
@@ -80,11 +79,6 @@ namespace Shiprekt.Entities
 		{
 			DoShootingActivity();
 			DoSailTurningActivity();
-		}
-
-		internal void TakeDamage(int damageAmount)
-		{
-			
 		}
 
 		private void DoShootingActivity()
@@ -128,7 +122,24 @@ namespace Shiprekt.Entities
 			}
 		}
 
-		private void Shoot(Vector2 bulletDirection)
+		private void CustomDestroy()
+		{
+
+
+		}
+
+		internal void Die()
+		{
+			Destroy(); 
+		}
+
+		private static void CustomLoadStaticContent(string contentManagerName)
+		{
+
+
+		}
+
+		internal void Shoot(Vector2 bulletDirection)
 		{
 			var bullet = Factories.BulletFactory.CreateNew(this.X, this.Y);
 
@@ -139,16 +150,10 @@ namespace Shiprekt.Entities
 			bullet.Call(bullet.HitSurface).After(bulletDuration);
 		}
 
-		private void CustomDestroy()
+		internal void TakeDamage(int damageAmount)
 		{
-
-
-		}
-
-		private static void CustomLoadStaticContent(string contentManagerName)
-		{
-
-
+			Health -= damageAmount;
+			if (Health <= 0) Die();
 		}
 
 		public void ApplyWind(Vector2 wind)
@@ -158,14 +163,20 @@ namespace Shiprekt.Entities
 			CarData.ForwardAcceleration = sc * cachedForwardAcceleration; 
 
 			//Hack to account for lack of min-speed in the racecar plugin. 
-			if (Velocity.Length() < ShipEntityValuesInstance.MinSpeed && Gas.IsDown)
+			if (Velocity.Length() < ShipEntityValuesInstance.MinSpeed && Gas.IsDown && IsAllowedToDrive)
 			{
 				CarData.ForwardAcceleration = cachedForwardAcceleration; 
 			}
+
 			//Hack to account for lack of drag in the racecar plugin. 
-			else if (Velocity.Length() > ShipEntityValuesInstance.MinSpeed)
+			if (Velocity.Length() >= ShipEntityValuesInstance.MinSpeed || !IsAllowedToDrive)
 			{
-				Velocity -= this.Forward * ShipEntityValuesInstance.ShipDrag * TimeManager.SecondDifference;
+				var drag = this.Forward * ShipEntityValuesInstance.ShipDrag * TimeManager.SecondDifference;
+				var dragMag = drag.Length(); 
+				var velMag = Velocity.Length();
+
+				if (dragMag > velMag) Velocity = Vector3.Zero;
+				else Velocity -= drag; 				
 			}
 
 			//Change the sail visual. 

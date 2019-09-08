@@ -39,7 +39,7 @@ namespace TMXGlueLib
 
         public static bool ShouldLoadValuesFromSource = true;
 
-        [XmlAttribute("source")]
+        [XmlAttribute("source", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string Source
         {
             get
@@ -121,7 +121,7 @@ namespace TMXGlueLib
         }
 
         /// <remarks/>
-        [XmlElement("tileoffset")]
+        [XmlElement("tileoffset", Form = System.Xml.Schema.XmlSchemaForm.Unqualified, Order = 1)]
         public mapTilesetTileOffset[] Tileoffset
         {
             get
@@ -139,7 +139,7 @@ namespace TMXGlueLib
 
 
         /// <remarks/>
-        [XmlElement("image")]
+        [XmlElement("image", Form = System.Xml.Schema.XmlSchemaForm.Unqualified, Order = 2)]
         public TilesetImage[] Images
         {
             get
@@ -162,7 +162,7 @@ namespace TMXGlueLib
         }
 
 
-        [XmlArray("terraintypes")]
+        [XmlArray("terraintypes", Form = System.Xml.Schema.XmlSchemaForm.Unqualified, Order = 3)]
         public List<mapTilesetTerrain> terraintypes = new List<mapTilesetTerrain>();
 
         public bool ShouldSerializeterraintypes()
@@ -170,7 +170,7 @@ namespace TMXGlueLib
             return string.IsNullOrEmpty(this.Source);
         }
 
-        [XmlElement("tile")]
+        [XmlElement("tile", Form = System.Xml.Schema.XmlSchemaForm.Unqualified, Order = 4)]
         public List<mapTilesetTile> Tiles = new List<mapTilesetTile>();
         public bool ShouldSerializeTiles()
         {
