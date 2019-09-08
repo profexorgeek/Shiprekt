@@ -80,7 +80,7 @@
               <CustomProperty>
                 <Type>float</Type>
                 <Member>X</Member>
-                <ValueAsFloat>400</ValueAsFloat>
+                <ValueAsFloat>600</ValueAsFloat>
               </CustomProperty>
               <CustomProperty>
                 <Type>float</Type>
@@ -1174,13 +1174,13 @@
         <NamedObjectSave>
           <CustomProperty>
             <Type>float</Type>
-            <Member>Radius</Member>
-            <ValueAsFloat>16</ValueAsFloat>
+            <Member>Y</Member>
+            <ValueAsFloat>9</ValueAsFloat>
           </CustomProperty>
           <CustomProperty>
             <Type>float</Type>
-            <Member>Y</Member>
-            <ValueAsFloat>9</ValueAsFloat>
+            <Member>Radius</Member>
+            <ValueAsFloat>16</ValueAsFloat>
           </CustomProperty>
           <Properties>
             <PropertySave>
@@ -1201,13 +1201,13 @@
         <NamedObjectSave>
           <CustomProperty>
             <Type>float</Type>
-            <Member>Radius</Member>
-            <ValueAsFloat>16</ValueAsFloat>
+            <Member>Y</Member>
+            <ValueAsFloat>-28</ValueAsFloat>
           </CustomProperty>
           <CustomProperty>
             <Type>float</Type>
-            <Member>Y</Member>
-            <ValueAsFloat>-28</ValueAsFloat>
+            <Member>Radius</Member>
+            <ValueAsFloat>16</ValueAsFloat>
           </CustomProperty>
           <Properties>
             <PropertySave>

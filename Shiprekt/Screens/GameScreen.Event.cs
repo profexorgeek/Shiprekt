@@ -40,7 +40,7 @@ namespace Shiprekt.Screens
 		{
 			//Put the collision in front of the ship. 
 			if (shipCollisionTestCircle == null) shipCollisionTestCircle = new Circle();
-			shipCollisionTestCircle.Radius = 14;
+			shipCollisionTestCircle.Radius = 8;
 			shipCollisionTestCircle.Position = ship1.Position;
 			shipCollisionTestCircle.Position += ship1.Forward * 25;
 			
@@ -50,10 +50,10 @@ namespace Shiprekt.Screens
 				//RotateShip
 				var shipForward = ship1.Forward;
 				var otherForward = other.Forward;
-				var otherBackward = -otherForward; 
+				var otherBackward = -otherForward;
 
-				var angle1 = Math.Atan2(otherForward.Y - shipForward.Y, otherForward.X - shipForward.X);				
-				var angle2 = Math.Atan2(otherBackward.Y - shipForward.Y, otherBackward.X - shipForward.X);
+				var angle1 = Math.Atan2(otherForward.Y, otherForward.X) - Math.Atan2(shipForward.Y, shipForward.Y); 				
+				var angle2 = Math.Atan2(otherBackward.Y, otherBackward.X) - Math.Atan2(shipForward.Y, shipForward.Y);
 
 				double finalAngle = angle1; 
 				if (Math.Abs(angle1) > Math.Abs(angle2))
@@ -61,23 +61,14 @@ namespace Shiprekt.Screens
 					finalAngle = angle2; 
 				}
 
-				var turn = -finalAngle * ship1.CarData.MaxTurnRate * TimeManager.SecondDifference;
-				ship1.RotationZ += (float)turn;
-
-				//Modify movement velocity. 
-				//var awayVector = (ship1.Position - other.Position).ToVector2();
-				//awayVector.Normalize();
-				//awayVector *= ship1.Forward.Length() * 4;
-				//ship1.Velocity += awayVector.ToVector3(); 
-				//var newVelocity = ship1.Velocity;
-
-				//var initialXSign = Math.Sign(newVelocity.X);
-				//var initialYSign = Math.Sign(newVelocity.Y);
-
-				//newVelocity += awayVector.ToVector3();
-				//if (Math.Sign(newVelocity.X) != initialXSign) newVelocity.X = 0;
-				//if (Math.Sign(newVelocity.Y) != initialYSign) newVelocity.Y = 0;
-				//ship1.Velocity = newVelocity; 
+				//We only want to modify the turn if the angles of the two ships are at odds, making a player controlled turn hard. 
+				//Otherwise, we want to enable the player to steer and not feel like they are out of control. 
+				if (Math.Abs(finalAngle) > 0.78f)
+				{
+					var turn = -finalAngle * ship1.CarData.MaxTurnRate * TimeManager.SecondDifference;
+					ship1.RotationZ += (float)turn;
+				}
+				
 				return true; 
 			}
 			return false; 
