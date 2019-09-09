@@ -59,5 +59,11 @@ namespace Shiprekt.Entities
 
 
         }
+
+        public void PickRandomSprite()
+        {
+            var randomAnimationChain = FlatRedBallServices.Random.In(this.CloudSprite.AnimationChains);
+            this.CloudSprite.SetAnimationChain(randomAnimationChain);
+        }
     }
 }

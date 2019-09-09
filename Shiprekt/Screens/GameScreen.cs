@@ -99,7 +99,7 @@ namespace Shiprekt.Screens
         }
 
         const float birdRadiusEstimate = 20;
-		internal void MurderLostBirds()
+        internal void MurderLostBirds()
         {
             const float offScreenBuffer = 10;
             for (int i = BirdList.Count - 1; i >= 0; i -= 1)
@@ -112,7 +112,7 @@ namespace Shiprekt.Screens
                 }
             }
         }
-		internal void DoBirdSpawning()
+        internal void DoBirdSpawning()
         {
             if (BirdList.Count <= BirdCountMax)
             {
@@ -148,14 +148,13 @@ namespace Shiprekt.Screens
             var windVelocity = TEMP_DEFAULT_WIND;
             var cloud = CloudFactory.CreateNew(x, y);
             cloud.Altitude = FlatRedBallServices.Random.Between(Cloud.CloudAltitudeMin, Cloud.CloudAltitudeMax);
-            // TODO: Randomize cloud sprite used among available variants
-            // Option: allow clouds to vary in velocity by +/- some tolerance of actual windVelocity for some visual variation
             cloud.Velocity.X = windVelocity.X;
             cloud.Velocity.Y = windVelocity.Y;
+            cloud.PickRandomSprite();
         }
         void DoInitialCloudSpawning()
         {
-            // Spawn half the cloud amount initially
+            // Spawn portion of the cloud amount initially
             for (int i = 0; i < CloudCountMax / 6; i += 1)
             {
                 var x = FlatRedBallServices.Random.Between(cloudRadiusEstimate, Map.Width - cloudRadiusEstimate);
