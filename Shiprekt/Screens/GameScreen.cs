@@ -77,10 +77,7 @@ namespace Shiprekt.Screens
         {
             foreach(var ship in ShipList)
             {
-                ///Placeholder wind until Victor implements it. 
-                ship.
-                    
-                    ApplyWind(windDirection);
+                ship.ApplyWind(windDirection);
             }
         }
         #endregion
