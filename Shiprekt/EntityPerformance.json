@@ -1,1 +1,75 @@
-{"EntityManagementValueList":[{"Name":"Entities\\Ship","SelectedProperties":[],"InstanceManagementValuesList":[{"SelectedProperties":[],"Name":"HullSprite"},{"SelectedProperties":[],"Name":"PolygonInstance"},{"SelectedProperties":[],"Name":"HullShadowSprite"}]},{"Name":"Entities\\ShipPart","SelectedProperties":[],"InstanceManagementValuesList":[{"SelectedProperties":[],"Name":"SpriteInstance1"},{"SelectedProperties":[],"Name":"SpriteInstance2"}]},{"Name":"Entities\\Wreckage","SelectedProperties":[],"InstanceManagementValuesList":[]},{"Name":"Entities\\ShipSail","SelectedProperties":[],"InstanceManagementValuesList":[{"SelectedProperties":[],"Name":"SailSprite"},{"SelectedProperties":[],"Name":"ShadowSprite"}]},{"Name":"Entities\\Bird","SelectedProperties":[],"InstanceManagementValuesList":[{"SelectedProperties":[],"Name":"BirdSprite"}]}]}
+{
+  "EntityManagementValueList": [
+    {
+      "Name": "Entities\\Ship",
+      "SelectedProperties": [],
+      "InstanceManagementValuesList": [
+        {
+          "SelectedProperties": [],
+          "Name": "HullSprite"
+        },
+        {
+          "SelectedProperties": [],
+          "Name": "PolygonInstance"
+        },
+        {
+          "SelectedProperties": [],
+          "Name": "HullShadowSprite"
+        }
+      ]
+    },
+    {
+      "Name": "Entities\\ShipPart",
+      "SelectedProperties": [],
+      "InstanceManagementValuesList": [
+        {
+          "SelectedProperties": [],
+          "Name": "SpriteInstance1"
+        },
+        {
+          "SelectedProperties": [],
+          "Name": "SpriteInstance2"
+        }
+      ]
+    },
+    {
+      "Name": "Entities\\Wreckage",
+      "SelectedProperties": [],
+      "InstanceManagementValuesList": []
+    },
+    {
+      "Name": "Entities\\ShipSail",
+      "SelectedProperties": [],
+      "InstanceManagementValuesList": [
+        {
+          "SelectedProperties": [],
+          "Name": "SailSprite"
+        },
+        {
+          "SelectedProperties": [],
+          "Name": "ShadowSprite"
+        }
+      ]
+    },
+    {
+      "Name": "Entities\\Bird",
+      "SelectedProperties": [],
+      "InstanceManagementValuesList": [
+        {
+          "SelectedProperties": [],
+          "Name": "BirdSprite"
+        }
+      ]
+    },
+    {
+      "Name": "Entities\\Cloud",
+      "SelectedProperties": [],
+      "InstanceManagementValuesList": [
+        {
+          "SelectedProperties": [],
+          "Name": "CloudSprite"
+        }
+      ]
+    }
+  ]
+}
