@@ -82,7 +82,7 @@ namespace Shiprekt.Entities
             // TODO: the sailAngle value may need to be calculated differently when the
             // sail rotates independent of its parent ship!
             var windAngle = Math.Atan2(windVector.Y, windVector.X);
-            var sailAngle = Math.Atan2(RotationMatrix.Up.Y, RotationMatrix.Up.X); 
+            var sailAngle = Math.Atan2(RotationMatrix.Right.Y, RotationMatrix.Right.X); 
             var absAngleDelta = Math.Abs(MathFunctions.AngleToAngle(sailAngle, windAngle));
             var absAngleDeltaDegrees = absAngleDelta.ToDegrees();
 

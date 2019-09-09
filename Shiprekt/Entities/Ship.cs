@@ -10,6 +10,7 @@ using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Math.Geometry;
 using Microsoft.Xna.Framework;
 using static Shiprekt.Entities.ShipSail;
+using FlatRedBall.Debugging;
 
 namespace Shiprekt.Entities
 {
@@ -202,27 +203,21 @@ namespace Shiprekt.Entities
 		}
 
 		public void ApplyWind(Vector2 windDirectionNormalized)
-		{
-            // Update the max speed according to the wind
-            var shipToWindDot = Vector2.Dot(this.RotationMatrix.Up.ToVector2(), windDirectionNormalized);
-            if(shipToWindDot > 0)
+		{           
+            // Update the max speed according to the wind          
+            var sailToWindDot = Vector2.Dot(ShipSailInstance.RotationMatrix.Right.ToVector2(), windDirectionNormalized);
+            var coefficient = sailToWindDot == 0 ? 0 : (sailToWindDot /= 2) + .5f;
+            
+            //Always accelerate quickly toward MinSpeed. 
+            if (Velocity.Length() < MinSpeed)
             {
-                // tailwind
-                EffectiveRacingEntityValues.EffectiveMaxSpeed = BaseRacingEntityValues.EffectiveMaxSpeed + shipToWindDot * TailwindSpeedIncrease;
+                EffectiveRacingEntityValues.ForwardAcceleration = BaseRacingEntityValues.ForwardAcceleration;
             }
+            //Above MinSpeed, the sails should determine how fast acceleration is, and we should apply Drag to allow for inertia and natural slowdown to min-speed if applicable. 
             else
             {
-                // headwind - dot will be neagive here so can add
-                EffectiveRacingEntityValues.EffectiveMaxSpeed = BaseRacingEntityValues.EffectiveMaxSpeed + shipToWindDot * HeadwindSpeedDecrease;
-            }
-
-
-            var sailToWindDot = Vector2.Dot(this.ShipSailInstance.RotationMatrix.Up.ToVector2(), windDirectionNormalized);
-            // The sail should only impact speed if it is catching the wind. If it's the opposite, don't slow the ship down..unless that's the intended design?
-            EffectiveRacingEntityValues.ForwardAcceleration = BaseRacingEntityValues.ForwardAcceleration;
-            if(sailToWindDot > 0)
-            {
-                EffectiveRacingEntityValues.ForwardAcceleration += sailToWindDot * MaxSailAccelerationBoost;
+                EffectiveRacingEntityValues.ForwardAcceleration = BaseRacingEntityValues.ForwardAcceleration * coefficient;
+                ApplyFriction(BaseRacingEntityValues.ForwardAcceleration / 2); 
             }
 
 			//Change the sail visual. 

@@ -24,8 +24,9 @@
     <property name="Dead" type="bool" default="false" />
     <property name="Health" type="int" />
     <property name="TailwindSpeedIncrease" type="float" default="0" />
-    <property name="HeadwindSpeedDecrease" type="float" default="20" />
+    <property name="HeadwindSpeedDecrease" type="float" default="80" />
     <property name="MaxSailAccelerationBoost" type="float" default="20" />
+    <property name="MinSpeed" type="float" default="10" />
   </objecttype>
   <objecttype name="Wreckage" />
 </objecttypes>
