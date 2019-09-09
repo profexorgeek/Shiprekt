@@ -99,7 +99,7 @@ namespace Shiprekt.Screens
         }
 
         const float birdRadiusEstimate = 20;
-		internal void MurderLostBirds()
+        internal void MurderLostBirds()
         {
             const float offScreenBuffer = 10;
             for (int i = BirdList.Count - 1; i >= 0; i -= 1)
@@ -112,7 +112,7 @@ namespace Shiprekt.Screens
                 }
             }
         }
-		internal void DoBirdSpawning()
+        internal void DoBirdSpawning()
         {
             if (BirdList.Count <= BirdCountMax)
             {
