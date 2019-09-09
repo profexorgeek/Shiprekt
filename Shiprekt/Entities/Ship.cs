@@ -60,7 +60,7 @@ namespace Shiprekt.Entities
 					.Or(gamePad.GetButton(Xbox360GamePad.Button.RightShoulder));
 				sailTurningInput = gamePad.RightStick.Horizontal;
 				IPressableInput gas = gamePad.GetButton(Xbox360GamePad.Button.B);
-				Gas = new DelegateBasedPressableInput(() => !gas.IsDown, () => gas.WasJustReleased, () => gas.WasJustPressed);
+				Gas = new DelegateBasedPressableInput(() => !gas.IsDown, () => gas.WasJustReleased, () => gas.WasJustPressed).To1DInput();
 			}
 			else if (InputDevice is Keyboard keyboard)
 			{
@@ -71,7 +71,7 @@ namespace Shiprekt.Entities
 					.Or(InputManager.Mouse.GetButton(Mouse.MouseButtons.RightButton));
 				sailTurningInput = InputManager.Keyboard.Get1DInput(Microsoft.Xna.Framework.Input.Keys.Right, Microsoft.Xna.Framework.Input.Keys.Left);
 				IPressableInput gas = InputManager.Keyboard.GetKey(Microsoft.Xna.Framework.Input.Keys.Space);
-				Gas = new DelegateBasedPressableInput(() => !gas.IsDown, () => gas.WasJustReleased, () => gas.WasJustPressed);
+				Gas = new DelegateBasedPressableInput(() => !gas.IsDown, () => gas.WasJustReleased, () => gas.WasJustPressed).To1DInput();
 			}
 		}
 
@@ -165,7 +165,7 @@ namespace Shiprekt.Entities
 		{
 			//Wind applies force to the ship. 
 
-			if (Gas.IsDown && IsAllowedToDrive)
+			if (Gas.Value > .5f && IsAllowedToDrive)
 			{				
 				//If below min-speed, max acceleration. 
 				if (Velocity.Length() < ShipEntityValuesInstance.MinSpeed)
