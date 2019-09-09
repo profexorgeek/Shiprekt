@@ -1171,7 +1171,7 @@
           </Properties>
           <Name>TailwindSpeedIncrease</Name>
           <Type>float</Type>
-          <DefaultValue xsi:type="xsd:float">15</DefaultValue>
+          <DefaultValue xsi:type="xsd:float">0</DefaultValue>
           <IsShared>true</IsShared>
         </CustomVariable>
         <CustomVariable>
@@ -1183,7 +1183,7 @@
           </Properties>
           <Name>HeadwindSpeedDecrease</Name>
           <Type>float</Type>
-          <DefaultValue xsi:type="xsd:float">15</DefaultValue>
+          <DefaultValue xsi:type="xsd:float">20</DefaultValue>
           <IsShared>true</IsShared>
         </CustomVariable>
         <CustomVariable>
@@ -1226,7 +1226,7 @@
           <CustomProperty>
             <Type>float</Type>
             <Member>RotationZ</Member>
-            <ValueAsFloat>1.57079637</ValueAsFloat>
+            <ValueAsFloat>0</ValueAsFloat>
           </CustomProperty>
           <Properties>
             <PropertySave>
@@ -1267,7 +1267,7 @@
           <CustomProperty>
             <Type>float</Type>
             <Member>RotationZ</Member>
-            <ValueAsFloat>1.57079637</ValueAsFloat>
+            <ValueAsFloat>0</ValueAsFloat>
           </CustomProperty>
           <Properties>
             <PropertySave>
@@ -1287,11 +1287,6 @@
         <NamedObjectSave>
           <CustomProperty>
             <Type>float</Type>
-            <Member>Y</Member>
-            <ValueAsFloat>-10</ValueAsFloat>
-          </CustomProperty>
-          <CustomProperty>
-            <Type>float</Type>
             <Member>Z</Member>
             <ValueAsFloat>0</ValueAsFloat>
           </CustomProperty>
@@ -1299,6 +1294,11 @@
             <Type>System.Object</Type>
             <Member>CurrentWindState</Member>
             <ValueAsString>Wind1</ValueAsString>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>float</Type>
+            <Member>X</Member>
+            <ValueAsFloat>-10</ValueAsFloat>
           </CustomProperty>
           <Properties>
             <PropertySave>
@@ -1578,11 +1578,6 @@
         <NamedObjectSave>
           <CustomProperty>
             <Type>float</Type>
-            <Member>Y</Member>
-            <ValueAsFloat>8</ValueAsFloat>
-          </CustomProperty>
-          <CustomProperty>
-            <Type>float</Type>
             <Member>Z</Member>
             <ValueAsFloat>10</ValueAsFloat>
           </CustomProperty>
@@ -1609,7 +1604,12 @@
           <CustomProperty>
             <Type>float</Type>
             <Member>RotationZ</Member>
-            <ValueAsFloat>1.57079637</ValueAsFloat>
+            <ValueAsFloat>0</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>float</Type>
+            <Member>X</Member>
+            <ValueAsFloat>8</ValueAsFloat>
           </CustomProperty>
           <Properties>
             <PropertySave>
@@ -1650,7 +1650,7 @@
           <CustomProperty>
             <Type>float</Type>
             <Member>RotationZ</Member>
-            <ValueAsFloat>1.57079637</ValueAsFloat>
+            <ValueAsFloat>0</ValueAsFloat>
           </CustomProperty>
           <Properties>
             <PropertySave>
@@ -1691,7 +1691,7 @@
           <CustomProperty>
             <Type>float</Type>
             <Member>RotationZ</Member>
-            <ValueAsFloat>1.57079637</ValueAsFloat>
+            <ValueAsFloat>0</ValueAsFloat>
           </CustomProperty>
           <Properties>
             <PropertySave>

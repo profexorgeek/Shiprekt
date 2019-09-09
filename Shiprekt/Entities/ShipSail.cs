@@ -11,6 +11,7 @@ using FlatRedBall.Math.Geometry;
 using Microsoft.Xna.Framework;
 using Shiprekt.Utilities;
 using FlatRedBall.Math;
+using FlatRedBall.Debugging;
 
 namespace Shiprekt.Entities
 {
@@ -80,8 +81,8 @@ namespace Shiprekt.Entities
             // Find the difference in wind vs sail angles.
             // TODO: the sailAngle value may need to be calculated differently when the
             // sail rotates independent of its parent ship!
-            var windAngle = Math.Atan2(windVector.Y - Vector3.Up.Y, windVector.X - Vector3.Up.X);
-            var sailAngle = RotationZ;
+            var windAngle = Math.Atan2(windVector.Y, windVector.X);
+            var sailAngle = Math.Atan2(RotationMatrix.Up.Y, RotationMatrix.Up.X); 
             var absAngleDelta = Math.Abs(MathFunctions.AngleToAngle(sailAngle, windAngle));
             var absAngleDeltaDegrees = absAngleDelta.ToDegrees();
 
