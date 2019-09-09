@@ -21,49 +21,70 @@ namespace Shiprekt.Screens
 {
     public partial class GameScreen
     {
+        #region Fields/Properties
+
+        Vector2 windDirection;
+
+        #endregion
+
+
+        #region Initialize
 
         void CustomInitialize()
         {
-            DummyShip.InitializeRacingInput(InputManager.Xbox360GamePads[0]);
-            DummyShip.SetTeam(1);
-            Ship1.SetTeam(2);
-
-            // TODO: Spawn initial birds
-            // TODO: Spawn initial clouds
-            DoInitialCloudSpawning();
-
+   //         DummyShip.InitializeRacingInput(InputManager.Xbox360GamePads[0]);
+			//DummyShip.SetTeam(1);
+			//DummyShip.AllowedToDrive = false;
+			Ship1.SetTeam(2);
+			Camera.Main.Z = 500; 
             FlatRedBallServices.Game.IsMouseVisible = true;
+
+            windDirection = FlatRedBallServices.Random.RadialVector2(1, 1);
+
+            DoInitialCloudSpawning();
 
             OffsetTilemapLayers();
         }
 
-        private void OffsetTilemapLayers()
-        {
-            foreach (var layer in Map.MapLayers)
-            {
-                var property = layer.Properties.FirstOrDefault(item => item.Name == "PositionZ");
-                var floatValue = layer.RelativeZ;
+		internal void OffsetTilemapLayers()
+		{
+			foreach (var layer in Map.MapLayers)
+			{
+				var property = layer.Properties.FirstOrDefault(item => item.Name == "PositionZ");
+				var floatValue = layer.RelativeZ;
 
-                if (string.IsNullOrEmpty(property.Name) == false)
-                {
-                    float.TryParse((string)property.Value, out floatValue);
-                }
+				if (string.IsNullOrEmpty(property.Name) == false)
+				{
+					float.TryParse((string)property.Value, out floatValue);
+				}
 
-                layer.RelativeZ = floatValue;
-            }
-        }
+				layer.RelativeZ = floatValue;
+			}
+		}
+        #endregion
+
+        #region Activity
 
         void CustomActivity(bool firstTimeCalled)
         {
             Camera.Main.X = Ship1.X;
             Camera.Main.Y = Ship1.Y;
-
+			
             MurderLostBirds();
             DoBirdSpawning();
             UpdateShipSailsActivity();
             RemoveLostClouds();
             DoCloudSpawning();
         }
+
+		internal void UpdateShipSailsActivity()
+        {
+            foreach(var ship in ShipList)
+            {
+                ship.ApplyWind(windDirection);
+            }
+        }
+        #endregion
 
         void CustomDestroy()
         {
@@ -78,7 +99,7 @@ namespace Shiprekt.Screens
         }
 
         const float birdRadiusEstimate = 20;
-        void MurderLostBirds()
+		internal void MurderLostBirds()
         {
             const float offScreenBuffer = 10;
             for (int i = BirdList.Count - 1; i >= 0; i -= 1)
@@ -91,7 +112,7 @@ namespace Shiprekt.Screens
                 }
             }
         }
-        void DoBirdSpawning()
+		internal void DoBirdSpawning()
         {
             if (BirdList.Count <= BirdCountMax)
             {
@@ -105,14 +126,6 @@ namespace Shiprekt.Screens
 
         // TODO: Get wind from game.
         static Vector2 TEMP_DEFAULT_WIND = new Vector2(30, 5);
-        private void UpdateShipSailsActivity()
-        {
-            foreach(var ship in ShipList)
-            {
-                ///Placeholder wind until Victor implements it. 
-                ship.ApplyWind(TEMP_DEFAULT_WIND);
-            }
-        }
 
         const float cloudRadiusEstimate = 50;
         static float SecondsToNextCloudMax = 3;

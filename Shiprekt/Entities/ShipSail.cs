@@ -45,25 +45,6 @@ namespace Shiprekt.Entities
 
         }
 
-		public float GetAccelerationCoefficient(Vector2 windVector, float maxAngleToCatchWind)
-		{
-			windVector.Normalize();
-			ForceUpdateDependencies(); 
-			var thisAngle = this.RotationZ;
-			var windAngle = Math.Atan2(windVector.Y - Vector3.Up.Y, windVector.X - Vector3.Up.X);
-			var rad = FlatRedBall.Math.MathFunctions.AngleToAngle(thisAngle, windAngle);
-			var angle = Math.Abs(rad * (180 / Math.PI));
-
-			//Too far out of the wind or exactly into the wind. 
-			if (angle > maxAngleToCatchWind) return 0;
-			else if (angle == 0) return 1;
-			else
-			{
-				var diff = maxAngleToCatchWind - angle; 
-				var coefficient = diff / maxAngleToCatchWind;
-				return (float)coefficient;
-			}
-		}
 
 		/// <summary>
 		/// Updates the animation chain used for the sails based on the angle between its vector and the winds vector. 

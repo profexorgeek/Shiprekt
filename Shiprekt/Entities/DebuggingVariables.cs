@@ -11,10 +11,8 @@ using FlatRedBall.Math.Geometry;
 
 namespace Shiprekt.Entities
 {
-	public partial class Bullet
+	public partial class DebuggingVariables
 	{
-        public int TeamIndex { get; set; }
-
         /// <summary>
         /// Initialization logic which is execute only one time for this Entity (unless the Entity is pooled).
         /// This method is called when the Entity is added to managers. Entities which are instantiated but not
@@ -22,12 +20,14 @@ namespace Shiprekt.Entities
         /// </summary>
 		private void CustomInitialize()
 		{
-			InitializeArc();			
+
+
 		}
 
 		private void CustomActivity()
 		{
-			CannonballSpriteInstance.RelativeYVelocity = Math.Max(-100, CannonballSpriteInstance.RelativeYVelocity); 
+
+
 		}
 
 		private void CustomDestroy()
@@ -41,21 +41,5 @@ namespace Shiprekt.Entities
 
 
         }
-
-		private void InitializeArc()
-		{
-			CannonballSpriteInstance.RelativeYVelocity = 100;
-			var time = BulletDistance / BulletSpeed;
-			CannonballSpriteInstance.RelativeYAcceleration = -(CannonballSpriteInstance.RelativeYVelocity / time) * 2;
-		}
-
-		internal void HitSurface()
-        {
-			Instructions.Clear(); 
-
-            // todo - add particles
-            // broadcast this so that a collision can occur at screen level
-            Destroy();
-        }
-    }
+	}
 }

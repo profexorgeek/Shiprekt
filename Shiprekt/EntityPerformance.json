@@ -70,6 +70,20 @@
           "Name": "CloudSprite"
         }
       ]
+    },
+    {
+      "Name": "Entities\\Bullet",
+      "SelectedProperties": [],
+      "InstanceManagementValuesList": [
+        {
+          "SelectedProperties": [],
+          "Name": "CannonballSpriteInstance"
+        },
+        {
+          "SelectedProperties": [],
+          "Name": "CircleInstance"
+        }
+      ]
     }
   ]
 }
