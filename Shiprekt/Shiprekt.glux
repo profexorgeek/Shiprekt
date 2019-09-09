@@ -914,6 +914,11 @@
         <NamedObjectSave>
           <CustomProperty>
             <Type>float</Type>
+            <Member>Z</Member>
+            <ValueAsFloat>50</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>float</Type>
             <Member>TextureScale</Member>
             <ValueAsFloat>1</ValueAsFloat>
           </CustomProperty>
@@ -921,11 +926,6 @@
             <Type>FlatRedBall.Graphics.Animation.AnimationChainList</Type>
             <Member>AnimationChains</Member>
             <ValueAsString>CloudChains</ValueAsString>
-          </CustomProperty>
-          <CustomProperty>
-            <Type>float</Type>
-            <Member>Z</Member>
-            <ValueAsFloat>50</ValueAsFloat>
           </CustomProperty>
           <CustomProperty>
             <Type>string</Type>
@@ -1114,37 +1114,22 @@
           <CustomProperty>
             <Type>float</Type>
             <Member>Z</Member>
-            <ValueAsFloat>0.0001</ValueAsFloat>
-          </CustomProperty>
-          <CustomProperty>
-            <Type>Microsoft.Xna.Framework.Graphics.Texture2D</Type>
-            <Member>Texture</Member>
-            <ValueAsString>shiprekt</ValueAsString>
-          </CustomProperty>
-          <CustomProperty>
-            <Type>float</Type>
-            <Member>LeftTexturePixel</Member>
-            <ValueAsFloat>98</ValueAsFloat>
-          </CustomProperty>
-          <CustomProperty>
-            <Type>float</Type>
-            <Member>RightTexturePixel</Member>
-            <ValueAsFloat>172</ValueAsFloat>
-          </CustomProperty>
-          <CustomProperty>
-            <Type>float</Type>
-            <Member>TopTexturePixel</Member>
-            <ValueAsFloat>33</ValueAsFloat>
-          </CustomProperty>
-          <CustomProperty>
-            <Type>float</Type>
-            <Member>BottomTexturePixel</Member>
-            <ValueAsFloat>63</ValueAsFloat>
+            <ValueAsFloat>1.5</ValueAsFloat>
           </CustomProperty>
           <CustomProperty>
             <Type>float</Type>
             <Member>TextureScale</Member>
             <ValueAsFloat>1</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>FlatRedBall.Graphics.Animation.AnimationChainList</Type>
+            <Member>AnimationChains</Member>
+            <ValueAsString>ShipChains</ValueAsString>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>string</Type>
+            <Member>CurrentChainName</Member>
+            <ValueAsString>HullShadow</ValueAsString>
           </CustomProperty>
           <CustomProperty>
             <Type>float</Type>
@@ -1170,37 +1155,22 @@
           <CustomProperty>
             <Type>float</Type>
             <Member>Z</Member>
-            <ValueAsFloat>0.0002</ValueAsFloat>
-          </CustomProperty>
-          <CustomProperty>
-            <Type>Microsoft.Xna.Framework.Graphics.Texture2D</Type>
-            <Member>Texture</Member>
-            <ValueAsString>shiprekt</ValueAsString>
-          </CustomProperty>
-          <CustomProperty>
-            <Type>float</Type>
-            <Member>LeftTexturePixel</Member>
-            <ValueAsFloat>1</ValueAsFloat>
-          </CustomProperty>
-          <CustomProperty>
-            <Type>float</Type>
-            <Member>RightTexturePixel</Member>
-            <ValueAsFloat>76</ValueAsFloat>
-          </CustomProperty>
-          <CustomProperty>
-            <Type>float</Type>
-            <Member>TopTexturePixel</Member>
-            <ValueAsFloat>33</ValueAsFloat>
-          </CustomProperty>
-          <CustomProperty>
-            <Type>float</Type>
-            <Member>BottomTexturePixel</Member>
-            <ValueAsFloat>63</ValueAsFloat>
+            <ValueAsFloat>5</ValueAsFloat>
           </CustomProperty>
           <CustomProperty>
             <Type>float</Type>
             <Member>TextureScale</Member>
             <ValueAsFloat>1</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>FlatRedBall.Graphics.Animation.AnimationChainList</Type>
+            <Member>AnimationChains</Member>
+            <ValueAsString>ShipChains</ValueAsString>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>string</Type>
+            <Member>CurrentChainName</Member>
+            <ValueAsString>Hull</ValueAsString>
           </CustomProperty>
           <CustomProperty>
             <Type>float</Type>
@@ -1225,8 +1195,13 @@
         <NamedObjectSave>
           <CustomProperty>
             <Type>float</Type>
+            <Member>Y</Member>
+            <ValueAsFloat>-10</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>float</Type>
             <Member>Z</Member>
-            <ValueAsFloat>0.0003</ValueAsFloat>
+            <ValueAsFloat>0</ValueAsFloat>
           </CustomProperty>
           <CustomProperty>
             <Type>System.Object</Type>
@@ -1255,7 +1230,7 @@
           <CustomProperty>
             <Type>bool</Type>
             <Member>Visible</Member>
-            <ValueAsBool>true</ValueAsBool>
+            <ValueAsBool>false</ValueAsBool>
           </CustomProperty>
           <CustomProperty>
             <Member>Points</Member>
@@ -1307,6 +1282,11 @@
             <Member>Radius</Member>
             <ValueAsFloat>16</ValueAsFloat>
           </CustomProperty>
+          <CustomProperty>
+            <Type>bool</Type>
+            <Member>Visible</Member>
+            <ValueAsBool>false</ValueAsBool>
+          </CustomProperty>
           <Properties>
             <PropertySave>
               <Name>SourceType</Name>
@@ -1333,6 +1313,11 @@
             <Type>float</Type>
             <Member>Radius</Member>
             <ValueAsFloat>16</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>bool</Type>
+            <Member>Visible</Member>
+            <ValueAsBool>false</ValueAsBool>
           </CustomProperty>
           <Properties>
             <PropertySave>
@@ -1365,9 +1350,9 @@
           <ProjectsToExcludeFrom />
         </ReferencedFileSave>
         <ReferencedFileSave>
-          <Name>GlobalContent/shiprekt.png</Name>
+          <Name>GlobalContent/ShipChains.achx</Name>
           <IsSharedStatic>true</IsSharedStatic>
-          <RuntimeType>Microsoft.Xna.Framework.Graphics.Texture2D</RuntimeType>
+          <RuntimeType>FlatRedBall.Graphics.Animation.AnimationChainList</RuntimeType>
           <ProjectsToExcludeFrom />
         </ReferencedFileSave>
       </ReferencedFiles>
@@ -1386,8 +1371,8 @@
               <InstructionSaves>
                 <InstructionSave>
                   <Type>String</Type>
-                  <Member>SailSpriteAnimationChains</Member>
-                  <ValueAsString>BlackSailAnimationChainListFile</ValueAsString>
+                  <Member>SailSpriteCurrentChainName</Member>
+                  <ValueAsString>SailSkull</ValueAsString>
                 </InstructionSave>
               </InstructionSaves>
               <Name>Black</Name>
@@ -1396,8 +1381,8 @@
               <InstructionSaves>
                 <InstructionSave>
                   <Type>String</Type>
-                  <Member>SailSpriteAnimationChains</Member>
-                  <ValueAsString>PinkSailAnimationChainListFile</ValueAsString>
+                  <Member>SailSpriteCurrentChainName</Member>
+                  <ValueAsString>SailSun</ValueAsString>
                 </InstructionSave>
               </InstructionSaves>
               <Name>Pink</Name>
@@ -1406,8 +1391,8 @@
               <InstructionSaves>
                 <InstructionSave>
                   <Type>String</Type>
-                  <Member>SailSpriteAnimationChains</Member>
-                  <ValueAsString>RedStripedSailAnimationChainListFile</ValueAsString>
+                  <Member>SailSpriteCurrentChainName</Member>
+                  <ValueAsString>SailStripes</ValueAsString>
                 </InstructionSave>
               </InstructionSaves>
               <Name>RedStripe</Name>
@@ -1416,8 +1401,8 @@
               <InstructionSaves>
                 <InstructionSave>
                   <Type>String</Type>
-                  <Member>SailSpriteAnimationChains</Member>
-                  <ValueAsString>GreenAnimationChainListFile</ValueAsString>
+                  <Member>SailSpriteCurrentChainName</Member>
+                  <ValueAsString>SailStar</ValueAsString>
                 </InstructionSave>
               </InstructionSaves>
               <Name>Green</Name>
@@ -1463,44 +1448,6 @@
           <Properties>
             <PropertySave>
               <Name>Type</Name>
-              <ValueAsString>string</ValueAsString>
-            </PropertySave>
-          </Properties>
-          <Name>SailSpriteCurrentChainName</Name>
-          <Type>string</Type>
-          <DefaultValue xsi:type="xsd:string">Sail1</DefaultValue>
-          <SourceObject>SailSprite</SourceObject>
-          <SourceObjectProperty>CurrentChainName</SourceObjectProperty>
-        </CustomVariable>
-        <CustomVariable>
-          <Properties>
-            <PropertySave>
-              <Name>Type</Name>
-              <ValueAsString>string</ValueAsString>
-            </PropertySave>
-          </Properties>
-          <Name>ShadowSpriteCurrentChainName</Name>
-          <Type>string</Type>
-          <DefaultValue xsi:type="xsd:string">Shadow1</DefaultValue>
-          <SourceObject>ShadowSprite</SourceObject>
-          <SourceObjectProperty>CurrentChainName</SourceObjectProperty>
-        </CustomVariable>
-        <CustomVariable>
-          <Properties>
-            <PropertySave>
-              <Name>Type</Name>
-              <ValueAsString>Shiprekt.DataTypes.SailAnimationValues</ValueAsString>
-            </PropertySave>
-          </Properties>
-          <Name>SailAnimationValuesInstance</Name>
-          <Type>Shiprekt.DataTypes.SailAnimationValues</Type>
-          <DefaultValue xsi:type="xsd:string">DefaultValues in SailAnimationValues.csv</DefaultValue>
-          <IsShared>true</IsShared>
-        </CustomVariable>
-        <CustomVariable>
-          <Properties>
-            <PropertySave>
-              <Name>Type</Name>
               <ValueAsString>SailColor</ValueAsString>
             </PropertySave>
           </Properties>
@@ -1511,13 +1458,26 @@
           <Properties>
             <PropertySave>
               <Name>Type</Name>
-              <ValueAsString>AnimationChainList</ValueAsString>
+              <ValueAsString>string</ValueAsString>
             </PropertySave>
           </Properties>
-          <Name>SailSpriteAnimationChains</Name>
-          <Type>AnimationChainList</Type>
+          <Name>SailSpriteCurrentChainName</Name>
+          <Type>string</Type>
+          <DefaultValue xsi:type="xsd:string">SailSkull</DefaultValue>
           <SourceObject>SailSprite</SourceObject>
-          <SourceObjectProperty>AnimationChains</SourceObjectProperty>
+          <SourceObjectProperty>CurrentChainName</SourceObjectProperty>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>AngleVarianceDegreesCoefficient</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">22.5</DefaultValue>
+          <IsShared>true</IsShared>
         </CustomVariable>
       </CustomVariables>
       <ImplementsIDrawableBatch>false</ImplementsIDrawableBatch>
@@ -1526,18 +1486,33 @@
         <NamedObjectSave>
           <CustomProperty>
             <Type>float</Type>
+            <Member>Y</Member>
+            <ValueAsFloat>8</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>float</Type>
+            <Member>Z</Member>
+            <ValueAsFloat>10</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>float</Type>
             <Member>TextureScale</Member>
             <ValueAsFloat>1</ValueAsFloat>
           </CustomProperty>
           <CustomProperty>
+            <Type>bool</Type>
+            <Member>UseAnimationRelativePosition</Member>
+            <ValueAsBool>false</ValueAsBool>
+          </CustomProperty>
+          <CustomProperty>
             <Type>FlatRedBall.Graphics.Animation.AnimationChainList</Type>
             <Member>AnimationChains</Member>
-            <ValueAsString>BlackSailAnimationChainListFile</ValueAsString>
+            <ValueAsString>ShipChains</ValueAsString>
           </CustomProperty>
           <CustomProperty>
             <Type>string</Type>
             <Member>CurrentChainName</Member>
-            <ValueAsString>Sail1</ValueAsString>
+            <ValueAsString>SailSkull</ValueAsString>
           </CustomProperty>
           <CustomProperty>
             <Type>float</Type>
@@ -1562,18 +1537,23 @@
         <NamedObjectSave>
           <CustomProperty>
             <Type>float</Type>
+            <Member>Z</Member>
+            <ValueAsFloat>5.1</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>float</Type>
             <Member>TextureScale</Member>
             <ValueAsFloat>1</ValueAsFloat>
           </CustomProperty>
           <CustomProperty>
             <Type>FlatRedBall.Graphics.Animation.AnimationChainList</Type>
             <Member>AnimationChains</Member>
-            <ValueAsString>ShadowAnimationChainListFile</ValueAsString>
+            <ValueAsString>ShipChains</ValueAsString>
           </CustomProperty>
           <CustomProperty>
             <Type>string</Type>
             <Member>CurrentChainName</Member>
-            <ValueAsString>Shadow1</ValueAsString>
+            <ValueAsString>SailShadow</ValueAsString>
           </CustomProperty>
           <CustomProperty>
             <Type>float</Type>
@@ -1595,40 +1575,51 @@
           <GenerateTimedEmit>true</GenerateTimedEmit>
           <IndependentOfCamera>true</IndependentOfCamera>
         </NamedObjectSave>
+        <NamedObjectSave>
+          <CustomProperty>
+            <Type>float</Type>
+            <Member>Z</Member>
+            <ValueAsFloat>11</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>float</Type>
+            <Member>TextureScale</Member>
+            <ValueAsFloat>1</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>FlatRedBall.Graphics.Animation.AnimationChainList</Type>
+            <Member>AnimationChains</Member>
+            <ValueAsString>ShipChains</ValueAsString>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>string</Type>
+            <Member>CurrentChainName</Member>
+            <ValueAsString>Mast</ValueAsString>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>float</Type>
+            <Member>RotationZ</Member>
+            <ValueAsFloat>1.57079637</ValueAsFloat>
+          </CustomProperty>
+          <Properties>
+            <PropertySave>
+              <Name>SourceType</Name>
+              <ValueAsObject xsi:type="SourceType">FlatRedBallType</ValueAsObject>
+            </PropertySave>
+          </Properties>
+          <SourceType>FlatRedBallType</SourceType>
+          <SourceFile />
+          <SourceName />
+          <SourceClassType>Sprite</SourceClassType>
+          <InstanceName>MastSprite</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+        </NamedObjectSave>
       </NamedObjects>
       <ReferencedFiles>
         <ReferencedFileSave>
-          <Name>Entities/ShipSail/BlackSailAnimationChainListFile.achx</Name>
-          <IsSharedStatic>true</IsSharedStatic>
-          <RuntimeType>FlatRedBall.Graphics.Animation.AnimationChainList</RuntimeType>
-          <ProjectsToExcludeFrom />
-        </ReferencedFileSave>
-        <ReferencedFileSave>
-          <Name>Entities/ShipSail/ShadowAnimationChainListFile.achx</Name>
-          <IsSharedStatic>true</IsSharedStatic>
-          <RuntimeType>FlatRedBall.Graphics.Animation.AnimationChainList</RuntimeType>
-          <ProjectsToExcludeFrom />
-        </ReferencedFileSave>
-        <ReferencedFileSave>
-          <Name>Entities/ShipSail/SailAnimationValues.csv</Name>
-          <IsSharedStatic>true</IsSharedStatic>
-          <CreatesDictionary>true</CreatesDictionary>
-          <ProjectsToExcludeFrom />
-        </ReferencedFileSave>
-        <ReferencedFileSave>
-          <Name>Entities/ShipSail/PinkSailAnimationChainListFile.achx</Name>
-          <IsSharedStatic>true</IsSharedStatic>
-          <RuntimeType>FlatRedBall.Graphics.Animation.AnimationChainList</RuntimeType>
-          <ProjectsToExcludeFrom />
-        </ReferencedFileSave>
-        <ReferencedFileSave>
-          <Name>Entities/ShipSail/RedStripedSailAnimationChainListFile.achx</Name>
-          <IsSharedStatic>true</IsSharedStatic>
-          <RuntimeType>FlatRedBall.Graphics.Animation.AnimationChainList</RuntimeType>
-          <ProjectsToExcludeFrom />
-        </ReferencedFileSave>
-        <ReferencedFileSave>
-          <Name>Entities/ShipSail/GreenAnimationChainListFile.achx</Name>
+          <Name>GlobalContent/ShipChains.achx</Name>
           <IsSharedStatic>true</IsSharedStatic>
           <RuntimeType>FlatRedBall.Graphics.Animation.AnimationChainList</RuntimeType>
           <ProjectsToExcludeFrom />
@@ -1682,6 +1673,13 @@
   <GlobalFiles>
     <ReferencedFileSave>
       <Name>GlobalContent/shiprekt.png</Name>
+      <IsSharedStatic>true</IsSharedStatic>
+      <DestroyOnUnload>false</DestroyOnUnload>
+      <HasPublicProperty>true</HasPublicProperty>
+      <ProjectsToExcludeFrom />
+    </ReferencedFileSave>
+    <ReferencedFileSave>
+      <Name>GlobalContent/ShipChains.achx</Name>
       <IsSharedStatic>true</IsSharedStatic>
       <DestroyOnUnload>false</DestroyOnUnload>
       <HasPublicProperty>true</HasPublicProperty>

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using FlatRedBall;
@@ -9,19 +9,42 @@ using FlatRedBall.Graphics.Animation;
 using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Math.Geometry;
 using Microsoft.Xna.Framework;
+using Shiprekt.Utilities;
+using FlatRedBall.Math;
 
 namespace Shiprekt.Entities
 {
-	public partial class ShipSail
-	{
-		private const string SAIL_CHAIN_NAME_PREFIX = "Sail";
-		private const string SHADOW_CHAIN_NAME_PREFIX = "Shadow"; 
+    // This enum relates wind strength to frame numbers in
+    // the sail animation chains. The sail alignment with
+    // the wind is calculated and the SailFullness is set
+    // as the frame index
+    public enum SailFullness
+    {
+        Empty = 0,
+        Normal = 1,
+        Full = 2
+    }
 
-        /// <summary>
-        /// Initialization logic which is execute only one time for this Entity (unless the Entity is pooled).
-        /// This method is called when the Entity is added to managers. Entities which are instantiated but not
-        /// added to managers will not have this method called.
-        /// </summary>
+    public partial class ShipSail
+    {
+        // This field represents how well the sails are aligned
+        // with the wind. Use this to update the sail visual and
+        // also to make decisions about the ship's current speed potential
+        private SailFullness currentSailFullness;
+        public SailFullness CurrentSailFullness
+        {
+            get
+            {
+                return currentSailFullness;
+            }
+            set
+            {
+                currentSailFullness = value;
+                ShadowSprite.CurrentFrameIndex = (int)currentSailFullness;
+                SailSprite.CurrentFrameIndex = (int)currentSailFullness;
+            }
+        }
+
 		private void CustomInitialize()
 		{
 
@@ -54,26 +77,24 @@ namespace Shiprekt.Entities
 		{			
 			windVector.Normalize();
 
-			//Edge case where the designer TOTALLY MESSED UP AND DIDN'T ADD ALL THE NECESSARY VALUES...JUSTIN.
-			if (SailAnimationValuesInstance.AngleThreshold.Count != SailAnimationValuesInstance.SailChainName.Count || SailAnimationValuesInstance.AngleThreshold.Count != SailAnimationValuesInstance.ShadowChainName.Count)
-			{
-				throw new Exception("You must define AnimationChainNames for wind and shadow for each AngleThrehold in SpeedThresholdLevels.csv"); 
-			}
+            // Find the difference in wind vs sail angles.
+            // TODO: the sailAngle value may need to be calculated differently when the
+            // sail rotates independent of its parent ship!
+            var windAngle = Math.Atan2(windVector.Y - Vector3.Up.Y, windVector.X - Vector3.Up.X);
+            var sailAngle = RotationZ;
+            var absAngleDelta = Math.Abs(MathFunctions.AngleToAngle(sailAngle, windAngle));
+            var absAngleDeltaDegrees = absAngleDelta.ToDegrees();
 
-			var thisAngle = this.RotationZ;
-			var windAngle = Math.Atan2(windVector.Y - Vector3.Up.Y, windVector.X - Vector3.Up.X);
-			var rad = FlatRedBall.Math.MathFunctions.AngleToAngle(thisAngle, windAngle);
-			var angle = Math.Abs(rad * (180 / Math.PI)); 
-			for (int i = 0; i < SailAnimationValuesInstance.AngleThreshold.Count; i++)
-			{
-				var threshold = SailAnimationValuesInstance.AngleThreshold[i]; 
-				if (angle < threshold)
-				{
-					SailSpriteCurrentChainName = SailAnimationValuesInstance.SailChainName[i];
-					ShadowSpriteCurrentChainName = SailAnimationValuesInstance.ShadowChainName[i];
-					break; 
-				}
-			}	
+            // Update sail fullness based on alignment with wind direction
+            CurrentSailFullness = SailFullness.Empty;
+            if(absAngleDeltaDegrees < AngleVarianceDegreesCoefficient)
+            {
+                CurrentSailFullness = SailFullness.Full;
+            }
+            else if(absAngleDeltaDegrees < AngleVarianceDegreesCoefficient * 2)
+            {
+                CurrentSailFullness = SailFullness.Normal;
+            }
 		}
 	}
 }

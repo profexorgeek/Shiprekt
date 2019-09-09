@@ -50,7 +50,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="DataTypes\RacingEntityValues.Generated.cs" />
-    <Compile Include="DataTypes\SailAnimationValues.Generated.cs" />
     <Compile Include="DataTypes\ShipEntityValues.Generated.cs" />
     <Compile Include="DataTypes\TileMapInfo.Generated.cs" />
     <Compile Include="Entities\Bird.cs" />
@@ -139,6 +138,7 @@
     <Compile Include="TileGraphics\TileNodeNetworkCreator.cs" />
     <Compile Include="TileGraphics\Tileset.cs" />
     <Compile Include="TileGraphics\TilesetExtensionMethods.cs" />
+    <Compile Include="Utilities\MathExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FlatRedBall.Forms, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -172,30 +172,6 @@
     <Content Include="Content\shader.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="content\entities\shipsail\blacksailanimationchainlistfile.achx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>BlackSailAnimationChainListFile</Name>
-    </None>
-    <None Include="content\entities\shipsail\greenanimationchainlistfile.achx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>GreenAnimationChainListFile</Name>
-    </None>
-    <None Include="content\entities\shipsail\pinksailanimationchainlistfile.achx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>PinkSailAnimationChainListFile</Name>
-    </None>
-    <None Include="content\entities\shipsail\redstripedsailanimationchainlistfile.achx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>RedStripedSailAnimationChainListFile</Name>
-    </None>
-    <None Include="content\entities\shipsail\sailanimationvalues.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>SailAnimationValues</Name>
-    </None>
-    <None Include="content\entities\shipsail\shadowanimationchainlistfile.achx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>ShadowAnimationChainListFile</Name>
-    </None>
     <None Include="content\entities\ship\racingentityvalues.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>RacingEntityValues</Name>
