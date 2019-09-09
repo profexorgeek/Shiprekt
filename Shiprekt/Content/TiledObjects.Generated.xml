@@ -23,8 +23,8 @@
     <property name="ShipEntityValuesInstance" type="Shiprekt.DataTypes.ShipEntityValues" default="DefaultValues in ShipEntityValues.csv" />
     <property name="Dead" type="bool" default="false" />
     <property name="Health" type="int" />
-    <property name="TailwindSpeedIncrease" type="float" default="15" />
-    <property name="HeadwindSpeedDecrease" type="float" default="15" />
+    <property name="TailwindSpeedIncrease" type="float" default="0" />
+    <property name="HeadwindSpeedDecrease" type="float" default="20" />
     <property name="MaxSailAccelerationBoost" type="float" default="20" />
   </objecttype>
   <objecttype name="Wreckage" />
