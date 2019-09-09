@@ -1,4 +1,0 @@
-"Name (string, required)",AngleThreshold (List<float>),SailChainName (List<string>),ShadowChainName (List<string>)
-DefaultValues,10,Sail3,Shadow3
-,35,Sail2,Shadow2
-,45,Sail1,Shadow1
