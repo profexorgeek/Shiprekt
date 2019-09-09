@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
@@ -41,6 +41,8 @@ namespace Shiprekt.Screens
 
             windDirection = FlatRedBallServices.Random.RadialVector2(1, 1);
 
+            DoInitialCloudSpawning();
+
             OffsetTilemapLayers();
         }
 
@@ -71,6 +73,8 @@ namespace Shiprekt.Screens
             MurderLostBirds();
             DoBirdSpawning();
             UpdateShipSailsActivity();
+            RemoveLostClouds();
+            DoCloudSpawning();
         }
 
 		internal void UpdateShipSailsActivity()
@@ -97,17 +101,17 @@ namespace Shiprekt.Screens
         const float birdRadiusEstimate = 20;
 		internal void MurderLostBirds()
         {
+            const float offScreenBuffer = 10;
             for (int i = BirdList.Count - 1; i >= 0; i -= 1)
             {
                 var bird = BirdList[i];
-                if (bird.X + birdRadiusEstimate > this.Map.Width || bird.Y + birdRadiusEstimate < -this.Map.Height
-                    || bird.X - birdRadiusEstimate < 0 || bird.Y - birdRadiusEstimate > 0)
+                if (bird.X > this.Map.Width + birdRadiusEstimate + offScreenBuffer || bird.Y < -this.Map.Height - birdRadiusEstimate - offScreenBuffer
+                    || bird.X < 0 - birdRadiusEstimate - offScreenBuffer || bird.Y > 0 + birdRadiusEstimate + offScreenBuffer)
                 {
                     bird.Destroy();
                 }
             }
         }
-
 		internal void DoBirdSpawning()
         {
             if (BirdList.Count <= BirdCountMax)
@@ -120,6 +124,134 @@ namespace Shiprekt.Screens
             }
         }
 
+        // TODO: Get wind from game.
+        static Vector2 TEMP_DEFAULT_WIND = new Vector2(30, 5);
 
-	}
+        const float cloudRadiusEstimate = 50;
+        static float SecondsToNextCloudMax = 3;
+        static float SecondsToNextCloud = 0;
+        void RemoveLostClouds()
+        {
+            const float offScreenBuffer = 10;
+            for (int i = CloudList.Count - 1; i >= 0; i -= 1)
+            {
+                var cloud = CloudList[i];
+                if (cloud.X > this.Map.Width + cloudRadiusEstimate + offScreenBuffer || cloud.Y < -this.Map.Height - cloudRadiusEstimate - offScreenBuffer
+                    || cloud.X < 0 - cloudRadiusEstimate - offScreenBuffer || cloud.Y > 0 + cloudRadiusEstimate + offScreenBuffer)
+                {
+                    cloud.Destroy();
+                }
+            }
+        }
+        void SpawnCloud(float x, float y)
+        {
+            var windVelocity = TEMP_DEFAULT_WIND;
+            var cloud = CloudFactory.CreateNew(x, y);
+            cloud.Altitude = FlatRedBallServices.Random.Between(Cloud.CloudAltitudeMin, Cloud.CloudAltitudeMax);
+            // TODO: Randomize cloud sprite used among available variants
+            // Option: allow clouds to vary in velocity by +/- some tolerance of actual windVelocity for some visual variation
+            cloud.Velocity.X = windVelocity.X;
+            cloud.Velocity.Y = windVelocity.Y;
+        }
+        void DoInitialCloudSpawning()
+        {
+            // Spawn half the cloud amount initially
+            for (int i = 0; i < CloudCountMax / 6; i += 1)
+            {
+                var x = FlatRedBallServices.Random.Between(cloudRadiusEstimate, Map.Width - cloudRadiusEstimate);
+                var y = FlatRedBallServices.Random.Between(cloudRadiusEstimate, -Map.Height + cloudRadiusEstimate);
+                SpawnCloud(x, y);
+            }
+        }
+        void DoCloudSpawning()
+        {
+            if (CloudList.Count <= CloudCountMax)
+            {
+                // Limit random cloud spawning to varied timer
+                SecondsToNextCloud -= TimeManager.SecondDifference;
+                if (SecondsToNextCloud > 0)
+                {
+                    return;
+                }
+                SecondsToNextCloud = FlatRedBallServices.Random.Between(0, SecondsToNextCloudMax);
+
+                var windVelocity = TEMP_DEFAULT_WIND;
+
+                // Consider half of game screen perimiter, from 0,0 to Width,-Height.
+                float spawnRangeMax = Map.Height + Map.Width;
+                // Find a number along that perimter, spawn based on that number with wind determining top/right/bottom/left.
+                float spawnPointInRange = FlatRedBallServices.Random.Between(0, spawnRangeMax);
+
+                // NOTE: For primary directions, clouds will spawn outside and be culled immediately until RNGesus sees fit to put them all on the appropriate side.
+                float cloudSpawnX = 0;
+                float cloudSpawnY = 0;
+                if (windVelocity.X >= 0 && windVelocity.Y >= 0)
+                {
+                    // Wind goes up/right
+                    if (spawnPointInRange <= Map.Height)
+                    {
+                        // Spawn at point left of map
+                        cloudSpawnX = -cloudRadiusEstimate;
+                        cloudSpawnY = FlatRedBallServices.Random.Between(-Map.Height, 0);
+                    }
+                    else // (spawnPointInRange >= Map.Height)
+                    {
+                        // Spawn at point below map
+                        cloudSpawnX = FlatRedBallServices.Random.Between(0, Map.Width);
+                        cloudSpawnY = Map.Height + cloudRadiusEstimate;
+                    }
+                }
+                else if (windVelocity.X >= 0 && windVelocity.Y <= 0)
+                {
+                    // Wind goes down/right
+                    if (spawnPointInRange <= Map.Height)
+                    {
+                        // Spawn at point left of map
+                        cloudSpawnX = -cloudRadiusEstimate;
+                        cloudSpawnY = FlatRedBallServices.Random.Between(-Map.Height, 0);
+                    }
+                    else // (spawnPointInRange >= Map.Height)
+                    {
+                        // Spawn at point above map
+                        cloudSpawnX = FlatRedBallServices.Random.Between(0, Map.Width);
+                        cloudSpawnY = -cloudRadiusEstimate;
+                    }
+                }
+                else if (windVelocity.X <= 0 && windVelocity.Y >= 0)
+                {
+                    // Wind goes up/left
+                    if (spawnPointInRange <= Map.Height)
+                    {
+                        // Spawn at point right of map
+                        cloudSpawnX = Map.Width + cloudRadiusEstimate;
+                        cloudSpawnY = FlatRedBallServices.Random.Between(-Map.Height, 0);
+                    }
+                    else // (spawnPointInRange >= Map.Height)
+                    {
+                        // Spawn at point below map
+                        cloudSpawnX = FlatRedBallServices.Random.Between(0, Map.Width);
+                        cloudSpawnY = Map.Height + cloudRadiusEstimate;
+                    }
+                }
+                else if (windVelocity.X <= 0 && windVelocity.Y <= 0)
+                {
+                    // Wind goes down/left
+                    // Spawn from right/top
+                    if (spawnPointInRange <= Map.Height)
+                    {
+                        // Spawn at point right of map
+                        cloudSpawnX = Map.Width + cloudRadiusEstimate;
+                        cloudSpawnY = FlatRedBallServices.Random.Between(-Map.Height, 0);
+                    }
+                    else // (spawnPointInRange >= Map.Height)
+                    {
+                        // Spawn at point above map
+                        cloudSpawnX = FlatRedBallServices.Random.Between(0, Map.Width);
+                        cloudSpawnY = -cloudRadiusEstimate;
+                    }
+                }
+                SpawnCloud(cloudSpawnX, cloudSpawnY);
+            }
+        }
+    }
 }
