@@ -21,6 +21,13 @@ namespace Shiprekt.Screens
 {
     public partial class GameScreen
     {
+        #region Fields/Properties
+
+        Vector2 windDirection;
+
+        #endregion
+
+
         #region Initialize
 
         void CustomInitialize()
@@ -31,6 +38,8 @@ namespace Shiprekt.Screens
 			Ship1.SetTeam(2);
 			Camera.Main.Z = 500; 
             FlatRedBallServices.Game.IsMouseVisible = true;
+
+            windDirection = FlatRedBallServices.Random.RadialVector2(1, 1);
 
             OffsetTilemapLayers();
         }
@@ -69,7 +78,9 @@ namespace Shiprekt.Screens
             foreach(var ship in ShipList)
             {
                 ///Placeholder wind until Victor implements it. 
-                ship.ApplyWind(new Vector2(0,1));
+                ship.
+                    
+                    ApplyWind(windDirection);
             }
         }
         #endregion
