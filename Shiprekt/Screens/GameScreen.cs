@@ -21,11 +21,13 @@ namespace Shiprekt.Screens
 {
     public partial class GameScreen
     {
+        #region Initialize
+
         void CustomInitialize()
         {
-            DummyShip.InitializeRacingInput(InputManager.Xbox360GamePads[0]);
-			DummyShip.SetTeam(1);
-			DummyShip.AllowedToDrive = false;
+   //         DummyShip.InitializeRacingInput(InputManager.Xbox360GamePads[0]);
+			//DummyShip.SetTeam(1);
+			//DummyShip.AllowedToDrive = false;
 			Ship1.SetTeam(2);
 			Camera.Main.Z = 500; 
             FlatRedBallServices.Game.IsMouseVisible = true;
@@ -33,6 +35,24 @@ namespace Shiprekt.Screens
             OffsetTilemapLayers();
         }
 
+		internal void OffsetTilemapLayers()
+		{
+			foreach (var layer in Map.MapLayers)
+			{
+				var property = layer.Properties.FirstOrDefault(item => item.Name == "PositionZ");
+				var floatValue = layer.RelativeZ;
+
+				if (string.IsNullOrEmpty(property.Name) == false)
+				{
+					float.TryParse((string)property.Value, out floatValue);
+				}
+
+				layer.RelativeZ = floatValue;
+			}
+		}
+        #endregion
+
+        #region Activity
 
         void CustomActivity(bool firstTimeCalled)
         {
@@ -43,6 +63,16 @@ namespace Shiprekt.Screens
             DoBirdSpawning();
             UpdateShipSailsActivity();
         }
+
+		internal void UpdateShipSailsActivity()
+        {
+            foreach(var ship in ShipList)
+            {
+                ///Placeholder wind until Victor implements it. 
+                ship.ApplyWind(new Vector2(0,1));
+            }
+        }
+        #endregion
 
         void CustomDestroy()
         {
@@ -82,29 +112,6 @@ namespace Shiprekt.Screens
             }
         }
 
-		internal void OffsetTilemapLayers()
-		{
-			foreach (var layer in Map.MapLayers)
-			{
-				var property = layer.Properties.FirstOrDefault(item => item.Name == "PositionZ");
-				var floatValue = layer.RelativeZ;
 
-				if (string.IsNullOrEmpty(property.Name) == false)
-				{
-					float.TryParse((string)property.Value, out floatValue);
-				}
-
-				layer.RelativeZ = floatValue;
-			}
-		}
-
-		internal void UpdateShipSailsActivity()
-        {
-            foreach(var ship in ShipList)
-            {
-                ///Placeholder wind until Victor implements it. 
-                ship.ApplyWind(new Vector2(0,1));
-            }
-        }
 	}
 }
