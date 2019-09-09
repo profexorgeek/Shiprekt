@@ -9,6 +9,8 @@ using FlatRedBall.Graphics.Animation;
 using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Math.Geometry;
 using Microsoft.Xna.Framework;
+using System.Linq;
+using Shiprekt.Utilities;
 
 namespace Shiprekt.Entities
 {
@@ -62,8 +64,15 @@ namespace Shiprekt.Entities
 
         public void PickRandomSprite()
         {
-            var randomAnimationChain = FlatRedBallServices.Random.In(this.CloudSprite.AnimationChains);
-            this.CloudSprite.SetAnimationChain(randomAnimationChain);
+            var randChainName = CloudChains.Random().Name;
+
+            // sprite is the first frame by convention
+            CloudSprite.CurrentChainName = randChainName;
+            CloudSprite.CurrentFrameIndex = 0;
+
+            // shadow is the second frame by convention
+            CloudShadowSprite.CurrentChainName = randChainName;
+            CloudShadowSprite.CurrentFrameIndex = 1;
         }
     }
 }

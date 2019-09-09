@@ -13,6 +13,14 @@
       <TopCoordinate>160</TopCoordinate>
       <BottomCoordinate>192</BottomCoordinate>
     </Frame>
+    <Frame>
+      <TextureName>shiprekt.png</TextureName>
+      <FrameLength>0.25</FrameLength>
+      <LeftCoordinate>224</LeftCoordinate>
+      <RightCoordinate>288</RightCoordinate>
+      <TopCoordinate>160</TopCoordinate>
+      <BottomCoordinate>192</BottomCoordinate>
+    </Frame>
   </AnimationChain>
   <AnimationChain>
     <Name>Cloud2</Name>
@@ -21,6 +29,14 @@
       <FrameLength>0.25</FrameLength>
       <LeftCoordinate>64</LeftCoordinate>
       <RightCoordinate>128</RightCoordinate>
+      <TopCoordinate>160</TopCoordinate>
+      <BottomCoordinate>192</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>shiprekt.png</TextureName>
+      <FrameLength>0.25</FrameLength>
+      <LeftCoordinate>288</LeftCoordinate>
+      <RightCoordinate>352</RightCoordinate>
       <TopCoordinate>160</TopCoordinate>
       <BottomCoordinate>192</BottomCoordinate>
     </Frame>
@@ -35,6 +51,14 @@
       <TopCoordinate>128</TopCoordinate>
       <BottomCoordinate>160</BottomCoordinate>
     </Frame>
+    <Frame>
+      <TextureName>shiprekt.png</TextureName>
+      <FrameLength>0.25</FrameLength>
+      <LeftCoordinate>320</LeftCoordinate>
+      <RightCoordinate>384</RightCoordinate>
+      <TopCoordinate>128</TopCoordinate>
+      <BottomCoordinate>160</BottomCoordinate>
+    </Frame>
   </AnimationChain>
   <AnimationChain>
     <Name>Cloud4</Name>
@@ -43,6 +67,14 @@
       <FrameLength>0.25</FrameLength>
       <LeftCoordinate>160</LeftCoordinate>
       <RightCoordinate>224</RightCoordinate>
+      <TopCoordinate>128</TopCoordinate>
+      <BottomCoordinate>192</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>shiprekt.png</TextureName>
+      <FrameLength>0.25</FrameLength>
+      <LeftCoordinate>384</LeftCoordinate>
+      <RightCoordinate>448</RightCoordinate>
       <TopCoordinate>128</TopCoordinate>
       <BottomCoordinate>192</BottomCoordinate>
     </Frame>
