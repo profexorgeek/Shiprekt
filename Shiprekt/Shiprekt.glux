@@ -55,6 +55,14 @@
         </CustomVariable>
       </CustomVariables>
       <Name>Screens\GameScreen</Name>
+      <ReferencedFiles>
+        <ReferencedFileSave>
+          <Name>GumProject/Screens/GameScreenGum.gusx</Name>
+          <IsSharedStatic>true</IsSharedStatic>
+          <RuntimeType>Shiprekt.GumRuntimes.GameScreenGumRuntime</RuntimeType>
+          <ProjectsToExcludeFrom />
+        </ReferencedFileSave>
+      </ReferencedFiles>
       <NamedObjects>
         <NamedObjectSave>
           <Properties>
@@ -413,6 +421,14 @@
       </Tags>
       <Source>GLUE</Source>
       <Name>Screens\TestScreen</Name>
+      <ReferencedFiles>
+        <ReferencedFileSave>
+          <Name>GumProject/Screens/TestScreenGum.gusx</Name>
+          <IsSharedStatic>true</IsSharedStatic>
+          <RuntimeType>Shiprekt.GumRuntimes.TestScreenGumRuntime</RuntimeType>
+          <ProjectsToExcludeFrom />
+        </ReferencedFileSave>
+      </ReferencedFiles>
     </ScreenSave>
   </Screens>
   <Entities>
@@ -1761,6 +1777,27 @@
       <HasPublicProperty>true</HasPublicProperty>
       <ProjectsToExcludeFrom />
     </ReferencedFileSave>
+    <ReferencedFileSave>
+      <Properties>
+        <PropertySave>
+          <Name>FileAdditionBehavior</Name>
+          <ValueAsInt>1</ValueAsInt>
+        </PropertySave>
+        <PropertySave>
+          <Name>AutoCreateGumScreens</Name>
+          <ValueAsBool>true</ValueAsBool>
+        </PropertySave>
+        <PropertySave>
+          <Name>ShowMouse</Name>
+          <ValueAsBool>true</ValueAsBool>
+        </PropertySave>
+      </Properties>
+      <Name>GumProject/GumProject.gumx</Name>
+      <IsSharedStatic>true</IsSharedStatic>
+      <DestroyOnUnload>false</DestroyOnUnload>
+      <HasPublicProperty>true</HasPublicProperty>
+      <ProjectsToExcludeFrom />
+    </ReferencedFileSave>
   </GlobalFiles>
   <GlobalContentSettingsSave>
     <LoadAsynchronously>false</LoadAsynchronously>
@@ -1829,6 +1866,11 @@
       <PluginRequirement>
         <Name>Racing Plugin</Name>
         <Version>1.0.0</Version>
+        <VersionRequirement>EqualToOrNewerThan</VersionRequirement>
+      </PluginRequirement>
+      <PluginRequirement>
+        <Name>Gum Plugin</Name>
+        <Version>2.1.0.0</Version>
         <VersionRequirement>EqualToOrNewerThan</VersionRequirement>
       </PluginRequirement>
     </RequiredPlugins>
