@@ -15,7 +15,9 @@ namespace Shiprekt.Entities
 {
 	public partial class Ship
 	{
-		public bool AllowedToDrive
+        #region Fields/Properties
+
+        public bool AllowedToDrive
 		{
 			get
 			{
@@ -32,25 +34,40 @@ namespace Shiprekt.Entities
 		IPressableInput shootRightInput;
 		I1DInput sailTurningInput;
 
-		float cachedForwardAcceleration;
+        DataTypes.RacingEntityValues EffectiveRacingEntityValues;
+        DataTypes.RacingEntityValues BaseRacingEntityValues;
 
-		/// <summary>
-		/// Initialization logic which is execute only one time for this Entity (unless the Entity is pooled).
-		/// This method is called when the Entity is added to managers. Entities which are instantiated but not
-		/// added to managers will not have this method called.
-		/// </summary>
-		private void CustomInitialize()
-		{
-			CacheShipData();
-			Health = ShipEntityValuesInstance.MaxHealth;
-		}
+        #endregion
 
-		private void CacheShipData()
-		{
-			cachedForwardAcceleration = CarData.ForwardAcceleration;
-		}
+        #region Initialize
 
-		partial void CustomInitializeTopDownInput()
+        /// <summary>
+        /// Initialization logic which is execute only one time for this Entity (unless the Entity is pooled).
+        /// This method is called when the Entity is added to managers. Entities which are instantiated but not
+        /// added to managers will not have this method called.
+        /// </summary>
+        private void CustomInitialize()
+        {
+            InitializeMovementValues();
+
+            Health = ShipEntityValuesInstance.MaxHealth;
+        }
+
+        private void InitializeMovementValues()
+        {
+            // Store off the base values, which are the values unmodified from the CSV. If the CSV reloads, this will get updated
+            BaseRacingEntityValues = CarData;
+
+            // Copy the values and store them in an "Effective" variable. Since this is a clone, these values
+            // can be modified without changing the base CarData (or anything from the CSV). These values will
+            // get modified at runtime according to wind and any other gameplay mechanics we want to add
+            EffectiveRacingEntityValues = FlatRedBall.IO.FileManager.CloneObject(CarData);
+
+            // Tell the game to use the effective values as its current values.
+            CarData = EffectiveRacingEntityValues;
+        }
+
+        partial void CustomInitializeTopDownInput()
 		{
 			if (InputDevice is Xbox360GamePad gamePad)
 			{
@@ -75,7 +92,31 @@ namespace Shiprekt.Entities
 			}
 		}
 
-		private void CustomActivity()
+		public void SetTeam(int teamIndex)
+		{
+			TeamIndex = teamIndex;
+			switch (teamIndex)
+			{
+				case 0:
+					ShipSailInstance.CurrentSailColorState = SailColor.Green;
+					break;
+				case 1:
+					ShipSailInstance.CurrentSailColorState = SailColor.Pink;
+					break;
+				case 2:
+					ShipSailInstance.CurrentSailColorState = SailColor.RedStripe;
+					break;
+				default:
+					ShipSailInstance.CurrentSailColorState = SailColor.Black;
+					break;
+			}
+		}
+
+        #endregion
+
+        #region Activity
+
+        private void CustomActivity()
 		{
 			DoShootingActivity();
 			DoSailTurningActivity();
@@ -127,23 +168,6 @@ namespace Shiprekt.Entities
 			}
 		}
 
-		private void CustomDestroy()
-		{
-
-
-		}
-
-		internal void Die()
-		{
-			Destroy();
-		}
-
-		private static void CustomLoadStaticContent(string contentManagerName)
-		{
-
-
-		}
-
 		internal void Shoot(Vector2 bulletDirection)
 		{
 			var bullet = Factories.BulletFactory.CreateNew(this.X, this.Y);
@@ -170,13 +194,13 @@ namespace Shiprekt.Entities
 				//If below min-speed, max acceleration. 
 				if (Velocity.Length() < ShipEntityValuesInstance.MinSpeed)
 				{
-					CarData.ForwardAcceleration = cachedForwardAcceleration;
+					EffectiveRacingEntityValues.ForwardAcceleration = CarData.ForwardAcceleration;
 				}
 				//Otherwise, accelerate based on how well the sails are catching the wind. 
 				else
 				{
 					var sc = ShipSailInstance.GetAccelerationCoefficient(wind, 30);
-					CarData.ForwardAcceleration = sc * cachedForwardAcceleration;
+                    EffectiveRacingEntityValues.ForwardAcceleration = sc * CarData.ForwardAcceleration;
 				}
 			}
 
@@ -209,28 +233,34 @@ namespace Shiprekt.Entities
 			Velocity += force.ToVector3(); 
 		}
 
-		public void SetTeam(int teamIndex)
+        #endregion
+
+        #region Destroy
+
+        private void CustomDestroy()
 		{
-			TeamIndex = teamIndex;
-			switch (teamIndex)
-			{
-				case 0:
-					ShipSailInstance.CurrentSailColorState = SailColor.Green;
-					break;
-				case 1:
-					ShipSailInstance.CurrentSailColorState = SailColor.Pink;
-					break;
-				case 2:
-					ShipSailInstance.CurrentSailColorState = SailColor.RedStripe;
-					break;
-				default:
-					ShipSailInstance.CurrentSailColorState = SailColor.Black;
-					break;
-			}
+
+
 		}
+
+		internal void Die()
+		{
+			Destroy();
+		}
+
+        #endregion
+
+        private static void CustomLoadStaticContent(string contentManagerName)
+		{
+
+
+		}
+
 	}
 
-	public static class Vector3Extensions
+    #region Extension Methods
+
+    public static class Vector3Extensions
 	{
 		public static Vector3 Normalized(this Vector3 sender)
 		{
@@ -248,5 +278,7 @@ namespace Shiprekt.Entities
 			normalized.Normalize();
 			return normalized;
 		}
-	}	
+	}
+
+    #endregion
 }
