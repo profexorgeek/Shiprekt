@@ -20,7 +20,6 @@ namespace Shiprekt.Entities
             set
             {
                 CloudSprite.Animate = value;
-                CloudShadowSprite.Animate = value;
             }
         }
         public float Altitude
