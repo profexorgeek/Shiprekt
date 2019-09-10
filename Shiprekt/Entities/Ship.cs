@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using FlatRedBall;
@@ -48,6 +48,8 @@ namespace Shiprekt.Entities
         /// </summary>
         private void CustomInitialize()
         {
+            this.ForwardDirection = RacingDirection.Right;
+
             InitializeMovementValues();
 
             Health = ShipEntityValuesInstance.MaxHealth;

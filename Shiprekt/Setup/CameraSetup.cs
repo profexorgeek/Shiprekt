@@ -38,6 +38,7 @@
                 IsFullScreen = false,
                 AllowWidowResizing = false,
                 ResizeBehavior = ResizeBehavior.StretchVisibleArea,
+                ResizeBehaviorGum = ResizeBehavior.StretchVisibleArea,
                 DominantInternalCoordinates = WidthOrHeight.Height,
             }
             ;
@@ -68,6 +69,7 @@
                 CameraSetup.graphicsDeviceManager = graphicsDeviceManager;
                 ResetWindow();
                 ResetCamera(cameraToSetUp);
+                SetGumValues();
                 FlatRedBall.FlatRedBallServices.GraphicsOptions.SizeOrOrientationChanged += HandleResolutionChange;
             }
             internal static void ResetWindow () 
@@ -123,6 +125,55 @@
                 {
                     FlatRedBall.Camera.Main.OrthogonalHeight = FlatRedBall.Camera.Main.DestinationRectangle.Height / (Data.Scale/ 100.0f);
                     FlatRedBall.Camera.Main.FixAspectRatioYConstant();
+                }
+                SetGumValues();
+            }
+            private static void SetGumValues () 
+            {
+                if (Data.ResizeBehaviorGum == ResizeBehavior.IncreaseVisibleArea)
+                {
+                    global::RenderingLibrary.SystemManagers.Default.Renderer.Camera.Zoom = Data.Scale/100.0f;
+                    Gum.Wireframe.GraphicalUiElement.CanvasWidth = Gum.Managers.ObjectFinder.Self.GumProjectSave.DefaultCanvasWidth;
+                    Gum.Wireframe.GraphicalUiElement.CanvasHeight = Gum.Managers.ObjectFinder.Self.GumProjectSave.DefaultCanvasHeight; 
+                }
+                else
+                {
+                    Gum.Wireframe.GraphicalUiElement.CanvasWidth = Data.ResolutionWidth;
+                    Gum.Wireframe.GraphicalUiElement.CanvasHeight = Data.ResolutionHeight;
+                    if (Data.AspectRatio != null)
+                    {
+                        
+
+                    var resolutionAspectRatio = FlatRedBall.FlatRedBallServices.GraphicsOptions.ResolutionWidth / (decimal)FlatRedBall.FlatRedBallServices.GraphicsOptions.ResolutionHeight;
+                    int destinationRectangleWidth;
+                    int destinationRectangleHeight;
+                    int x = 0;
+                    int y = 0;
+                    if (Data.AspectRatio.Value > resolutionAspectRatio)
+                    {
+                        destinationRectangleWidth = FlatRedBall.FlatRedBallServices.GraphicsOptions.ResolutionWidth;
+                        destinationRectangleHeight = FlatRedBall.Math.MathFunctions.RoundToInt(destinationRectangleWidth / (float)Data.AspectRatio.Value);
+                    }
+                    else
+                    {
+                        destinationRectangleHeight = FlatRedBall.FlatRedBallServices.GraphicsOptions.ResolutionHeight;
+                        destinationRectangleWidth = FlatRedBall.Math.MathFunctions.RoundToInt(destinationRectangleHeight * (float)Data.AspectRatio.Value);
+                    }
+
+                    var canvasHeight = Gum.Wireframe.GraphicalUiElement.CanvasHeight;
+                    var zoom = (float)destinationRectangleHeight / (float)Gum.Wireframe.GraphicalUiElement.CanvasHeight;
+                    global::RenderingLibrary.SystemManagers.Default.Renderer.Camera.Zoom = zoom;
+
+                    }
+                    else
+                    {
+                        
+                    var graphicsHeight = Gum.Wireframe.GraphicalUiElement.CanvasHeight;
+                    var windowHeight = FlatRedBall.Camera.Main.DestinationRectangle.Height;
+                    var zoom = windowHeight / (float)graphicsHeight;
+                    global::RenderingLibrary.SystemManagers.Default.Renderer.Camera.Zoom = zoom;
+                    
+                    }
                 }
             }
             private static void SetAspectRatioTo (decimal aspectRatio, WidthOrHeight dominantInternalCoordinates, int desiredWidth, int desiredHeight) 

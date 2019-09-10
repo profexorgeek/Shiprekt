@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -54,8 +54,8 @@ namespace Shiprekt
         
             FlatRedBallServices.InitializeFlatRedBall(this, graphics);
 
-            CameraSetup.SetupCamera(SpriteManager.Camera, graphics);
 			GlobalContent.Initialize();
+            CameraSetup.SetupCamera(SpriteManager.Camera, graphics);
 			FlatRedBall.Screens.ScreenManager.Start(typeof(Shiprekt.Screens.Level1));
             //FlatRedBall.Screens.ScreenManager.Start(typeof(Shiprekt.Screens.TestScreen));
 
