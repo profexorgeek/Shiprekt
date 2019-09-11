@@ -130,6 +130,8 @@ namespace Shiprekt.Entities
 			//	ApplyFriction(ShipEntityValuesInstance.ShipDrag);
 
             DoDebugActivity();
+
+            DoWakeSpeed();
 		}
 
         private void DoDebugActivity()
@@ -184,6 +186,16 @@ namespace Shiprekt.Entities
 				ShipSailInstance.RelativeRotationZVelocity = 0;
 			}
 		}
+
+        void DoWakeSpeed()
+        {
+            var currentSpeed = Velocity.Length();
+            var maxSpeed = BaseRacingEntityValues.EffectiveMaxSpeed;
+            var speedPercent = currentSpeed / maxSpeed;
+            WakeEffectInstance.EffectStrength = speedPercent;
+
+            FlatRedBall.Debugging.Debugger.CommandLineWrite(speedPercent);
+        }
 
 		internal void Shoot(Vector2 bulletDirection)
 		{

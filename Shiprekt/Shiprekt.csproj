@@ -68,6 +68,11 @@
     <Compile Include="Entities\DebuggingVariables.Generated.cs">
       <DependentUpon>DebuggingVariables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Effects\ParticleSprite.cs" />
+    <Compile Include="Entities\Effects\WakeEffect.cs" />
+    <Compile Include="Entities\Effects\WakeEffect.Generated.cs">
+      <DependentUpon>WakeEffect.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Ship.cs" />
     <Compile Include="Entities\Ship.Generated.cs">
       <DependentUpon>Ship.cs</DependentUpon>
@@ -203,6 +208,10 @@
     <None Include="content\entities\ship\shipentityvalues.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>ShipEntityValues</Name>
+    </None>
+    <None Include="content\globalcontent\effectchains.achx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>EffectChains</Name>
     </None>
     <None Include="content\globalcontent\levels\level1map.tmx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
