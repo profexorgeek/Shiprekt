@@ -56,7 +56,7 @@ namespace Shiprekt
 
 			GlobalContent.Initialize();
             CameraSetup.SetupCamera(SpriteManager.Camera, graphics);
-			FlatRedBall.Screens.ScreenManager.Start(typeof(Shiprekt.Screens.Level1));
+			FlatRedBall.Screens.ScreenManager.Start(typeof(Shiprekt.Screens.MainMenu));
             //FlatRedBall.Screens.ScreenManager.Start(typeof(Shiprekt.Screens.TestScreen));
 
             FlatRedBallServices.GraphicsOptions.TextureFilter = TextureFilter.Point;

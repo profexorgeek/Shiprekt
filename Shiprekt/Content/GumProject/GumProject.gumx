@@ -2,8 +2,8 @@
 <GumProjectSave xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <CustomProperties />
   <Version>1</Version>
-  <DefaultCanvasWidth>800</DefaultCanvasWidth>
-  <DefaultCanvasHeight>600</DefaultCanvasHeight>
+  <DefaultCanvasWidth>960</DefaultCanvasWidth>
+  <DefaultCanvasHeight>540</DefaultCanvasHeight>
   <ShowOutlines>true</ShowOutlines>
   <RestrictToUnitValues>true</RestrictToUnitValues>
   <RestrictFileNamesForAndroid>false</RestrictFileNamesForAndroid>
@@ -13,9 +13,21 @@
     <ElementType>Screen</ElementType>
   </ScreenReference>
   <ScreenReference>
+    <Name>MainMenuGum</Name>
+    <ElementType>Screen</ElementType>
+  </ScreenReference>
+  <ScreenReference>
     <Name>TestScreenGum</Name>
     <ElementType>Screen</ElementType>
   </ScreenReference>
+  <ComponentReference>
+    <Name>JoinedShipAndStatus</Name>
+    <ElementType>Component</ElementType>
+  </ComponentReference>
+  <ComponentReference>
+    <Name>ShipFront</Name>
+    <ElementType>Component</ElementType>
+  </ComponentReference>
   <StandardElementReference>
     <Name>Circle</Name>
     <ElementType>Standard</ElementType>

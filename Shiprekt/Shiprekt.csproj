@@ -101,9 +101,21 @@
       <DependentUpon>GameScreenGumRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\GumIdb.Generated.cs" />
+    <Compile Include="GumRuntimes\JoinedShipAndStatusRuntime.cs" />
+    <Compile Include="GumRuntimes\JoinedShipAndStatusRuntime.Generated.cs">
+      <DependentUpon>JoinedShipAndStatusRuntime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GumRuntimes\MainMenuGumRuntime.cs" />
+    <Compile Include="GumRuntimes\MainMenuGumRuntime.Generated.cs">
+      <DependentUpon>MainMenuGumRuntime.cs</DependentUpon>
+    </Compile>
     <Compile Include="GumRuntimes\NineSliceRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\PolygonRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\RectangleRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\ShipFrontRuntime.cs" />
+    <Compile Include="GumRuntimes\ShipFrontRuntime.Generated.cs">
+      <DependentUpon>ShipFrontRuntime.cs</DependentUpon>
+    </Compile>
     <Compile Include="GumRuntimes\SpriteRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\TestScreenGumRuntime.cs" />
     <Compile Include="GumRuntimes\TestScreenGumRuntime.Generated.cs">
@@ -128,6 +140,10 @@
     <Compile Include="Screens\Level1.cs" />
     <Compile Include="Screens\Level1.Generated.cs">
       <DependentUpon>Level1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\MainMenu.cs" />
+    <Compile Include="Screens\MainMenu.Generated.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\TestScreen.cs" />
     <Compile Include="Screens\TestScreen.Generated.cs">
@@ -221,6 +237,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>shiprekttiles</Name>
     </None>
+    <None Include="content\globalcontent\poco_15.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>poco_15</Name>
+    </None>
+    <None Include="content\globalcontent\poco_48.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>poco_48</Name>
+    </None>
     <None Include="Content\globalcontent\ShipChains.achx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -231,6 +255,14 @@
     <Compile Include="DataTypes\CollisionHistory.Generated.cs" />
     <None Include="Content\globalcontent\ShotChains.achx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="content\gumproject\components\joinedshipandstatus.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>joinedshipandstatus</Name>
+    </None>
+    <None Include="content\gumproject\components\shipfront.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>shipfront</Name>
     </None>
     <None Include="content\gumproject\fontcache\font18arial.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -247,6 +279,10 @@
     <None Include="content\gumproject\screens\gamescreengum.gusx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>gamescreengum</Name>
+    </None>
+    <None Include="content\gumproject\screens\mainmenugum.gusx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>MainMenuGum</Name>
     </None>
     <None Include="content\gumproject\screens\testscreengum.gusx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

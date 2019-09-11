@@ -39,7 +39,7 @@
                 IsFullScreen = false,
                 AllowWidowResizing = false,
                 ResizeBehavior = ResizeBehavior.StretchVisibleArea,
-                ScaleGum = 100f,
+                ScaleGum = 200f,
                 ResizeBehaviorGum = ResizeBehavior.StretchVisibleArea,
                 DominantInternalCoordinates = WidthOrHeight.Height,
             }
@@ -140,8 +140,8 @@
                 }
                 else
                 {
-                    Gum.Wireframe.GraphicalUiElement.CanvasWidth = Data.ResolutionWidth;
-                    Gum.Wireframe.GraphicalUiElement.CanvasHeight = Data.ResolutionHeight;
+                    Gum.Wireframe.GraphicalUiElement.CanvasWidth = Data.ResolutionWidth / (Data.ScaleGum/100.0f);
+                    Gum.Wireframe.GraphicalUiElement.CanvasHeight = Data.ResolutionHeight / (Data.ScaleGum/100.0f);
                     if (Data.AspectRatio != null)
                     {
                         
