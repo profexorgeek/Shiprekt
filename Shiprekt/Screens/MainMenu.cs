@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
@@ -11,8 +11,7 @@ using FlatRedBall.Graphics.Animation;
 using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Math.Geometry;
 using FlatRedBall.Localization;
-
-
+using FlatRedBall.Gui;
 
 namespace Shiprekt.Screens
 {
@@ -27,7 +26,11 @@ namespace Shiprekt.Screens
 
 		void CustomActivity(bool firstTimeCalled)
 		{
-
+            if(InputManager.Keyboard.AnyKeyPushed() || GuiManager.Cursor.PrimaryClick ||
+                InputManager.Xbox360GamePads.Any(item => item.AnyButtonPushed()))
+            {
+                this.MoveToScreen(typeof(Level1));
+            }
 
 		}
 

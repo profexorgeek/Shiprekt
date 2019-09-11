@@ -96,6 +96,16 @@
           <GenerateTimedEmit>true</GenerateTimedEmit>
           <ContainedObjects>
             <NamedObjectSave>
+              <CustomProperty>
+                <Type>float</Type>
+                <Member>X</Member>
+                <ValueAsFloat>300</ValueAsFloat>
+              </CustomProperty>
+              <CustomProperty>
+                <Type>float</Type>
+                <Member>Y</Member>
+                <ValueAsFloat>-400</ValueAsFloat>
+              </CustomProperty>
               <Properties>
                 <PropertySave>
                   <Name>SourceType</Name>
