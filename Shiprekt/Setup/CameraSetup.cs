@@ -6,6 +6,7 @@
         public class CameraSetupData
         {
             public float Scale { get; set; }
+            public float ScaleGum { get; set; }
             public bool Is2D { get; set; }
             public int ResolutionWidth { get; set; }
             public int ResolutionHeight { get; set; }
@@ -38,6 +39,7 @@
                 IsFullScreen = false,
                 AllowWidowResizing = false,
                 ResizeBehavior = ResizeBehavior.StretchVisibleArea,
+                ScaleGum = 100f,
                 ResizeBehaviorGum = ResizeBehavior.StretchVisibleArea,
                 DominantInternalCoordinates = WidthOrHeight.Height,
             }

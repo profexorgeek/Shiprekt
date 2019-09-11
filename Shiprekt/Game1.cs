@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -60,6 +60,8 @@ namespace Shiprekt
             //FlatRedBall.Screens.ScreenManager.Start(typeof(Shiprekt.Screens.TestScreen));
 
             FlatRedBallServices.GraphicsOptions.TextureFilter = TextureFilter.Point;
+
+            Camera.Main.BackgroundColor = Color.Black;
 
             base.Initialize();
         }
