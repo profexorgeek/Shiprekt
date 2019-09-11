@@ -6,6 +6,7 @@
         public class CameraSetupData
         {
             public float Scale { get; set; }
+            public float ScaleGum { get; set; }
             public bool Is2D { get; set; }
             public int ResolutionWidth { get; set; }
             public int ResolutionHeight { get; set; }
@@ -38,6 +39,7 @@
                 IsFullScreen = false,
                 AllowWidowResizing = false,
                 ResizeBehavior = ResizeBehavior.StretchVisibleArea,
+                ScaleGum = 200f,
                 ResizeBehaviorGum = ResizeBehavior.StretchVisibleArea,
                 DominantInternalCoordinates = WidthOrHeight.Height,
             }
@@ -138,8 +140,8 @@
                 }
                 else
                 {
-                    Gum.Wireframe.GraphicalUiElement.CanvasWidth = Data.ResolutionWidth;
-                    Gum.Wireframe.GraphicalUiElement.CanvasHeight = Data.ResolutionHeight;
+                    Gum.Wireframe.GraphicalUiElement.CanvasWidth = Data.ResolutionWidth / (Data.ScaleGum/100.0f);
+                    Gum.Wireframe.GraphicalUiElement.CanvasHeight = Data.ResolutionHeight / (Data.ScaleGum/100.0f);
                     if (Data.AspectRatio != null)
                     {
                         
