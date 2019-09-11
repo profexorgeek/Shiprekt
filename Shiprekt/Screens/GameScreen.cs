@@ -39,7 +39,7 @@ namespace Shiprekt.Screens
 			Camera.Main.Z = 500; 
             FlatRedBallServices.Game.IsMouseVisible = true;
 
-            windDirection = FlatRedBallServices.Random.RadialVector2(1, 1);
+            windDirection = Vector2.UnitX;// FlatRedBallServices.Random.RadialVector2(1, 1);
 
             DoInitialCloudSpawning();
 
