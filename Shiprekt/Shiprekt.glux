@@ -94,32 +94,6 @@
           <InstanceName>ShipList</InstanceName>
           <AttachToContainer>true</AttachToContainer>
           <GenerateTimedEmit>true</GenerateTimedEmit>
-          <ContainedObjects>
-            <NamedObjectSave>
-              <CustomProperty>
-                <Type>float</Type>
-                <Member>X</Member>
-                <ValueAsFloat>300</ValueAsFloat>
-              </CustomProperty>
-              <CustomProperty>
-                <Type>float</Type>
-                <Member>Y</Member>
-                <ValueAsFloat>-400</ValueAsFloat>
-              </CustomProperty>
-              <Properties>
-                <PropertySave>
-                  <Name>SourceType</Name>
-                  <ValueAsObject xsi:type="SourceType">Entity</ValueAsObject>
-                </PropertySave>
-              </Properties>
-              <SourceType>Entity</SourceType>
-              <SourceClassType>Entities\Ship</SourceClassType>
-              <InstanceName>Ship1</InstanceName>
-              <AttachToContainer>true</AttachToContainer>
-              <GenerateTimedEmit>true</GenerateTimedEmit>
-              <IndependentOfCamera>true</IndependentOfCamera>
-            </NamedObjectSave>
-          </ContainedObjects>
           <IndependentOfCamera>true</IndependentOfCamera>
         </NamedObjectSave>
         <NamedObjectSave>
@@ -1605,7 +1579,7 @@
                   <ValueAsString>SailSkull</ValueAsString>
                 </InstructionSave>
               </InstructionSaves>
-              <Name>Black</Name>
+              <Name>Gray</Name>
             </StateSave>
             <StateSave>
               <InstructionSaves>
@@ -1615,7 +1589,7 @@
                   <ValueAsString>SailSun</ValueAsString>
                 </InstructionSave>
               </InstructionSaves>
-              <Name>Pink</Name>
+              <Name>Purple</Name>
             </StateSave>
             <StateSave>
               <InstructionSaves>

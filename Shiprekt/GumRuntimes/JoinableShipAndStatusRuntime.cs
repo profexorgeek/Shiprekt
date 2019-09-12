@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Shiprekt.GumRuntimes
 {
-    public partial class JoinedShipAndStatusRuntime
+    public partial class JoinableShipAndStatusRuntime
     {
         partial void CustomInitialize () 
         {

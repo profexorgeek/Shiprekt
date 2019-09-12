@@ -56,6 +56,11 @@ namespace Shiprekt.Entities
             Health = ShipEntityValuesInstance.MaxHealth;
         }
 
+        internal void SetSail(SailColor sailColor)
+        {
+            ShipSailInstance.CurrentSailColorState = sailColor;
+        }
+
         private void InitializeMovementValues()
         {
             // Store off the base values, which are the values unmodified from the CSV. If the CSV reloads, this will get updated
@@ -98,21 +103,7 @@ namespace Shiprekt.Entities
 		public void SetTeam(int teamIndex)
 		{
 			TeamIndex = teamIndex;
-			switch (teamIndex)
-			{
-				case 0:
-					ShipSailInstance.CurrentSailColorState = SailColor.Green;
-					break;
-				case 1:
-					ShipSailInstance.CurrentSailColorState = SailColor.Pink;
-					break;
-				case 2:
-					ShipSailInstance.CurrentSailColorState = SailColor.RedStripe;
-					break;
-				default:
-					ShipSailInstance.CurrentSailColorState = SailColor.Black;
-					break;
-			}
+
 		}
 
         #endregion
@@ -194,7 +185,7 @@ namespace Shiprekt.Entities
             var speedPercent = currentSpeed / maxSpeed;
             WakeEffectInstance.EffectStrength = speedPercent;
 
-            FlatRedBall.Debugging.Debugger.CommandLineWrite(speedPercent);
+            //FlatRedBall.Debugging.Debugger.CommandLineWrite(speedPercent);
         }
 
 		internal void Shoot(Vector2 bulletDirection)

@@ -16,6 +16,8 @@ using Microsoft.Xna.Framework;
 
 using Shiprekt.Factories;
 using Shiprekt.Entities;
+using Shiprekt.Managers;
+using Shiprekt.DataTypes;
 
 namespace Shiprekt.Screens
 {
@@ -27,16 +29,12 @@ namespace Shiprekt.Screens
 
         #endregion
 
-
         #region Initialize
 
         void CustomInitialize()
         {
-   //         DummyShip.InitializeRacingInput(InputManager.Xbox360GamePads[0]);
-			//DummyShip.SetTeam(1);
-			//DummyShip.AllowedToDrive = false;
-			Ship1.SetTeam(2);
-			Camera.Main.Z = 500; 
+            InitializeShips();
+            Camera.Main.Z = 500;
             FlatRedBallServices.Game.IsMouseVisible = true;
 
             windDirection = Vector2.UnitX;// FlatRedBallServices.Random.RadialVector2(1, 1);
@@ -46,7 +44,22 @@ namespace Shiprekt.Screens
             OffsetTilemapLayers();
         }
 
-		internal void OffsetTilemapLayers()
+        private void InitializeShips()
+        {
+            int index = 0;
+            foreach(var player in JoinedPlayerManager.JoinedPlayers)
+            {
+                var ship = ShipFactory.CreateNew();
+                ship.X = 400 + 50*index;
+                ship.Y = -400;
+                ship.SetTeam(index);
+                ship.SetSail(player.ShipType.ToSailColor());
+                ship.InitializeRacingInput(player.InputDevice);
+                index++;
+            }
+        }
+
+        internal void OffsetTilemapLayers()
 		{
 			foreach (var layer in Map.MapLayers)
 			{
@@ -67,8 +80,9 @@ namespace Shiprekt.Screens
 
         void CustomActivity(bool firstTimeCalled)
         {
-            Camera.Main.X = Ship1.X;
-            Camera.Main.Y = Ship1.Y;
+            var shipToFollow = ShipList[0];
+            Camera.Main.X = shipToFollow.X;
+            Camera.Main.Y = shipToFollow.Y;
 			
             MurderLostBirds();
             DoBirdSpawning();

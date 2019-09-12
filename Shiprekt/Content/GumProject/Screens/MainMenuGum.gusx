@@ -335,7 +335,7 @@
     <Variable>
       <Type>string</Type>
       <Name>JoinedPlayerContainer.Contained Type</Name>
-      <Value xsi:type="xsd:string">JoinedShipAndStatus</Value>
+      <Value xsi:type="xsd:string">JoinableShipAndStatus</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -388,8 +388,20 @@
     </Variable>
     <Variable>
       <Type>string</Type>
+      <Name>JoinedShipAndStatusInstance.JoinedCategoryState</Name>
+      <Value xsi:type="xsd:string">Joined</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
       <Name>JoinedShipAndStatusInstance.Parent</Name>
       <Value xsi:type="xsd:string">JoinedPlayerContainer</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
+      <Name>JoinedShipAndStatusInstance.WinOrNormalState</Name>
+      <Value xsi:type="xsd:string">Normal</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -430,8 +442,26 @@
     </Variable>
     <Variable>
       <Type>string</Type>
+      <Name>JoinedShipAndStatusInstance1.JoinedCategoryState</Name>
+      <Value xsi:type="xsd:string">Joined</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
       <Name>JoinedShipAndStatusInstance1.Parent</Name>
       <Value xsi:type="xsd:string">JoinedPlayerContainer</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
+      <Name>JoinedShipAndStatusInstance1.SailDesignState</Name>
+      <Value xsi:type="xsd:string">Gray</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
+      <Name>JoinedShipAndStatusInstance1.WinOrNormalState</Name>
+      <Value xsi:type="xsd:string">Winner</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -472,8 +502,26 @@
     </Variable>
     <Variable>
       <Type>string</Type>
+      <Name>JoinedShipAndStatusInstance2.JoinedCategoryState</Name>
+      <Value xsi:type="xsd:string">NotJoined</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
       <Name>JoinedShipAndStatusInstance2.Parent</Name>
       <Value xsi:type="xsd:string">JoinedPlayerContainer</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
+      <Name>JoinedShipAndStatusInstance2.SailDesignState</Name>
+      <Value xsi:type="xsd:string">Purple</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
+      <Name>JoinedShipAndStatusInstance2.WinOrNormalState</Name>
+      <Value xsi:type="xsd:string">Normal</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -514,8 +562,26 @@
     </Variable>
     <Variable>
       <Type>string</Type>
+      <Name>JoinedShipAndStatusInstance3.JoinedCategoryState</Name>
+      <Value xsi:type="xsd:string">NotJoined</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
       <Name>JoinedShipAndStatusInstance3.Parent</Name>
       <Value xsi:type="xsd:string">JoinedPlayerContainer</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
+      <Name>JoinedShipAndStatusInstance3.SailDesignState</Name>
+      <Value xsi:type="xsd:string">RedStripes</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
+      <Name>JoinedShipAndStatusInstance3.WinOrNormalState</Name>
+      <Value xsi:type="xsd:string">Normal</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -2509,22 +2575,22 @@
   </Instance>
   <Instance>
     <Name>JoinedShipAndStatusInstance</Name>
-    <BaseType>JoinedShipAndStatus</BaseType>
+    <BaseType>JoinableShipAndStatus</BaseType>
     <DefinedByBase>false</DefinedByBase>
   </Instance>
   <Instance>
     <Name>JoinedShipAndStatusInstance1</Name>
-    <BaseType>JoinedShipAndStatus</BaseType>
+    <BaseType>JoinableShipAndStatus</BaseType>
     <DefinedByBase>false</DefinedByBase>
   </Instance>
   <Instance>
     <Name>JoinedShipAndStatusInstance2</Name>
-    <BaseType>JoinedShipAndStatus</BaseType>
+    <BaseType>JoinableShipAndStatus</BaseType>
     <DefinedByBase>false</DefinedByBase>
   </Instance>
   <Instance>
     <Name>JoinedShipAndStatusInstance3</Name>
-    <BaseType>JoinedShipAndStatus</BaseType>
+    <BaseType>JoinableShipAndStatus</BaseType>
     <DefinedByBase>false</DefinedByBase>
   </Instance>
   <Instance>

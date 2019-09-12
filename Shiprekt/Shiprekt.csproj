@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="DataTypes\RacingEntityValues.Generated.cs" />
     <Compile Include="DataTypes\ShipEntityValues.Generated.cs" />
+    <Compile Include="DataTypes\ShipType.cs" />
     <Compile Include="DataTypes\TileMapInfo.Generated.cs" />
     <Compile Include="Entities\Bird.cs" />
     <Compile Include="Entities\Bird.Generated.cs">
@@ -101,9 +102,9 @@
       <DependentUpon>GameScreenGumRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\GumIdb.Generated.cs" />
-    <Compile Include="GumRuntimes\JoinedShipAndStatusRuntime.cs" />
-    <Compile Include="GumRuntimes\JoinedShipAndStatusRuntime.Generated.cs">
-      <DependentUpon>JoinedShipAndStatusRuntime.cs</DependentUpon>
+    <Compile Include="GumRuntimes\JoinableShipAndStatusRuntime.cs" />
+    <Compile Include="GumRuntimes\JoinableShipAndStatusRuntime.Generated.cs">
+      <DependentUpon>JoinableShipAndStatusRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\MainMenuGumRuntime.cs" />
     <Compile Include="GumRuntimes\MainMenuGumRuntime.Generated.cs">
@@ -122,6 +123,8 @@
       <DependentUpon>TestScreenGumRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\TextRuntime.Generated.cs" />
+    <Compile Include="Managers\JoinedPlayer.cs" />
+    <Compile Include="Managers\JoinedPlayerManager.cs" />
     <Compile Include="Performance\IEntityFactory.Generated.cs" />
     <Compile Include="Performance\PoolList.Generated.cs" />
     <Compile Include="Program.cs" />
@@ -256,9 +259,9 @@
     <None Include="Content\globalcontent\ShotChains.achx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="content\gumproject\components\joinedshipandstatus.gucx">
+    <None Include="content\gumproject\components\joinableshipandstatus.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>joinedshipandstatus</Name>
+      <Name>joinableshipandstatus</Name>
     </None>
     <None Include="content\gumproject\components\shipfront.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

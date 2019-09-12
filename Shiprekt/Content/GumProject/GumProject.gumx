@@ -21,7 +21,7 @@
     <ElementType>Screen</ElementType>
   </ScreenReference>
   <ComponentReference>
-    <Name>JoinedShipAndStatus</Name>
+    <Name>JoinableShipAndStatus</Name>
     <ElementType>Component</ElementType>
   </ComponentReference>
   <ComponentReference>
