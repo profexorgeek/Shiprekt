@@ -17,58 +17,58 @@ using Shiprekt.DataTypes;
 
 namespace Shiprekt.Screens
 {
-	public partial class MainMenu
-	{
+    public partial class MainMenu
+    {
 
-		void CustomInitialize()
-		{
+        void CustomInitialize()
+        {
             MainMenuGum.UnjoinAll();
 
-		}
+        }
 
-		void CustomActivity(bool firstTimeCalled)
-		{
+        void CustomActivity(bool firstTimeCalled)
+        {
             int minimumPlayers = 1;
 
-            foreach(var gamePad in InputManager.Xbox360GamePads)
+            foreach (var gamePad in InputManager.Xbox360GamePads)
             {
                 var pressedStart = gamePad.ButtonPushed(Xbox360GamePad.Button.Start);
                 var pressedBack = gamePad.ButtonPushed(Xbox360GamePad.Button.Back);
                 var pressedAnything = gamePad.AnyButtonPushed();
 
-                if(!JoinedPlayerManager.IsJoined(gamePad) && pressedAnything)
+                if (!JoinedPlayerManager.IsJoined(gamePad) && pressedAnything)
                 {
                     JoinWith(gamePad);
                 }
-                else if(JoinedPlayerManager.IsJoined(gamePad) && pressedBack)
+                else if (JoinedPlayerManager.IsJoined(gamePad) && pressedBack)
                 {
                     UnjoinWith(gamePad);
                 }
-                else if(pressedStart && JoinedPlayerManager.JoinedPlayers.Count >= minimumPlayers)
+                else if (pressedStart && JoinedPlayerManager.JoinedPlayers.Count >= minimumPlayers)
                 {
                     GoToGameScreen();
                 }
-                
+
             }
 
 
 
-            //var keyboard = InputManager.Keyboard;
+            var keyboard = InputManager.Keyboard;
 
-            //if (!JoinedPlayerManager.IsJoined(keyboard) && keyboard.AnyKeyPushed())
-            //{
-            //    JoinWith(keyboard);
-            //}
-            //else if (JoinedPlayerManager.IsJoined(keyboard) && 
-            //    keyboard.KeyPushed(Microsoft.Xna.Framework.Input.Keys.Escape))
-            //{
-            //    UnjoinWith(keyboard);
-            //}
-            //else if (keyboard.KeyPushed(Microsoft.Xna.Framework.Input.Keys.Enter) && 
-            //    JoinedPlayerManager.JoinedPlayers.Count >= minimumPlayers)
-            //{
-            //    GoToGameScreen();
-            //}
+            if (!JoinedPlayerManager.IsJoined(keyboard) && keyboard.AnyKeyPushed())
+            {
+                JoinWith(keyboard);
+            }
+            else if (JoinedPlayerManager.IsJoined(keyboard) &&
+                keyboard.KeyPushed(Microsoft.Xna.Framework.Input.Keys.Escape))
+            {
+                UnjoinWith(keyboard);
+            }
+            else if (keyboard.KeyPushed(Microsoft.Xna.Framework.Input.Keys.Enter) &&
+                JoinedPlayerManager.JoinedPlayers.Count >= minimumPlayers)
+            {
+                GoToGameScreen();
+            }
 
         }
 

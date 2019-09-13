@@ -15,18 +15,23 @@ namespace Shiprekt.Entities.Effects
     {
         float timeToNextEmit;
         List<Sprite> particles = new List<Sprite>();
+        float timeToGenerateSprites;
 
         public float EffectStrength { get; set; } = 1f;
 
         private void CustomInitialize()
         {
-
+            timeToGenerateSprites = EmissionTotalDuration;
 
         }
 
         private void CustomActivity()
         {
-            DoEmission();
+            timeToGenerateSprites -= TimeManager.SecondDifference;
+            if (timeToGenerateSprites >= 0)
+            {
+                DoEmission();
+            }
             DoSpriteRemoval();
         }
 
@@ -62,7 +67,9 @@ namespace Shiprekt.Entities.Effects
             {
                 if (particles[i].Alpha <= 0)
                 {
-                    particles.Remove(particles[i]);
+                    var particle = particles[i];
+                    particles.Remove(particle);
+                    SpriteManager.RemoveSprite(particle);
                 }
             }
         }
@@ -82,7 +89,7 @@ namespace Shiprekt.Entities.Effects
             particle.AlphaRate = -1f / ParticleLifeSeconds;
             particle.XVelocity = (float)Math.Cos(lateralRotation) * magnitude;
             particle.YVelocity = (float)Math.Sin(lateralRotation) * magnitude;
-            particle.Drag = 5f;
+            particle.Drag = 0f;
             // if you don't like magic constants, give this method a double overload
             // so I can use Math.PI
             particle.RotationZ = rand.Between(-3.14f, 3.14f);
@@ -91,7 +98,7 @@ namespace Shiprekt.Entities.Effects
             particle.ScaleYVelocity = ScaleVelocity;
             particle.X = this.X;
             particle.Y = this.Y;
-            particle.Z = this.Z;
+            particle.Z = 2f;
             particle.TextureScale = StartScale;
 
             return particle;

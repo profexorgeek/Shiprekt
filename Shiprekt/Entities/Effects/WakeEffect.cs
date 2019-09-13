@@ -62,7 +62,9 @@ namespace Shiprekt.Entities.Effects
             {
                 if(particles[i].Alpha <= 0)
                 {
-                    particles.Remove(particles[i]);
+                    var particle = particles[i];
+                    particles.Remove(particle);
+                    SpriteManager.RemoveSprite(particle);
                 }
             }
         }
