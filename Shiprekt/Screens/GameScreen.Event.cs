@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using FlatRedBall;
 using FlatRedBall.Input;
 using FlatRedBall.Instructions;
@@ -10,12 +10,15 @@ using Shiprekt.Entities;
 using Shiprekt.Screens;
 using FlatRedBall.Math.Geometry;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using FlatRedBall.Debugging;
 
 namespace Shiprekt.Screens
 {
     public partial class GameScreen
     {
 		Circle shipCollisionTestCircle;
+        Dictionary<Ram, Ship> ShipsJustRammed = new Dictionary<Ram, Ship>(); 
 
 		void OnBulletListVsShipListCollisionOccurred (Entities.Bullet bullet, Entities.Ship ship) 
         {
@@ -30,13 +33,25 @@ namespace Shiprekt.Screens
         }
         void OnShipListVsShipListCollisionOccurred (Entities.Ship first, Entities.Ship second) 
         {
-			//If the ship is blocked in the front, we want to apply some steering motion to that ship either toward the other ships front or rear vector, whichever is closest.
-			TrySteerShipAwayFromCollision(first, second);
-			TrySteerShipAwayFromCollision(second, first);
-			first.CollideAgainstBounce(second, 1, 1, .3f); 
-		}
-		
-		private bool TrySteerShipAwayFromCollision(Ship ship1, Ship other)
+            if (first.TeamIndex == second.TeamIndex) return; 
+
+            if (first.CanRamShip(second))
+            {
+                DoTheRamming(first, second);  
+            }
+            else if (second.CanRamShip(first))
+            {
+                DoTheRamming(second, first); 
+            }
+            else
+            {
+                TrySteerShipAwayFromCollision(first, second);
+                TrySteerShipAwayFromCollision(second, first);
+                first.CollideAgainstBounce(second, 1, 1, .3f);
+            }            
+        }
+
+        private bool TrySteerShipAwayFromCollision(Ship ship1, Ship other)
 		{
 			//Put the collision in front of the ship. 
 			if (shipCollisionTestCircle == null) shipCollisionTestCircle = new Circle();
@@ -73,5 +88,16 @@ namespace Shiprekt.Screens
 			}
 			return false; 
 		}		
+
+        private void DoTheRamming(Ship rammer, Ship target)
+        {
+            var dmg = rammer.GetRamShipDmg(target);
+            target.TakeDamage(dmg);
+
+            
+            rammer.MarkShipRammed(target);
+
+            rammer.CollideAgainstBounce(target, 1, 0f, .3f);
+        }
 	}
 }

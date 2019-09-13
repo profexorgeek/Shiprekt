@@ -78,6 +78,10 @@
     <Compile Include="Entities\Effects\WakeEffect.Generated.cs">
       <DependentUpon>WakeEffect.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Ram.cs" />
+    <Compile Include="Entities\Ram.Generated.cs">
+      <DependentUpon>Ram.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Ship.cs" />
     <Compile Include="Entities\Ship.Generated.cs">
       <DependentUpon>Ship.cs</DependentUpon>

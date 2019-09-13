@@ -36,12 +36,16 @@ namespace Shiprekt.Screens
             InitializeShips();
             Camera.Main.Z = 500;
             FlatRedBallServices.Game.IsMouseVisible = true;
-
             windDirection = Vector2.UnitX;// FlatRedBallServices.Random.RadialVector2(1, 1);
 
             DoInitialCloudSpawning();
 
             OffsetTilemapLayers();
+
+            var ship = ShipFactory.CreateNew(ShipList[0].X + 200, ShipList[0].Y);
+            ship.RotationZ = 1.57f; 
+            ship.SetTeam(3); 
+            ship.AllowedToDrive = false; 
         }
 
         private void InitializeShips()
