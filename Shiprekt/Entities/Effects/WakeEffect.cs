@@ -8,26 +8,23 @@ using FlatRedBall.AI.Pathfinding;
 using FlatRedBall.Graphics.Animation;
 using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Math.Geometry;
+using Shiprekt.Utilities;
 
 namespace Shiprekt.Entities.Effects
 {
 	public partial class WakeEffect
 	{
-        float timeToNextEmit;
-        List<Sprite> particles = new List<Sprite>();
-
-        public float EffectStrength { get; set; } = 1f;
+        EasyEmitter rippleEmitter;
+        EasyEmitter trailEmitter;
 
 		private void CustomInitialize()
 		{
-
-
+            CreateEmitters();
 		}
 
 		private void CustomActivity()
 		{
             DoEmission();
-            DoSpriteRemoval();
 		}
 
 		private void CustomDestroy()
@@ -42,61 +39,39 @@ namespace Shiprekt.Entities.Effects
 
         }
 
-        void DoEmission()
+        private void CreateEmitters()
         {
-            timeToNextEmit -= TimeManager.SecondDifference;
+            // Create emitters using EasyEmitter
+            var rippleParticle = GlobalContent.EffectChains["WakeParticle"];
+            rippleEmitter = EasyEmitter.BuildContrail(rippleParticle, EmitterPower.Tiny, 3f, 0.70f, 25f);
+            
+            var trailParticle = GlobalContent.EffectChains["WakeParticle2"];
+            trailEmitter = EasyEmitter.BuildContrail(trailParticle, EmitterPower.Tiny, 6f, 7f, 3f, 16f);
 
-            if(timeToNextEmit <= 0)
-            {
-                for (var i = 0; i < EmissionCount; i++)
-                {
-                    particles.Add(CreateWakeParticle());
-                }
-                timeToNextEmit = EmissionFreqSeconds;
-            }
+
+            // Override a few settings
+            rippleEmitter.EmissionSettings.Alpha = 0.35f;
+            rippleEmitter.RelativeX = 2f;
+
+            trailEmitter.EmissionSettings.Alpha = 0.35f;
+            trailEmitter.EmissionSettings.RotationZVelocity = 0;
+            trailEmitter.EmissionSettings.RotationZVelocityRange = 0;
+
+            // Attach and position
+            rippleEmitter.AttachTo(this, false);
+            rippleEmitter.RelativeZ = -1f;
+
+            trailEmitter.AttachTo(this, false);
+            trailEmitter.RelativeZ = -1.5f;
+            trailEmitter.RelativeX = -16f;
+            
         }
 
-        void DoSpriteRemoval()
+        private void DoEmission()
         {
-            for(var i = particles.Count - 1; i > -1; i--)
-            {
-                if(particles[i].Alpha <= 0)
-                {
-                    var particle = particles[i];
-                    particles.Remove(particle);
-                    SpriteManager.RemoveSprite(particle);
-                }
-            }
-        }
-
-        Sprite CreateWakeParticle()
-        {
-            var chains = GlobalContent.EffectChains;
-            var rand = FlatRedBallServices.Random;
-            var particle = SpriteManager.AddParticleSprite(GlobalContent.shiprekt);
-            var lateralRotation = (float)(RotationZ - (Math.PI / 2f));
-            var magnitude = rand.Between(-LateralVelocityMax, LateralVelocityMax);
-
-            particle.AnimationChains = chains;
-            particle.CurrentChainName = "WaterParticles";
-            particle.Animate = false;
-            particle.CurrentFrameIndex = rand.Next(0, particle.CurrentChain.Count);
-            particle.AlphaRate = -1f / ParticleLifeSeconds;
-            particle.XVelocity = (float)Math.Cos(lateralRotation) * magnitude;
-            particle.YVelocity = (float)Math.Sin(lateralRotation) * magnitude;
-            particle.Drag = 5f;
-            // if you don't like magic constants, give this method a double overload
-            // so I can use Math.PI
-            particle.RotationZ = rand.Between(-3.14f, 3.14f);
-            //particle.RotationZVelocity = rand.Between(-RotationVelocityMax, 0) * Math.Sign(particle.RotationZ);
-            particle.ScaleXVelocity = ScaleVelocity;
-            particle.ScaleYVelocity = ScaleVelocity;
-            particle.X = this.X;
-            particle.Y = this.Y;
-            particle.Z = 2f;
-            particle.TextureScale = StartScale;
-
-            return particle;
+            // Easy emitters emit based on distance, not time!
+            rippleEmitter.DistanceEmit();
+            trailEmitter.DistanceEmit();
         }
 	}
 }

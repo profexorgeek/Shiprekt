@@ -1430,6 +1430,11 @@
             <Member>Radius</Member>
             <ValueAsFloat>8</ValueAsFloat>
           </CustomProperty>
+          <CustomProperty>
+            <Type>bool</Type>
+            <Member>Visible</Member>
+            <ValueAsBool>false</ValueAsBool>
+          </CustomProperty>
           <Properties>
             <PropertySave>
               <Name>SourceType</Name>
@@ -1778,18 +1783,18 @@
         <NamedObjectSave>
           <CustomProperty>
             <Type>float</Type>
+            <Member>X</Member>
+            <ValueAsFloat>14</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>float</Type>
             <Member>Radius</Member>
             <ValueAsFloat>16</ValueAsFloat>
           </CustomProperty>
           <CustomProperty>
             <Type>bool</Type>
             <Member>Visible</Member>
-            <ValueAsBool>true</ValueAsBool>
-          </CustomProperty>
-          <CustomProperty>
-            <Type>float</Type>
-            <Member>X</Member>
-            <ValueAsFloat>14</ValueAsFloat>
+            <ValueAsBool>false</ValueAsBool>
           </CustomProperty>
           <Properties>
             <PropertySave>
@@ -1810,18 +1815,18 @@
         <NamedObjectSave>
           <CustomProperty>
             <Type>float</Type>
+            <Member>X</Member>
+            <ValueAsFloat>-28</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>float</Type>
             <Member>Radius</Member>
             <ValueAsFloat>16</ValueAsFloat>
           </CustomProperty>
           <CustomProperty>
             <Type>bool</Type>
             <Member>Visible</Member>
-            <ValueAsBool>true</ValueAsBool>
-          </CustomProperty>
-          <CustomProperty>
-            <Type>float</Type>
-            <Member>X</Member>
-            <ValueAsFloat>-28</ValueAsFloat>
+            <ValueAsBool>false</ValueAsBool>
           </CustomProperty>
           <Properties>
             <PropertySave>
@@ -1864,6 +1869,11 @@
                 <Y>16</Y>
               </Vector2>
             </ValueAsListOfVector2>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>bool</Type>
+            <Member>Visible</Member>
+            <ValueAsBool>false</ValueAsBool>
           </CustomProperty>
           <Properties>
             <PropertySave>
