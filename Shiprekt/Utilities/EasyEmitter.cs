@@ -70,13 +70,25 @@ namespace Shiprekt.Utilities
             };
         }
 
+        /// <summary>
+        /// Returns a pre-configured emitter with an explosion effect that
+        /// can be radial or directional.
+        /// </summary>
+        /// <param name="particleChain">The particle chain to emit. If it has 
+        /// more than one frame it will be animated.</param>
+        /// <param name="power">How strong the effect will be.</param>
+        /// <param name="lifeSeconds">How long particles take to fade out.</param>
+        /// <param name="wedgeDegrees">How many degrees the emission wedge is, 360 is radial.</param>
+        /// <param name="scalePerSecond">How much particles scale per second.</param>
+        /// <param name="area">The area to emit particles, leave at 1 for point emission.</param>
+        /// <returns>An EasyEmitter instance</returns>
         public static EasyEmitter BuildExplosion(
-            AnimationChain particleChain,               // the particle to use in this effect, it'll be animated
-            EmitterPower power = EmitterPower.Medium,   // the strength of this effect
-            float lifeSeconds = 1f,                     // how long particles stick around
-            float wedgeDegrees = 360f,                  // the explosion wedge in degrees
-            float scalePerSecond = 0f,                  // how quickly the particle scales
-            float area = 1f)                            // the area size to emit particles
+            AnimationChain particleChain,             
+            EmitterPower power = EmitterPower.Medium, 
+            float lifeSeconds = 1f,                   
+            float wedgeDegrees = 360f,                
+            float scalePerSecond = 0f,                
+            float area = 1f)                          
         {
             var emitter = new EasyEmitter();
             emitter.emitterPower = power;
@@ -118,13 +130,27 @@ namespace Shiprekt.Utilities
             return emitter;
         }
 
+        /// <summary>
+        /// Returns a pre-configured emitter that can emit distance-based contrail
+        /// effects.
+        /// </summary>
+        /// <param name="particleChain">The particle chain to emit. If it has more 
+        /// than one frame it will be animated.</param>
+        /// <param name="power">How strong the effect will be.</param>
+        /// <param name="distance">How long the parent entity travels before triggering
+        /// another emission.</param>
+        /// <param name="lifeSeconds">How long particles take to fade out.</param>
+        /// <param name="scalePerSecond">How much particles scale per second.</param>
+        /// <param name="area">The area to emit particles, leave at 1 for point emission.</param>
+        /// <returns>An EasyEmitter instance</param>
+        /// <returns></returns>
         public static EasyEmitter BuildContrail(
-            AnimationChain particleChain,               // the particle to use in this effect, it'll be animated
-            EmitterPower power = EmitterPower.Medium,   // the strength of this effect
-            float distance = 8f,                        // the distance between each emit
-            float lifeSeconds = 3f,                     // how long particles stick around
-            float scalePerSecond = 2f,                  // how quickly the particle scales
-            float area = 1f)                            // the area size to emit particles
+            AnimationChain particleChain,            
+            EmitterPower power = EmitterPower.Medium,
+            float distance = 8f,                     
+            float lifeSeconds = 3f,                  
+            float scalePerSecond = 2f,               
+            float area = 1f)                         
         {
             var emitter = new EasyEmitter();
             emitter.emitterPower = power;
