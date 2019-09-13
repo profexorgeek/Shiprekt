@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using FlatRedBall;
 using FlatRedBall.Graphics.Animation;
 using FlatRedBall.Graphics.Particle;
+using Microsoft.Xna.Framework;
 
 namespace Shiprekt.Utilities
 {
@@ -26,7 +27,8 @@ namespace Shiprekt.Utilities
 
     public class EasyEmitter : Emitter
     {
-        private static readonly Dictionary<EmitterPower, int> ExplosionSizeParticles = new Dictionary<EmitterPower, int>
+        // maps EmitterPower to a qty of particles
+        private static readonly Dictionary<EmitterPower, int> ExplosionParticles = new Dictionary<EmitterPower, int>
         {
             {EmitterPower.Tiny, 8},
             {EmitterPower.Small, 10},
@@ -36,6 +38,17 @@ namespace Shiprekt.Utilities
             {EmitterPower.Enormous, 128}
         };
 
+        // maps EmitterPower to a distance threshold to emit particles
+        private static readonly Dictionary<EmitterPower, int> ContrailParticles = new Dictionary<EmitterPower, int>
+        {
+            {EmitterPower.Tiny, 1},
+            {EmitterPower.Small, 2},
+            {EmitterPower.Medium, 4},
+            {EmitterPower.Large, 8},
+            {EmitterPower.Huge, 12 },
+            {EmitterPower.Enormous, 16}
+        };
+
         const float DefaultDrag = 5f;
         const float VelocityRangePercent = 0.5f;
         const float VelocitySizeCoefficient = 1f;
@@ -43,16 +56,33 @@ namespace Shiprekt.Utilities
         const float PiFloat = (float)Math.PI;
 
         SpriteList particles { get; set; } = new SpriteList();
+        Vector3 lastEmissionPosition;
+        EmitterPower emitterPower = EmitterPower.Medium;
+        float emissionDistance = 0;
 
-        public static EasyEmitter Explosion(AnimationChain particleChain, EmitterPower size = EmitterPower.Medium, float lifeSeconds = 1f, float wedgeDegrees = 360f, float scalePerSecond = 0f, float area = 1f)
+        static Vector2 GetTextureScale(AnimationChain particleChain)
+        {
+            var frame1 = particleChain[0];
+            return new Vector2
+            {
+                X = frame1.Texture.Width * (frame1.RightCoordinate - frame1.LeftCoordinate) / 2f,
+                Y = frame1.Texture.Height * (frame1.BottomCoordinate - frame1.TopCoordinate) / 2f
+            };
+        }
+
+        public static EasyEmitter BuildExplosion(
+            AnimationChain particleChain,               // the particle to use in this effect, it'll be animated
+            EmitterPower power = EmitterPower.Medium,   // the strength of this effect
+            float lifeSeconds = 1f,                     // how long particles stick around
+            float wedgeDegrees = 360f,                  // the explosion wedge in degrees
+            float scalePerSecond = 0f,                  // how quickly the particle scales
+            float area = 1f)                            // the area size to emit particles
         {
             var emitter = new EasyEmitter();
-            var frame1 = particleChain[0];
-            var xScale = frame1.Texture.Width * (frame1.RightCoordinate - frame1.LeftCoordinate);
-            var yScale = frame1.Texture.Height * (frame1.TopCoordinate - frame1.BottomCoordinate);
-            var scaleVelocity = scalePerSecond + 1f;
-            var radialVelocity = (float)size * VelocitySizeCoefficient * (1 - VelocityRangePercent);
-            var radialRange = (float)size * VelocitySizeCoefficient * VelocityRangePercent;
+            emitter.emitterPower = power;
+            var scale = GetTextureScale(particleChain);
+            var radialVelocity = (float)power * VelocitySizeCoefficient * (1 - VelocityRangePercent);
+            var radialRange = (float)power * VelocitySizeCoefficient * VelocityRangePercent;
 
             emitter.EmissionSettings = new EmissionSettings
             {
@@ -62,10 +92,10 @@ namespace Shiprekt.Utilities
                 AnimationChain = particleChain,
                 Animate = true,
                 Drag = DefaultDrag,
-                ScaleX = xScale,
-                ScaleY = yScale,
-                ScaleXVelocity = scaleVelocity,
-                ScaleYVelocity = scaleVelocity,
+                ScaleX = scale.X,
+                ScaleY = scale.Y,
+                ScaleXVelocity = scalePerSecond,
+                ScaleYVelocity = scalePerSecond,
                 RotationZ = -PiFloat,
                 RotationZRange = PiFloat * 2f,
                 RotationZVelocity = -RotationVelocity,
@@ -83,10 +113,53 @@ namespace Shiprekt.Utilities
             emitter.AreaEmission = AreaEmissionType.Rectangle;
             emitter.ScaleX = area / 2f;
             emitter.ScaleY = area / 2f;
-            emitter.NumberPerEmission = ExplosionSizeParticles[size];
+            emitter.NumberPerEmission = ExplosionParticles[power];
 
             return emitter;
         }
+
+        public static EasyEmitter BuildContrail(
+            AnimationChain particleChain,               // the particle to use in this effect, it'll be animated
+            EmitterPower power = EmitterPower.Medium,   // the strength of this effect
+            float distance = 8f,                        // the distance between each emit
+            float lifeSeconds = 3f,                     // how long particles stick around
+            float scalePerSecond = 2f,                  // how quickly the particle scales
+            float area = 1f)                            // the area size to emit particles
+        {
+            var emitter = new EasyEmitter();
+            emitter.emitterPower = power;
+            emitter.emissionDistance = distance;
+            var scale = GetTextureScale(particleChain);
+            emitter.EmissionSettings = new EmissionSettings
+            {
+
+                Alpha = 1f,
+                AlphaRate = -1f / lifeSeconds,
+                AnimationChain = particleChain,
+                Animate = true,
+                Drag = DefaultDrag,
+                ScaleX = scale.X,
+                ScaleY = scale.Y,
+                ScaleXRange = scale.X * 0.45f,
+                ScaleYRange = scale.Y * 0.45f,
+                ScaleXVelocity = scalePerSecond,
+                ScaleYVelocity = scalePerSecond,
+                RotationZ = -PiFloat,
+                RotationZRange = PiFloat * 2f,
+                RotationZVelocity = -0.5f,
+                RotationZVelocityRange = 1f,
+                VelocityRangeType = RangeType.Radial
+            };
+
+            emitter.TimedEmission = false;
+            emitter.RemovalEvent = Emitter.RemovalEventType.Alpha0;
+            emitter.AreaEmission = AreaEmissionType.Rectangle;
+            emitter.ScaleX = area / 2f;
+            emitter.ScaleY = area / 2f;
+            emitter.NumberPerEmission = ContrailParticles[power];
+
+            return emitter;
+        }       
 
         public SpriteList Emit()
         {
@@ -94,6 +167,19 @@ namespace Shiprekt.Utilities
             Emit(particles);
 
             return particles;
+        }
+
+        public void DistanceEmit()
+        {
+            var currentPos = Parent?.Position ?? Vector3.Zero;
+            var vectorDelta = (currentPos - lastEmissionPosition).Length();
+            var elapsedDistance = Math.Abs(vectorDelta);
+
+            if(elapsedDistance >= emissionDistance)
+            {
+                this.Emit();
+                lastEmissionPosition = currentPos;
+            }
         }
     }
 }
