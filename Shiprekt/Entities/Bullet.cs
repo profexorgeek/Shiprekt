@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using FlatRedBall;
@@ -27,7 +27,7 @@ namespace Shiprekt.Entities
 
 		private void CustomActivity()
 		{
-			CannonballSpriteInstance.RelativeYVelocity = Math.Max(-100, CannonballSpriteInstance.RelativeYVelocity); 
+			CannonballSpriteInstance.RelativeYVelocity = Math.Max(-100, CannonballSpriteInstance.RelativeYVelocity);
 		}
 
 		private void CustomDestroy()

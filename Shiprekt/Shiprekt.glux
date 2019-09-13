@@ -1097,7 +1097,7 @@
           </Properties>
           <Name>EmissionCount</Name>
           <Type>int</Type>
-          <DefaultValue xsi:type="xsd:int">2</DefaultValue>
+          <DefaultValue xsi:type="xsd:int">1</DefaultValue>
         </CustomVariable>
         <CustomVariable>
           <Properties>
@@ -1108,7 +1108,7 @@
           </Properties>
           <Name>EmissionFreqSeconds</Name>
           <Type>float</Type>
-          <DefaultValue xsi:type="xsd:float">0.1</DefaultValue>
+          <DefaultValue xsi:type="xsd:float">0.05</DefaultValue>
         </CustomVariable>
         <CustomVariable>
           <Properties>
@@ -1119,7 +1119,7 @@
           </Properties>
           <Name>ParticleLifeSeconds</Name>
           <Type>float</Type>
-          <DefaultValue xsi:type="xsd:float">1.5</DefaultValue>
+          <DefaultValue xsi:type="xsd:float">1</DefaultValue>
         </CustomVariable>
         <CustomVariable>
           <Properties>
@@ -1130,7 +1130,7 @@
           </Properties>
           <Name>LateralVelocityMax</Name>
           <Type>float</Type>
-          <DefaultValue xsi:type="xsd:float">115</DefaultValue>
+          <DefaultValue xsi:type="xsd:float">20</DefaultValue>
         </CustomVariable>
         <CustomVariable>
           <Properties>
@@ -1152,7 +1152,7 @@
           </Properties>
           <Name>ScaleVelocity</Name>
           <Type>float</Type>
-          <DefaultValue xsi:type="xsd:float">10</DefaultValue>
+          <DefaultValue xsi:type="xsd:float">15</DefaultValue>
         </CustomVariable>
         <CustomVariable>
           <Properties>
@@ -1163,7 +1163,18 @@
           </Properties>
           <Name>StartScale</Name>
           <Type>float</Type>
-          <DefaultValue xsi:type="xsd:float">1</DefaultValue>
+          <DefaultValue xsi:type="xsd:float">2</DefaultValue>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>EmissionTotalDuration</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">0.25</DefaultValue>
         </CustomVariable>
       </CustomVariables>
       <ImplementsIDrawableBatch>false</ImplementsIDrawableBatch>
@@ -1281,7 +1292,7 @@
           </Properties>
           <Name>StartScale</Name>
           <Type>float</Type>
-          <DefaultValue xsi:type="xsd:float">1</DefaultValue>
+          <DefaultValue xsi:type="xsd:float">2</DefaultValue>
         </CustomVariable>
       </CustomVariables>
       <ImplementsIDrawableBatch>false</ImplementsIDrawableBatch>
