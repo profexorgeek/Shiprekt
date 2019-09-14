@@ -93,57 +93,6 @@
     </Frame>
   </AnimationChain>
   <AnimationChain>
-    <Name>WaterParticles</Name>
-    <Frame>
-      <TextureName>shiprekt.png</TextureName>
-      <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>40</LeftCoordinate>
-      <RightCoordinate>48</RightCoordinate>
-      <TopCoordinate>8</TopCoordinate>
-      <BottomCoordinate>16</BottomCoordinate>
-    </Frame>
-    <Frame>
-      <TextureName>shiprekt.png</TextureName>
-      <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>40</LeftCoordinate>
-      <RightCoordinate>48</RightCoordinate>
-      <TopCoordinate>0</TopCoordinate>
-      <BottomCoordinate>8</BottomCoordinate>
-    </Frame>
-    <Frame>
-      <TextureName>shiprekt.png</TextureName>
-      <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>32</LeftCoordinate>
-      <RightCoordinate>40</RightCoordinate>
-      <TopCoordinate>0</TopCoordinate>
-      <BottomCoordinate>8</BottomCoordinate>
-    </Frame>
-    <Frame>
-      <TextureName>shiprekt.png</TextureName>
-      <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>16</LeftCoordinate>
-      <RightCoordinate>32</RightCoordinate>
-      <TopCoordinate>0</TopCoordinate>
-      <BottomCoordinate>16</BottomCoordinate>
-    </Frame>
-    <Frame>
-      <TextureName>shiprekt.png</TextureName>
-      <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>0</LeftCoordinate>
-      <RightCoordinate>16</RightCoordinate>
-      <TopCoordinate>0</TopCoordinate>
-      <BottomCoordinate>16</BottomCoordinate>
-    </Frame>
-    <Frame>
-      <TextureName>shiprekt.png</TextureName>
-      <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>0</LeftCoordinate>
-      <RightCoordinate>16</RightCoordinate>
-      <TopCoordinate>16</TopCoordinate>
-      <BottomCoordinate>32</BottomCoordinate>
-    </Frame>
-  </AnimationChain>
-  <AnimationChain>
     <Name>SmokeParticles</Name>
     <Frame>
       <TextureName>shiprekt.png</TextureName>
@@ -168,6 +117,28 @@
       <RightCoordinate>48</RightCoordinate>
       <TopCoordinate>16</TopCoordinate>
       <BottomCoordinate>32</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>WakeParticle</Name>
+    <Frame>
+      <TextureName>shiprekt.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>64</LeftCoordinate>
+      <RightCoordinate>80</RightCoordinate>
+      <TopCoordinate>0</TopCoordinate>
+      <BottomCoordinate>16</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>WakeParticle2</Name>
+    <Frame>
+      <TextureName>shiprekt.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>0</LeftCoordinate>
+      <RightCoordinate>16</RightCoordinate>
+      <TopCoordinate>0</TopCoordinate>
+      <BottomCoordinate>16</BottomCoordinate>
     </Frame>
   </AnimationChain>
 </AnimationChainArraySave>

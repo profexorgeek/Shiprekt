@@ -98,7 +98,7 @@ namespace Shiprekt.Entities.Effects
             particle.ScaleYVelocity = ScaleVelocity;
             particle.X = this.X;
             particle.Y = this.Y;
-            particle.Z = 2f;
+            particle.Z = 3f;
             particle.TextureScale = StartScale;
 
             return particle;
