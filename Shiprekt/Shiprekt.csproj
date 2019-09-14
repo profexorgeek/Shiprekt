@@ -74,6 +74,10 @@
       <DependentUpon>CannonballEffect.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\Effects\ParticleSprite.cs" />
+    <Compile Include="Entities\Effects\ShipDeathEffect.cs" />
+    <Compile Include="Entities\Effects\ShipDeathEffect.Generated.cs">
+      <DependentUpon>ShipDeathEffect.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Effects\WakeEffect.cs" />
     <Compile Include="Entities\Effects\WakeEffect.Generated.cs">
       <DependentUpon>WakeEffect.cs</DependentUpon>
@@ -97,6 +101,7 @@
     <Compile Include="Factories\BirdFactory.Generated.cs" />
     <Compile Include="Factories\BulletFactory.Generated.cs" />
     <Compile Include="Factories\CloudFactory.Generated.cs" />
+    <Compile Include="Factories\ShipDeathEffectFactory.Generated.cs" />
     <Compile Include="Factories\ShipFactory.Generated.cs" />
     <Compile Include="Factories\WreckageFactory.Generated.cs" />
     <Compile Include="FileAliases.Generated.cs" />
