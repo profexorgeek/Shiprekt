@@ -19,12 +19,26 @@ namespace Shiprekt.Screens
 {
     public partial class MainMenu
     {
+        #region Initialize
 
         void CustomInitialize()
         {
-            MainMenuGum.UnjoinAll();
-
+            UpdateUiToReflectJoinedPlayers();
         }
+
+        private void UpdateUiToReflectJoinedPlayers()
+        {
+            // To wipe any state that may come from Gum layout:
+            MainMenuGum.UnjoinAll();
+            foreach(var player in JoinedPlayerManager.JoinedPlayers)
+            {
+                MainMenuGum.JoinWith(player.ShipType.ToGum());
+            }
+        }
+
+        #endregion
+
+        #region Activity
 
         void CustomActivity(bool firstTimeCalled)
         {
@@ -95,6 +109,8 @@ namespace Shiprekt.Screens
         {
             this.MoveToScreen(typeof(Level1));
         }
+
+        #endregion
 
         void CustomDestroy()
 		{
