@@ -44,6 +44,15 @@ namespace Shiprekt.Managers
             }
         }
 
+        internal static void ResetGameStats()
+        {
+            foreach(var player in JoinedPlayers)
+            {
+                player.LastGameKills = 0;
+                player.LastGameDeaths = 0;
+            }
+        }
+
         public static JoinedPlayer DropPlayer(IInputDevice device)
         {
             var player = joinedPlayers.FirstOrDefault(item => item.InputDevice == device);

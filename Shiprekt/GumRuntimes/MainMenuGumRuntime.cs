@@ -19,7 +19,7 @@ namespace Shiprekt.GumRuntimes
             }
         }
 
-        public void JoinWith(GumRuntimes.ShipFrontRuntime.SailDesign sailDesign)
+        public JoinableShipAndStatusRuntime JoinWith(GumRuntimes.ShipFrontRuntime.SailDesign sailDesign)
         {
             var whichToJoinWith = JoinedPlayerContainer.Children
                 .First(item => item.CurrentJoinedCategoryState == JoinableShipAndStatusRuntime.JoinedCategory.NotJoined);
@@ -30,6 +30,8 @@ namespace Shiprekt.GumRuntimes
                 whichToJoinWith.SailDesignState = sailDesign;
                 whichToJoinWith.CurrentWinOrNormalState = JoinableShipAndStatusRuntime.WinOrNormal.NoStats;
             }
+
+            return whichToJoinWith;
         }
 
         internal void UnjoinWith(ShipFrontRuntime.SailDesign sailDesign)

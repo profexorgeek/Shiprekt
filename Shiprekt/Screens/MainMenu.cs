@@ -30,9 +30,31 @@ namespace Shiprekt.Screens
         {
             // To wipe any state that may come from Gum layout:
             MainMenuGum.UnjoinAll();
-            foreach(var player in JoinedPlayerManager.JoinedPlayers)
+
+            if(JoinedPlayerManager.JoinedPlayers.Any())
             {
-                MainMenuGum.JoinWith(player.ShipType.ToGum());
+                // Max crashes if the list is empty
+                var best = JoinedPlayerManager.JoinedPlayers.Max(
+                    item => item.LastGameKills - item.LastGameDeaths);
+
+                foreach(var player in JoinedPlayerManager.JoinedPlayers)
+                {
+                    var frame = MainMenuGum.JoinWith(player.ShipType.ToGum());
+
+                    if(player.LastGameKills - player.LastGameDeaths == best)
+                    {
+                        frame.CurrentWinOrNormalState =
+                            GumRuntimes.JoinableShipAndStatusRuntime.WinOrNormal.Winner;
+                    }
+                    else
+                    {
+                        frame.CurrentWinOrNormalState = 
+                            GumRuntimes.JoinableShipAndStatusRuntime.WinOrNormal.Normal;
+                    }
+
+                    frame.KillsText = $"Kills: {player.LastGameKills}";
+                    frame.DeathsText = $"Deaths: {player.LastGameDeaths}";
+                }
             }
         }
 

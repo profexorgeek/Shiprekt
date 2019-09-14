@@ -49,6 +49,9 @@ namespace Shiprekt.Screens
         void CustomInitialize()
         {
             InitializeShips();
+
+            JoinedPlayerManager.ResetGameStats();
+
             Camera.Main.Z = 500;
             FlatRedBallServices.Game.IsMouseVisible = true;
             windDirection = Vector2.UnitX;// FlatRedBallServices.Random.RadialVector2(1, 1);
