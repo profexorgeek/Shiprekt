@@ -28,7 +28,21 @@ namespace Shiprekt.Screens
 
         Vector2 windDirection;
 
+        private double SecondsLeft
+        {
+            get
+            {
+                var timePassed = TimeManager.CurrentScreenTime;
+
+                var secondsLeft = MatchLengthInSeconds - timePassed;
+                return secondsLeft;
+            }
+        }
+
+
         #endregion
+        // TODO: Get wind from game.
+        static Vector2 TEMP_DEFAULT_WIND = new Vector2(30, 5);
 
         #region Initialize
 
@@ -43,10 +57,18 @@ namespace Shiprekt.Screens
 
             OffsetTilemapLayers();
 
-            var ship = ShipFactory.CreateNew(ShipList[0].X + 200, ShipList[0].Y);
-            ship.RotationZ = 1.57f; 
-            ship.SetTeam(3); 
-            ship.AllowedToDrive = false; 
+            DebugInitialize();
+        }
+
+        private void DebugInitialize()
+        {
+            if(DebuggingVariables.CreateExtraShips)
+            {
+                var ship = ShipFactory.CreateNew(ShipList[0].X + 200, ShipList[0].Y);
+                ship.RotationZ = 1.57f;
+                ship.SetTeam(3);
+                ship.InitializeRacingInput(InputManager.Xbox360GamePads[1]);
+            }
         }
 
         private void InitializeShips()
@@ -110,6 +132,8 @@ namespace Shiprekt.Screens
 
             DoCloudSpawning();
 
+            DoEndGameActivity();
+
             if (DebuggingVariables.EnableDebugKeyInput)
             {
                 DoDebugInput();
@@ -125,9 +149,7 @@ namespace Shiprekt.Screens
 
         private void DoUiActivity()
         {
-            var timePassed = TimeManager.CurrentScreenTime;
-
-            var secondsLeft = MatchLengthInSeconds - timePassed;
+            var secondsLeft = SecondsLeft;
 
             var secondsRoundedUp = System.Math.Ceiling(secondsLeft);
 
@@ -146,6 +168,19 @@ namespace Shiprekt.Screens
                 ship.ApplyWind(windDirection);
             }
         }
+
+        private void DoEndGameActivity()
+        {
+            if(SecondsLeft < 0)
+            {
+                EndGame();
+            }
+        }
+
+        private void EndGame()
+        {
+            MoveToScreen(typeof(MainMenu));
+        }
         #endregion
 
         void CustomDestroy()
@@ -159,6 +194,8 @@ namespace Shiprekt.Screens
 
 
         }
+
+        #region Bird Logic
 
         const float birdRadiusEstimate = 20;
         internal void MurderLostBirds()
@@ -186,8 +223,9 @@ namespace Shiprekt.Screens
             }
         }
 
-        // TODO: Get wind from game.
-        static Vector2 TEMP_DEFAULT_WIND = new Vector2(30, 5);
+        #endregion
+
+        #region Cloud Logic
 
         const float cloudRadiusEstimate = 50;
         static float SecondsToNextCloudMax = 3;
@@ -314,6 +352,9 @@ namespace Shiprekt.Screens
                 SpawnCloud(cloudSpawnX, cloudSpawnY);
             }
         }
+
+        #endregion
+
         void DoDebugInput()
         {
             var kb = FlatRedBall.Input.InputManager.Keyboard;
