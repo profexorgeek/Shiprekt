@@ -56,6 +56,18 @@ namespace Shiprekt.Entities
             InitializeMovementValues();
 
             Health = ShipEntityValuesInstance.MaxHealth;
+
+#if DEBUG
+            DoDebugInitialize();
+#endif
+        }
+
+        private void DoDebugInitialize()
+        {
+            if(DebuggingVariables.ShowShipCollisions)
+            {
+                this.Collision.Visible = true;
+            }
         }
 
         internal void SetSail(SailColor sailColor)
@@ -195,7 +207,16 @@ namespace Shiprekt.Entities
             var sailToWindDot = Vector2.Dot(ShipSailInstance.RotationMatrix.Right.ToVector2(), windDirectionNormalized);
             var coefficient = sailToWindDot == 0 ? 0 : (sailToWindDot /= 2) + .5f;
 
-            EffectiveRacingEntityValues.EffectiveMaxSpeed = Math.Max(MinSpeed, BaseRacingEntityValues.EffectiveMaxSpeed * coefficient); 
+#if DEBUG
+            if(DebuggingVariables.FastMovement)
+            {
+                EffectiveRacingEntityValues.EffectiveMaxSpeed = BaseRacingEntityValues.EffectiveMaxSpeed;
+            }
+            else
+#endif
+            {
+              EffectiveRacingEntityValues.EffectiveMaxSpeed = Math.Max(MinSpeed, BaseRacingEntityValues.EffectiveMaxSpeed * coefficient); 
+            }
 
 			//Change the sail visual. 
 			ShipSailInstance.UpdateSailVisual(windDirectionNormalized);

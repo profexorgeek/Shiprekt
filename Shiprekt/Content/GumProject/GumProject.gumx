@@ -13,6 +13,10 @@
     <ElementType>Screen</ElementType>
   </ScreenReference>
   <ScreenReference>
+    <Name>Level2Gum</Name>
+    <ElementType>Screen</ElementType>
+  </ScreenReference>
+  <ScreenReference>
     <Name>MainMenuGum</Name>
     <ElementType>Screen</ElementType>
   </ScreenReference>
