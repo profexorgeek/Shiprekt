@@ -17,12 +17,12 @@ namespace Shiprekt.Utilities
 
     public enum EmitterPower
     {
-        Tiny = 16,
-        Small = 32,
-        Medium = 64,
-        Large = 128,
-        Huge = 256,
-        Enormous = 512
+        Tiny = 25,
+        Small = 75,
+        Medium = 250,
+        Large = 600,
+        Huge = 800,
+        Enormous = 1000
     }
 
     public class EasyEmitter : Emitter
@@ -30,12 +30,12 @@ namespace Shiprekt.Utilities
         // maps EmitterPower to a qty of particles
         private static readonly Dictionary<EmitterPower, int> ExplosionParticles = new Dictionary<EmitterPower, int>
         {
-            {EmitterPower.Tiny, 8},
-            {EmitterPower.Small, 10},
-            {EmitterPower.Medium, 16},
-            {EmitterPower.Large, 32},
-            {EmitterPower.Huge, 64 },
-            {EmitterPower.Enormous, 128}
+            {EmitterPower.Tiny, 2},
+            {EmitterPower.Small, 4},
+            {EmitterPower.Medium, 8},
+            {EmitterPower.Large, 10},
+            {EmitterPower.Huge, 20 },
+            {EmitterPower.Enormous, 30}
         };
 
         // maps EmitterPower to a distance threshold to emit particles
@@ -52,7 +52,7 @@ namespace Shiprekt.Utilities
         const float DefaultDrag = 5f;
         const float VelocityRangePercent = 0.5f;
         const float VelocitySizeCoefficient = 1f;
-        const float RotationVelocity = 2f;
+        const float RotationVelocity = 0.25f;
         const float PiFloat = (float)Math.PI;
 
         SpriteList particles { get; set; } = new SpriteList();
@@ -106,6 +106,8 @@ namespace Shiprekt.Utilities
                 Drag = DefaultDrag,
                 ScaleX = scale.X,
                 ScaleY = scale.Y,
+                ScaleXRange = scale.X * 0.65f,
+                ScaleYRange = scale.Y * 0.65f,
                 ScaleXVelocity = scalePerSecond,
                 ScaleYVelocity = scalePerSecond,
                 RotationZ = -PiFloat,
@@ -164,12 +166,10 @@ namespace Shiprekt.Utilities
                 AnimationChain = particleChain,
                 Animate = true,
                 Drag = DefaultDrag,
-                ScaleX = scale.X,
                 ScaleY = scale.Y,
-                ScaleXRange = scale.X * 0.45f,
                 ScaleYRange = scale.Y * 0.45f,
-                ScaleXVelocity = scalePerSecond,
                 ScaleYVelocity = scalePerSecond,
+                MatchScaleXToY = true,
                 RotationZ = -PiFloat,
                 RotationZRange = PiFloat * 2f,
                 RotationZVelocity = -0.5f,

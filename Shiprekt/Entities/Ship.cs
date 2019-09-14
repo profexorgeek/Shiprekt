@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework;
 using static Shiprekt.Entities.ShipSail;
 using FlatRedBall.Debugging;
 using Shiprekt.Utilities;
+using Shiprekt.Factories;
 
 namespace Shiprekt.Entities
 {
@@ -242,6 +243,8 @@ namespace Shiprekt.Entities
 
 		internal void Die()
 		{
+            ShipDeathEffectFactory.CreateNew().TriggerEffect(X, Y, RotationZ);
+            
 			Destroy();
 		}
 

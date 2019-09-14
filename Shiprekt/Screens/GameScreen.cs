@@ -18,6 +18,7 @@ using Shiprekt.Factories;
 using Shiprekt.Entities;
 using Shiprekt.Managers;
 using Shiprekt.DataTypes;
+using Keys = Microsoft.Xna.Framework.Input.Keys;
 
 namespace Shiprekt.Screens
 {
@@ -104,6 +105,11 @@ namespace Shiprekt.Screens
             UpdateShipSailsActivity();
             RemoveLostClouds();
             DoCloudSpawning();
+
+            if(DebuggingVariables.EnableDebugKeyInput)
+            {
+                DoDebugInput();
+            }
         }
 
 		internal void UpdateShipSailsActivity()
@@ -279,6 +285,21 @@ namespace Shiprekt.Screens
                     }
                 }
                 SpawnCloud(cloudSpawnX, cloudSpawnY);
+            }
+        }
+        void DoDebugInput()
+        {
+            var kb = FlatRedBall.Input.InputManager.Keyboard;
+            if(kb.KeyDown(Keys.LeftControl) || kb.KeyDown(Keys.RightControl))
+            {
+                // CTRL + F - Force kill all ships
+                if(kb.KeyReleased(Keys.F))
+                {
+                    for(var i = 0; i < ShipList.Count; i++)
+                    {
+                        ShipList[i].Die();
+                    }
+                }
             }
         }
     }

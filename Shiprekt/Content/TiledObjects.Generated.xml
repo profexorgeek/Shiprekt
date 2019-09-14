@@ -18,6 +18,9 @@
     <property name="CloudAltitudeMin" type="float" default="100" />
     <property name="CloudAltitudeMax" type="float" default="200" />
   </objecttype>
+  <objecttype name="ShipDeathEffect">
+    <property name="EffectDurationSeconds" type="float" default="4" />
+  </objecttype>
   <objecttype name="Ship">
     <property name="CarData" type="Shiprekt.DataTypes.RacingEntityValues" default="DefaultValues in RacingEntityValues.csv" />
     <property name="ShipEntityValuesInstance" type="Shiprekt.DataTypes.ShipEntityValues" default="DefaultValues in ShipEntityValues.csv" />
