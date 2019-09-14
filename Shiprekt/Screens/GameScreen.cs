@@ -96,23 +96,50 @@ namespace Shiprekt.Screens
 
         void CustomActivity(bool firstTimeCalled)
         {
-            var shipToFollow = ShipList[0];
-            Camera.Main.X = shipToFollow.X;
-            Camera.Main.Y = shipToFollow.Y;
-			
+            DoCameraActivity();
+
+            DoUiActivity();
+
             MurderLostBirds();
+
             DoBirdSpawning();
+
             UpdateShipSailsActivity();
+
             RemoveLostClouds();
+
             DoCloudSpawning();
 
-            if(DebuggingVariables.EnableDebugKeyInput)
+            if (DebuggingVariables.EnableDebugKeyInput)
             {
                 DoDebugInput();
             }
         }
 
-		internal void UpdateShipSailsActivity()
+        private void DoCameraActivity()
+        {
+            var shipToFollow = ShipList[0];
+            Camera.Main.X = shipToFollow.X;
+            Camera.Main.Y = shipToFollow.Y;
+        }
+
+        private void DoUiActivity()
+        {
+            var timePassed = TimeManager.CurrentScreenTime;
+
+            var secondsLeft = MatchLengthInSeconds - timePassed;
+
+            var secondsRoundedUp = System.Math.Ceiling(secondsLeft);
+
+            int minutesLeft = (int)(secondsRoundedUp / 60);
+            int remainder = (int)(secondsRoundedUp) % 60;
+
+            var timeDisplay = $"{minutesLeft}:{remainder.ToString("00")}";
+
+            GameScreenGum.TextInstance.Text = timeDisplay;
+        }
+
+        internal void UpdateShipSailsActivity()
         {
             foreach(var ship in ShipList)
             {

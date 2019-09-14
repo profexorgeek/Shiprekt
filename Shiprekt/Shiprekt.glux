@@ -53,6 +53,17 @@
           <Type>int</Type>
           <DefaultValue xsi:type="xsd:int">25</DefaultValue>
         </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>int</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>MatchLengthInSeconds</Name>
+          <Type>int</Type>
+          <DefaultValue xsi:type="xsd:int">120</DefaultValue>
+        </CustomVariable>
       </CustomVariables>
       <Name>Screens\GameScreen</Name>
       <ReferencedFiles>
@@ -1335,6 +1346,11 @@
         <NamedObjectSave>
           <CustomProperty>
             <Type>float</Type>
+            <Member>Z</Member>
+            <ValueAsFloat>2</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>float</Type>
             <Member>TextureScale</Member>
             <ValueAsFloat>1</ValueAsFloat>
           </CustomProperty>
@@ -1352,11 +1368,6 @@
             <Type>float</Type>
             <Member>AnimationSpeed</Member>
             <ValueAsFloat>0.5</ValueAsFloat>
-          </CustomProperty>
-          <CustomProperty>
-            <Type>float</Type>
-            <Member>Z</Member>
-            <ValueAsFloat>2</ValueAsFloat>
           </CustomProperty>
           <Properties>
             <PropertySave>
@@ -1376,6 +1387,11 @@
         <NamedObjectSave>
           <CustomProperty>
             <Type>float</Type>
+            <Member>Z</Member>
+            <ValueAsFloat>10</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>float</Type>
             <Member>TextureScale</Member>
             <ValueAsFloat>1</ValueAsFloat>
           </CustomProperty>
@@ -1388,11 +1404,6 @@
             <Type>string</Type>
             <Member>CurrentChainName</Member>
             <ValueAsString>Explosion</ValueAsString>
-          </CustomProperty>
-          <CustomProperty>
-            <Type>float</Type>
-            <Member>Z</Member>
-            <ValueAsFloat>10</ValueAsFloat>
           </CustomProperty>
           <Properties>
             <PropertySave>
