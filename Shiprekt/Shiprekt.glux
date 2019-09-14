@@ -115,7 +115,7 @@
           <CustomProperty>
             <Type>bool</Type>
             <Member>Visible</Member>
-            <ValueAsBool>true</ValueAsBool>
+            <ValueAsBool>false</ValueAsBool>
           </CustomProperty>
           <Properties>
             <PropertySave>
@@ -124,7 +124,7 @@
             </PropertySave>
             <PropertySave>
               <Name>CollisionCreationOptions</Name>
-              <ValueAsInt>2</ValueAsInt>
+              <ValueAsInt>5</ValueAsInt>
             </PropertySave>
             <PropertySave>
               <Name>CollisionTileSize</Name>
@@ -145,6 +145,14 @@
             <PropertySave>
               <Name>CollisionFillTop</Name>
               <ValueAsFloat>0</ValueAsFloat>
+            </PropertySave>
+            <PropertySave>
+              <Name>SourceTmxName</Name>
+              <ValueAsString>Map</ValueAsString>
+            </PropertySave>
+            <PropertySave>
+              <Name>CollisionLayerName</Name>
+              <ValueAsString>Land</ValueAsString>
             </PropertySave>
           </Properties>
           <SourceType>FlatRedBallType</SourceType>
@@ -354,6 +362,47 @@
           </Properties>
           <SourceType>File</SourceType>
           <SourceFile>GlobalContent/Levels/Level1Map.tmx</SourceFile>
+          <SourceName>Entire File (LayeredTileMap)</SourceName>
+          <SourceClassType>LayeredTileMap</SourceClassType>
+          <InstanceName>Map</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <DefinedByBase>true</DefinedByBase>
+          <IndependentOfCamera>true</IndependentOfCamera>
+        </NamedObjectSave>
+      </NamedObjects>
+    </ScreenSave>
+    <ScreenSave>
+      <Tags>
+        <string>GLUE</string>
+      </Tags>
+      <Source>GLUE</Source>
+      <BaseScreen>Screens\GameScreen</BaseScreen>
+      <Name>Screens\Level2</Name>
+      <ReferencedFiles>
+        <ReferencedFileSave>
+          <Name>gumproject/Screens/Level2Gum.gusx</Name>
+          <IsSharedStatic>true</IsSharedStatic>
+          <RuntimeType>Shiprekt.GumRuntimes.Level2GumRuntime</RuntimeType>
+          <ProjectsToExcludeFrom />
+        </ReferencedFileSave>
+        <ReferencedFileSave>
+          <Name>GlobalContent/Levels/Level2Map.tmx</Name>
+          <IsSharedStatic>true</IsSharedStatic>
+          <RuntimeType>FlatRedBall.TileGraphics.LayeredTileMap</RuntimeType>
+          <ProjectsToExcludeFrom />
+        </ReferencedFileSave>
+      </ReferencedFiles>
+      <NamedObjects>
+        <NamedObjectSave>
+          <Properties>
+            <PropertySave>
+              <Name>SourceType</Name>
+              <ValueAsObject xsi:type="SourceType">File</ValueAsObject>
+            </PropertySave>
+          </Properties>
+          <SourceType>File</SourceType>
+          <SourceFile>GlobalContent/Levels/Level2Map.tmx</SourceFile>
           <SourceName>Entire File (LayeredTileMap)</SourceName>
           <SourceClassType>LayeredTileMap</SourceClassType>
           <InstanceName>Map</InstanceName>
@@ -1047,6 +1096,30 @@
           <DefaultValue xsi:type="xsd:string" />
           <IsShared>true</IsShared>
         </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>bool</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>FastMovement</Name>
+          <Type>bool</Type>
+          <DefaultValue xsi:type="xsd:boolean">false</DefaultValue>
+          <IsShared>true</IsShared>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>bool</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>ShowShipCollisions</Name>
+          <Type>bool</Type>
+          <DefaultValue xsi:type="xsd:boolean">false</DefaultValue>
+          <IsShared>true</IsShared>
+        </CustomVariable>
       </CustomVariables>
       <ImplementsIDrawableBatch>false</ImplementsIDrawableBatch>
       <Name>Entities\DebuggingVariables</Name>
@@ -1442,6 +1515,14 @@
       <NamedObjects>
         <NamedObjectSave>
           <CustomProperty>
+            <Member>X</Member>
+            <ValueAsFloat>-3.40428114</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Member>Y</Member>
+            <ValueAsFloat>-0.0312319323</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
             <Type>float</Type>
             <Member>Z</Member>
             <ValueAsFloat>1.5</ValueAsFloat>
@@ -1554,63 +1635,18 @@
         <NamedObjectSave>
           <CustomProperty>
             <Type>float</Type>
-            <Member>Y</Member>
-            <ValueAsFloat>-6</ValueAsFloat>
-          </CustomProperty>
-          <CustomProperty>
-            <Type>bool</Type>
-            <Member>Visible</Member>
-            <ValueAsBool>false</ValueAsBool>
-          </CustomProperty>
-          <CustomProperty>
-            <Member>Points</Member>
-            <ValueAsListOfVector2>
-              <Vector2>
-                <X>-16</X>
-                <Y>18</Y>
-              </Vector2>
-              <Vector2>
-                <X>16</X>
-                <Y>18</Y>
-              </Vector2>
-              <Vector2>
-                <X>16</X>
-                <Y>-26</Y>
-              </Vector2>
-              <Vector2>
-                <X>-16</X>
-                <Y>-26</Y>
-              </Vector2>
-              <Vector2>
-                <X>-16</X>
-                <Y>18</Y>
-              </Vector2>
-            </ValueAsListOfVector2>
-          </CustomProperty>
-          <Properties>
-            <PropertySave>
-              <Name>SourceType</Name>
-              <ValueAsObject xsi:type="SourceType">FlatRedBallType</ValueAsObject>
-            </PropertySave>
-          </Properties>
-          <SourceType>FlatRedBallType</SourceType>
-          <SourceClassType>Polygon</SourceClassType>
-          <InstanceName>PolygonInstance</InstanceName>
-          <HasPublicProperty>true</HasPublicProperty>
-          <AttachToContainer>true</AttachToContainer>
-          <GenerateTimedEmit>true</GenerateTimedEmit>
-          <IndependentOfCamera>true</IndependentOfCamera>
-        </NamedObjectSave>
-        <NamedObjectSave>
-          <CustomProperty>
-            <Type>float</Type>
-            <Member>Y</Member>
+            <Member>X</Member>
             <ValueAsFloat>9</ValueAsFloat>
           </CustomProperty>
           <CustomProperty>
             <Type>float</Type>
+            <Member>Y</Member>
+            <ValueAsFloat>0</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>float</Type>
             <Member>Radius</Member>
-            <ValueAsFloat>16</ValueAsFloat>
+            <ValueAsFloat>12</ValueAsFloat>
           </CustomProperty>
           <CustomProperty>
             <Type>bool</Type>
@@ -1627,7 +1663,7 @@
           <SourceFile />
           <SourceName />
           <SourceClassType>Circle</SourceClassType>
-          <InstanceName>CircleInstance</InstanceName>
+          <InstanceName>FrontCircle</InstanceName>
           <HasPublicProperty>true</HasPublicProperty>
           <AttachToContainer>true</AttachToContainer>
           <GenerateTimedEmit>true</GenerateTimedEmit>
@@ -1636,13 +1672,18 @@
         <NamedObjectSave>
           <CustomProperty>
             <Type>float</Type>
+            <Member>X</Member>
+            <ValueAsFloat>-5</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>float</Type>
             <Member>Y</Member>
-            <ValueAsFloat>-28</ValueAsFloat>
+            <ValueAsFloat>0</ValueAsFloat>
           </CustomProperty>
           <CustomProperty>
             <Type>float</Type>
             <Member>Radius</Member>
-            <ValueAsFloat>16</ValueAsFloat>
+            <ValueAsFloat>14</ValueAsFloat>
           </CustomProperty>
           <CustomProperty>
             <Type>bool</Type>
@@ -1659,7 +1700,44 @@
           <SourceFile />
           <SourceName />
           <SourceClassType>Circle</SourceClassType>
-          <InstanceName>CircleInstance1</InstanceName>
+          <InstanceName>MiddleCircle</InstanceName>
+          <HasPublicProperty>true</HasPublicProperty>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+        </NamedObjectSave>
+        <NamedObjectSave>
+          <CustomProperty>
+            <Type>float</Type>
+            <Member>X</Member>
+            <ValueAsFloat>-26</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>float</Type>
+            <Member>Y</Member>
+            <ValueAsFloat>0</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>float</Type>
+            <Member>Radius</Member>
+            <ValueAsFloat>15</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>bool</Type>
+            <Member>Visible</Member>
+            <ValueAsBool>false</ValueAsBool>
+          </CustomProperty>
+          <Properties>
+            <PropertySave>
+              <Name>SourceType</Name>
+              <ValueAsObject xsi:type="SourceType">FlatRedBallType</ValueAsObject>
+            </PropertySave>
+          </Properties>
+          <SourceType>FlatRedBallType</SourceType>
+          <SourceFile />
+          <SourceName />
+          <SourceClassType>Circle</SourceClassType>
+          <InstanceName>BackCircle</InstanceName>
           <HasPublicProperty>true</HasPublicProperty>
           <AttachToContainer>true</AttachToContainer>
           <GenerateTimedEmit>true</GenerateTimedEmit>

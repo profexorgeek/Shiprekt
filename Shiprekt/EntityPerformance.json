@@ -1,24 +1,6 @@
 {
   "EntityManagementValueList": [
     {
-      "Name": "Entities\\Ship",
-      "SelectedProperties": [],
-      "InstanceManagementValuesList": [
-        {
-          "SelectedProperties": [],
-          "Name": "HullSprite"
-        },
-        {
-          "SelectedProperties": [],
-          "Name": "PolygonInstance"
-        },
-        {
-          "SelectedProperties": [],
-          "Name": "HullShadowSprite"
-        }
-      ]
-    },
-    {
       "Name": "Entities\\ShipPart",
       "SelectedProperties": [],
       "InstanceManagementValuesList": [
@@ -82,6 +64,52 @@
         {
           "SelectedProperties": [],
           "Name": "CircleInstance"
+        }
+      ]
+    },
+    {
+      "Name": "Entities\\Ship",
+      "SelectedProperties": [],
+      "InstanceManagementValuesList": [
+        {
+          "SelectedProperties": [],
+          "Name": "HullSprite"
+        },
+        {
+          "SelectedProperties": [],
+          "Name": "PolygonInstance"
+        },
+        {
+          "SelectedProperties": [],
+          "Name": "HullShadowSprite"
+        },
+        {
+          "SelectedProperties": [],
+          "Name": "HullShadowSpriteInstance"
+        },
+        {
+          "SelectedProperties": [],
+          "Name": "HullSpriteInstance"
+        },
+        {
+          "SelectedProperties": [],
+          "Name": "ShipSailInstance"
+        },
+        {
+          "SelectedProperties": [],
+          "Name": "FrontCircle"
+        },
+        {
+          "SelectedProperties": [],
+          "Name": "BackCircle"
+        },
+        {
+          "SelectedProperties": [],
+          "Name": "WakeEffectInstance"
+        },
+        {
+          "SelectedProperties": [],
+          "Name": "MiddleCircle"
         }
       ]
     }

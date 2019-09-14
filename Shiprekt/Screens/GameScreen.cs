@@ -46,17 +46,28 @@ namespace Shiprekt.Screens
 
         private void InitializeShips()
         {
+            if(JoinedPlayerManager.JoinedPlayers.Count == 0)
+            {
+                var player = new JoinedPlayer();
+                player.InputDevice = InputManager.Keyboard;
+                player.ShipType = ShipType.Gray;
+
+                JoinedPlayerManager.JoinedPlayers.Add(player);
+            }
             int index = 0;
             foreach(var player in JoinedPlayerManager.JoinedPlayers)
             {
                 var ship = ShipFactory.CreateNew();
                 ship.X = 400 + 50*index;
-                ship.Y = -400;
+                ship.Y = -500;
+                ship.RotationZ = MathHelper.ToRadians(90);
                 ship.SetTeam(index);
                 ship.SetSail(player.ShipType.ToSailColor());
                 ship.InitializeRacingInput(player.InputDevice);
                 index++;
             }
+
+
         }
 
         internal void OffsetTilemapLayers()
