@@ -94,6 +94,10 @@
     <Compile Include="Entities\ShipSail.Generated.cs">
       <DependentUpon>ShipSail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\SpawnPoint.cs" />
+    <Compile Include="Entities\SpawnPoint.Generated.cs">
+      <DependentUpon>SpawnPoint.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Wreckage.cs" />
     <Compile Include="Entities\Wreckage.Generated.cs">
       <DependentUpon>Wreckage.cs</DependentUpon>
@@ -103,6 +107,7 @@
     <Compile Include="Factories\CloudFactory.Generated.cs" />
     <Compile Include="Factories\ShipDeathEffectFactory.Generated.cs" />
     <Compile Include="Factories\ShipFactory.Generated.cs" />
+    <Compile Include="Factories\SpawnPointFactory.Generated.cs" />
     <Compile Include="Factories\WreckageFactory.Generated.cs" />
     <Compile Include="FileAliases.Generated.cs" />
     <Compile Include="Game1.cs" />

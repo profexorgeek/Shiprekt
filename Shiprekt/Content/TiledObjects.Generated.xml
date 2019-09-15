@@ -37,5 +37,6 @@
     <property name="RamCooldown" type="float" default="3" />
     <property name="MinimumRamSpeed" type="float" default="50" />
   </objecttype>
+  <objecttype name="SpawnPoint" />
   <objecttype name="Wreckage" />
 </objecttypes>
