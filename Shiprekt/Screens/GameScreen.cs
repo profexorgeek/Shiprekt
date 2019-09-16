@@ -55,15 +55,86 @@ namespace Shiprekt.Screens
 
             JoinedPlayerManager.ResetGameStats();
 
-            Camera.Main.Z = 500;
-            FlatRedBallServices.Game.IsMouseVisible = true;
             windDirection = Vector2.UnitX;// FlatRedBallServices.Random.RadialVector2(1, 1);
+
+            InitializeCameras();
 
             DoInitialCloudSpawning();
 
             OffsetTilemapLayers();
 
             DebugInitialize();
+        }
+
+        private void InitializeCameras()
+        {
+            Camera camera2 = null;
+            Camera camera3 = null;
+            Camera camera4 = null;
+
+            switch(ShipList.Count)
+            {
+                case 1:
+                    GameScreenGum.CurrentNumberOfPlayersState = 
+                        GumRuntimes.GameScreenGumRuntime.NumberOfPlayers.One;
+                    break;
+                case 2:
+                    Camera.Main.SetSplitScreenViewport(Camera.SplitScreenViewport.LeftHalf);
+                    camera2 = new Camera();
+                    camera2.SetSplitScreenViewport(Camera.SplitScreenViewport.RightHalf);
+                    GameScreenGum.CurrentNumberOfPlayersState =
+                        GumRuntimes.GameScreenGumRuntime.NumberOfPlayers.Two;
+                    break;
+                case 3:
+                    Camera.Main.SetSplitScreenViewport(Camera.SplitScreenViewport.TopLeft);
+                    camera2 = new Camera();
+                    camera2.SetSplitScreenViewport(Camera.SplitScreenViewport.TopRight);
+                    camera3 = new Camera();
+                    camera3.SetSplitScreenViewport(Camera.SplitScreenViewport.BottomLeft);
+                    GameScreenGum.CurrentNumberOfPlayersState =
+                        GumRuntimes.GameScreenGumRuntime.NumberOfPlayers.Three;
+                    break;
+                case 4:
+                    Camera.Main.SetSplitScreenViewport(Camera.SplitScreenViewport.TopLeft);
+                    camera2 = new Camera();
+                    camera2.SetSplitScreenViewport(Camera.SplitScreenViewport.TopRight);
+                    camera3 = new Camera();
+                    camera3.SetSplitScreenViewport(Camera.SplitScreenViewport.BottomLeft);
+                    camera4 = new Camera();
+                    camera4.SetSplitScreenViewport(Camera.SplitScreenViewport.BottomRight);
+                    GameScreenGum.CurrentNumberOfPlayersState =
+                        GumRuntimes.GameScreenGumRuntime.NumberOfPlayers.Four;
+                    break;
+            }
+
+            if (camera2 != null)
+            {
+                SpriteManager.Cameras.Add(camera2);
+                camera2.UsePixelCoordinates3D(0);
+            }
+            if (camera3 != null)
+            {
+                SpriteManager.Cameras.Add(camera3);
+                camera3.UsePixelCoordinates3D(0);
+            }
+            if (camera4 != null)
+            {
+                SpriteManager.Cameras.Add(camera4);
+                camera4.UsePixelCoordinates3D(0);
+            }
+
+            // if there is more than one camera, then we need a final camera for UI
+            if(SpriteManager.Cameras.Count > 1)
+            {
+                var topMostCamera = new Camera();
+                topMostCamera.SetSplitScreenViewport(Camera.SplitScreenViewport.FullScreen);
+                topMostCamera.BackgroundColor = Color.Transparent;
+                topMostCamera.DrawsWorld = false;
+                SpriteManager.Cameras.Add(topMostCamera);
+
+                SpriteManager.RemoveLayer(HudLayer);
+                topMostCamera.AddLayer(HudLayer);
+            }
         }
 
         private void DebugInitialize()
@@ -155,9 +226,12 @@ namespace Shiprekt.Screens
 
         private void DoCameraActivity()
         {
-            var shipToFollow = ShipList[0];
-            Camera.Main.X = shipToFollow.X;
-            Camera.Main.Y = shipToFollow.Y;
+            for(int i = 0; i < ShipList.Count; i++)
+            {
+                var shipToFollow = ShipList[i];
+                SpriteManager.Cameras[i].X = shipToFollow.X;
+                SpriteManager.Cameras[i].Y = shipToFollow.Y;
+            }
         }
 
         private void DoUiActivity()
@@ -198,7 +272,10 @@ namespace Shiprekt.Screens
 
         void CustomDestroy()
         {
-
+            while(SpriteManager.Cameras.Count > 0)
+            {
+                SpriteManager.Cameras.RemoveAt(SpriteManager.Cameras.Count - 1);
+            }
 
         }
 
