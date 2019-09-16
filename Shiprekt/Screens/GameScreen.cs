@@ -19,6 +19,7 @@ using Shiprekt.Entities;
 using Shiprekt.Managers;
 using Shiprekt.DataTypes;
 using Keys = Microsoft.Xna.Framework.Input.Keys;
+using FlatRedBall.TileEntities;
 
 namespace Shiprekt.Screens
 {
@@ -48,6 +49,8 @@ namespace Shiprekt.Screens
 
         void CustomInitialize()
         {
+            TileEntityInstantiator.CreateEntitiesFrom(Map);
+
             InitializeShips();
 
             JoinedPlayerManager.ResetGameStats();
@@ -88,8 +91,6 @@ namespace Shiprekt.Screens
             foreach(var player in JoinedPlayerManager.JoinedPlayers)
             {
                 var ship = ShipFactory.CreateNew();
-                ship.X = 400 + 50*index;
-                ship.Y = -500;
                 ship.RotationZ = MathHelper.ToRadians(90);
                 ship.SetTeam(index);
                 ship.SetSail(player.ShipType.ToSailColor());
@@ -97,6 +98,15 @@ namespace Shiprekt.Screens
                 index++;
             }
 
+            var numberOfSpawns = ShipList.Count;
+            var spawnPoints = FlatRedBallServices.Random.MultipleIn(SpawnPointList, numberOfSpawns);
+
+            for(int i = 0; i < ShipList.Count; i++)
+            {
+                var ship = ShipList[i];
+                ship.X = spawnPoints[i].X;
+                ship.Y = spawnPoints[i].Y;
+            }
 
         }
 
