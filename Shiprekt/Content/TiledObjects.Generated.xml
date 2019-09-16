@@ -36,6 +36,7 @@
     <property name="GlancingRamDamage" type="int" default="5" />
     <property name="RamCooldown" type="float" default="3" />
     <property name="MinimumRamSpeed" type="float" default="50" />
+    <property name="SecondsBetweenShotsMin" type="float" default="1.5" />
   </objecttype>
   <objecttype name="Wreckage" />
 </objecttypes>
