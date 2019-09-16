@@ -12,6 +12,7 @@ using FlatRedBall.Math.Geometry;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using FlatRedBall.Debugging;
+using Shiprekt.Factories;
 
 namespace Shiprekt.Screens
 {
@@ -24,7 +25,10 @@ namespace Shiprekt.Screens
         {
             if(bullet.TeamIndex != ship.TeamIndex)
             {
-                bullet.CollideAgainstBounce(ship, .05f, 1, 1);
+				var effect = ShipImpactFactory.CreateNew();
+				effect.EmitEffectParticles(bullet.Position.ToVector2(), -bullet.Velocity.Normalized().ToVector2());
+
+				bullet.CollideAgainstBounce(ship, .05f, 1, 1);
 
                 bullet.Destroy();
 
