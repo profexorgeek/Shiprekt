@@ -31,6 +31,7 @@ namespace Shiprekt.Screens
                 ship.TakeDamage(Bullet.DamageToDeal);
             }
         }
+
         void OnShipListVsShipListCollisionOccurred (Entities.Ship first, Entities.Ship second) 
         {
             if (first.TeamIndex == second.TeamIndex) return; 

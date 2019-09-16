@@ -1215,6 +1215,7 @@
           </Properties>
           <Name>CreateExtraShips</Name>
           <Type>bool</Type>
+          <DefaultValue xsi:type="xsd:boolean">false</DefaultValue>
           <IsShared>true</IsShared>
         </CustomVariable>
         <CustomVariable>

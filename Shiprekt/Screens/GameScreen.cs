@@ -57,13 +57,32 @@ namespace Shiprekt.Screens
 
             windDirection = Vector2.UnitX;// FlatRedBallServices.Random.RadialVector2(1, 1);
 
+            // debug initialize needs to be before initializing cameras because
+            // new ships may be added through debug logic.
+            DebugInitialize();
+
+            // do this after DebugInitialize so the debug ships are created too:
+            PositionShipsOnSpawnPoints();
+
             InitializeCameras();
 
             DoInitialCloudSpawning();
 
             OffsetTilemapLayers();
 
-            DebugInitialize();
+        }
+
+        private void PositionShipsOnSpawnPoints()
+        {
+            var numberOfSpawns = ShipList.Count;
+            var spawnPoints = FlatRedBallServices.Random.MultipleIn(SpawnPointList, numberOfSpawns);
+
+            for (int i = 0; i < ShipList.Count; i++)
+            {
+                var ship = ShipList[i];
+                ship.X = spawnPoints[i].X;
+                ship.Y = spawnPoints[i].Y;
+            }
         }
 
         private void InitializeCameras()
@@ -144,6 +163,7 @@ namespace Shiprekt.Screens
                 var ship = ShipFactory.CreateNew(ShipList[0].X + 200, ShipList[0].Y);
                 ship.RotationZ = 1.57f;
                 ship.SetTeam(3);
+                ship.AfterDying += ReactToShipDying;
                 ship.InitializeRacingInput(InputManager.Xbox360GamePads[1]);
             }
         }
@@ -166,19 +186,9 @@ namespace Shiprekt.Screens
                 ship.SetTeam(index);
                 ship.SetSail(player.ShipType.ToSailColor());
                 ship.InitializeRacingInput(player.InputDevice);
+                ship.AfterDying += ReactToShipDying;
                 index++;
             }
-
-            var numberOfSpawns = ShipList.Count;
-            var spawnPoints = FlatRedBallServices.Random.MultipleIn(SpawnPointList, numberOfSpawns);
-
-            for(int i = 0; i < ShipList.Count; i++)
-            {
-                var ship = ShipList[i];
-                ship.X = spawnPoints[i].X;
-                ship.Y = spawnPoints[i].Y;
-            }
-
         }
 
         internal void OffsetTilemapLayers()
@@ -248,6 +258,16 @@ namespace Shiprekt.Screens
             GameScreenGum.TextInstance.Text = timeDisplay;
         }
 
+        private void ReactToShipDying(Ship ship)
+        {
+            ship.ResetHealth();
+
+            var randomSpawnPoint = FlatRedBallServices.Random.In(SpawnPointList);
+
+            ship.X = randomSpawnPoint.X;
+            ship.Y = randomSpawnPoint.Y;
+        }
+
         internal void UpdateShipSailsActivity()
         {
             foreach(var ship in ShipList)
@@ -272,11 +292,11 @@ namespace Shiprekt.Screens
 
         void CustomDestroy()
         {
-            while(SpriteManager.Cameras.Count > 0)
+            while(SpriteManager.Cameras.Count > 1)
             {
                 SpriteManager.Cameras.RemoveAt(SpriteManager.Cameras.Count - 1);
             }
-
+            Camera.Main.SetSplitScreenViewport(Camera.SplitScreenViewport.FullScreen);
         }
 
         static void CustomLoadStaticContent(string contentManagerName)

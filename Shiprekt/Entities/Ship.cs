@@ -44,6 +44,12 @@ namespace Shiprekt.Entities
         float timeUntilNextShotAvailable;
         #endregion
 
+        #region Events/Delegates
+
+        public event Action<Ship> AfterDying;
+
+        #endregion
+
         #region Initialize
 
         /// <summary>
@@ -206,7 +212,15 @@ namespace Shiprekt.Entities
         internal void TakeDamage(int damageAmount)
         {
             Health -= damageAmount;
-            if (Health <= 0) Die();
+            if (Health <= 0)
+            {
+                Die();
+            }
+        }
+
+        internal void ResetHealth()
+        {
+            Health = ShipEntityValuesInstance.MaxHealth;
         }
 
         public void ApplyWind(Vector2 windDirectionNormalized)
@@ -252,7 +266,7 @@ namespace Shiprekt.Entities
         {
             ShipDeathEffectFactory.CreateNew().TriggerEffect(X, Y, RotationZ);
 
-            Destroy();
+            AfterDying(this);
         }
 
         #endregion
