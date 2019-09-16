@@ -16,31 +16,32 @@ using Shiprekt.Factories;
 
 namespace Shiprekt.Entities
 {
-	public partial class Ship
-	{
+    public partial class Ship
+    {
         #region Fields/Properties
 
         public bool AllowedToDrive
-		{
-			get
-			{
-				return IsAllowedToDrive;
-			}
-			set
-			{
-				IsAllowedToDrive = value;
-			}
-		}
-		public int TeamIndex { get; private set; }
+        {
+            get
+            {
+                return IsAllowedToDrive;
+            }
+            set
+            {
+                IsAllowedToDrive = value;
+            }
+        }
+        public int TeamIndex { get; private set; }
 
-		IPressableInput shootLeftInput;
-		IPressableInput shootRightInput;
-		I1DInput sailTurningInput;
+        IPressableInput shootLeftInput;
+        IPressableInput shootRightInput;
+        I1DInput sailTurningInput;
 
         DataTypes.RacingEntityValues EffectiveRacingEntityValues;
         DataTypes.RacingEntityValues BaseRacingEntityValues;
 
         List<ShipInvulnPeriod> shipInvulnList = new List<ShipInvulnPeriod>();
+        float timeUntilNextShotAvailable;
         #endregion
 
         #region Initialize
@@ -53,6 +54,7 @@ namespace Shiprekt.Entities
         private void CustomInitialize()
         {
             this.ForwardDirection = RacingDirection.Right;
+            timeUntilNextShotAvailable = SecondsBetweenShotsMin;
 
             InitializeMovementValues();
 
@@ -65,7 +67,7 @@ namespace Shiprekt.Entities
 
         private void DoDebugInitialize()
         {
-            if(DebuggingVariables.ShowShipCollisions)
+            if (DebuggingVariables.ShowShipCollisions)
             {
                 this.Collision.Visible = true;
             }
@@ -91,137 +93,142 @@ namespace Shiprekt.Entities
         }
 
         partial void CustomInitializeTopDownInput()
-		{
-			if (InputDevice is Xbox360GamePad gamePad)
-			{
-				shootLeftInput = gamePad.LeftTrigger
-					.Or(gamePad.GetButton(Xbox360GamePad.Button.LeftShoulder));
-				shootRightInput = gamePad.RightTrigger
-					.Or(gamePad.GetButton(Xbox360GamePad.Button.RightShoulder));
-				sailTurningInput = gamePad.RightStick.Horizontal;
-				IPressableInput gas = gamePad.GetButton(Xbox360GamePad.Button.B);
-				Gas = new DelegateBasedPressableInput(() => !gas.IsDown, () => gas.WasJustReleased, () => gas.WasJustPressed).To1DInput();
-			}
-			else if (InputDevice is Keyboard keyboard)
-			{
-				shootLeftInput = keyboard.GetKey(Microsoft.Xna.Framework.Input.Keys.Q)
-					.Or(InputManager.Mouse.GetButton(Mouse.MouseButtons.LeftButton));
+        {
+            if (InputDevice is Xbox360GamePad gamePad)
+            {
+                shootLeftInput = gamePad.LeftTrigger
+                    .Or(gamePad.GetButton(Xbox360GamePad.Button.LeftShoulder));
+                shootRightInput = gamePad.RightTrigger
+                    .Or(gamePad.GetButton(Xbox360GamePad.Button.RightShoulder));
+                sailTurningInput = gamePad.RightStick.Horizontal;
+                IPressableInput gas = gamePad.GetButton(Xbox360GamePad.Button.B);
+                Gas = new DelegateBasedPressableInput(() => !gas.IsDown, () => gas.WasJustReleased, () => gas.WasJustPressed).To1DInput();
+            }
+            else if (InputDevice is Keyboard keyboard)
+            {
+                shootLeftInput = keyboard.GetKey(Microsoft.Xna.Framework.Input.Keys.Q)
+                    .Or(InputManager.Mouse.GetButton(Mouse.MouseButtons.LeftButton));
 
-				shootRightInput = keyboard.GetKey(Microsoft.Xna.Framework.Input.Keys.E)
-					.Or(InputManager.Mouse.GetButton(Mouse.MouseButtons.RightButton));
-				sailTurningInput = InputManager.Keyboard.Get1DInput(Microsoft.Xna.Framework.Input.Keys.Right, Microsoft.Xna.Framework.Input.Keys.Left);
-				IPressableInput gas = InputManager.Keyboard.GetKey(Microsoft.Xna.Framework.Input.Keys.Space);
-				Gas = new DelegateBasedPressableInput(() => !gas.IsDown, () => gas.WasJustReleased, () => gas.WasJustPressed).To1DInput();
-			}
-		}
+                shootRightInput = keyboard.GetKey(Microsoft.Xna.Framework.Input.Keys.E)
+                    .Or(InputManager.Mouse.GetButton(Mouse.MouseButtons.RightButton));
+                sailTurningInput = InputManager.Keyboard.Get1DInput(Microsoft.Xna.Framework.Input.Keys.Right, Microsoft.Xna.Framework.Input.Keys.Left);
+                IPressableInput gas = InputManager.Keyboard.GetKey(Microsoft.Xna.Framework.Input.Keys.Space);
+                Gas = new DelegateBasedPressableInput(() => !gas.IsDown, () => gas.WasJustReleased, () => gas.WasJustPressed).To1DInput();
+            }
+        }
 
-		public void SetTeam(int teamIndex)
-		{
-			TeamIndex = teamIndex;
-		}
+        public void SetTeam(int teamIndex)
+        {
+            TeamIndex = teamIndex;
+        }
 
         #endregion
 
         #region Activity
 
         private void CustomActivity()
-		{
-			DoShootingActivity();
-			DoSailTurningActivity();
+        {
+            DoShootingActivity();
+            DoSailTurningActivity();
             DoRamActivity();
             DoDebugActivity();
-		}
+        }
 
         private void DoDebugActivity()
         {
-            if(Entities.DebuggingVariables.IsShipMovementInfoDisplayed)
+            if (Entities.DebuggingVariables.IsShipMovementInfoDisplayed)
             {
                 string debugString = $@"Velocity: {Velocity}
-    EffectiveForwardAcceleration: {EffectiveRacingEntityValues.ForwardAcceleration},
-    MaxSpeed: {EffectiveRacingEntityValues.EffectiveMaxSpeed}";
+                    EffectiveForwardAcceleration: {EffectiveRacingEntityValues.ForwardAcceleration},
+                    MaxSpeed: {EffectiveRacingEntityValues.EffectiveMaxSpeed}";
 
                 FlatRedBall.Debugging.Debugger.Write(debugString);
             }
         }
 
         private void DoShootingActivity()
-		{
-			if (shootLeftInput.WasJustPressed)
-			{
-				Shoot(this.Left.ToVector2());
-			}
-			else if (shootRightInput.WasJustPressed)
-			{
-				Shoot(this.Right.ToVector2());
+        {
+            timeUntilNextShotAvailable -= TimeManager.SecondDifference;
 
-			}
-		}
+            if (timeUntilNextShotAvailable <= 0)
+            {
+                if (shootLeftInput.WasJustPressed)
+                {
+                    Shoot(this.Left.ToVector2());
+                }
+                else if (shootRightInput.WasJustPressed)
+                {
+                    Shoot(this.Right.ToVector2());
+                }
+            }
+        }
 
-		private void DoSailTurningActivity()
-		{
-			var turnSpeed = sailTurningInput.Value * ShipEntityValuesInstance.SailRotationSpeed;
-			var left = ShipEntityValuesInstance.MaxSailRotation * ((float)Math.PI / 180);
-			var right = 360 * ((float)Math.PI / 180) - ShipEntityValuesInstance.MaxSailRotation * ((float)Math.PI / 180);
-			var middle = (float)Math.PI;
+        private void DoSailTurningActivity()
+        {
+            var turnSpeed = sailTurningInput.Value * ShipEntityValuesInstance.SailRotationSpeed;
+            var left = ShipEntityValuesInstance.MaxSailRotation * ((float)Math.PI / 180);
+            var right = 360 * ((float)Math.PI / 180) - ShipEntityValuesInstance.MaxSailRotation * ((float)Math.PI / 180);
+            var middle = (float)Math.PI;
 
-			var maxLeftTurningRight = ShipSailInstance.RelativeRotationZ == left && turnSpeed < 0;
-			var maxRightTurningLeft = ShipSailInstance.RelativeRotationZ == right && turnSpeed > 0;
-			var safeZone = ShipSailInstance.RelativeRotationZ < left || ShipSailInstance.RelativeRotationZ > right;
-			if (maxLeftTurningRight || maxRightTurningLeft || safeZone)
-			{
-				ShipSailInstance.RelativeRotationZVelocity = turnSpeed;
-			}
-			else
-			{
-				if (ShipSailInstance.RelativeRotationZ > left && ShipSailInstance.RelativeRotationZ < middle)
-				{
-					ShipSailInstance.RelativeRotationZ = left;
-				}
-				else if (ShipSailInstance.RelativeRotationZ < right && ShipSailInstance.RelativeRotationZ > middle)
-				{
-					ShipSailInstance.RelativeRotationZ = right;
-				}
-				ShipSailInstance.RelativeRotationZVelocity = 0;
-			}
-		}
+            var maxLeftTurningRight = ShipSailInstance.RelativeRotationZ == left && turnSpeed < 0;
+            var maxRightTurningLeft = ShipSailInstance.RelativeRotationZ == right && turnSpeed > 0;
+            var safeZone = ShipSailInstance.RelativeRotationZ < left || ShipSailInstance.RelativeRotationZ > right;
+            if (maxLeftTurningRight || maxRightTurningLeft || safeZone)
+            {
+                ShipSailInstance.RelativeRotationZVelocity = turnSpeed;
+            }
+            else
+            {
+                if (ShipSailInstance.RelativeRotationZ > left && ShipSailInstance.RelativeRotationZ < middle)
+                {
+                    ShipSailInstance.RelativeRotationZ = left;
+                }
+                else if (ShipSailInstance.RelativeRotationZ < right && ShipSailInstance.RelativeRotationZ > middle)
+                {
+                    ShipSailInstance.RelativeRotationZ = right;
+                }
+                ShipSailInstance.RelativeRotationZVelocity = 0;
+            }
+        }
 
-		internal void Shoot(Vector2 bulletDirection)
-		{
-			var bullet = Factories.BulletFactory.CreateNew(this.X, this.Y);
+        internal void Shoot(Vector2 bulletDirection)
+        {
+            var bullet = Factories.BulletFactory.CreateNew(this.X, this.Y);
 
-			bullet.Velocity = (bulletDirection * Bullet.BulletSpeed).ToVector3();
-			bullet.TeamIndex = this.TeamIndex;
-			var bulletDuration = Bullet.BulletDistance / Bullet.BulletSpeed;
+            bullet.Velocity = (bulletDirection * Bullet.BulletSpeed).ToVector3();
+            bullet.TeamIndex = this.TeamIndex;
+            var bulletDuration = Bullet.BulletDistance / Bullet.BulletSpeed;
 
-			bullet.Call(bullet.HitSurface).After(bulletDuration);
-		}
+            bullet.Call(bullet.HitSurface).After(bulletDuration);
+            timeUntilNextShotAvailable = SecondsBetweenShotsMin;
+        }
 
-		internal void TakeDamage(int damageAmount)
-		{
-			Health -= damageAmount;
-			if (Health <= 0) Die();
-		}
+        internal void TakeDamage(int damageAmount)
+        {
+            Health -= damageAmount;
+            if (Health <= 0) Die();
+        }
 
-		public void ApplyWind(Vector2 windDirectionNormalized)
-		{           
+        public void ApplyWind(Vector2 windDirectionNormalized)
+        {
             // Update the max speed according to the wind          
             var sailToWindDot = Vector2.Dot(ShipSailInstance.RotationMatrix.Right.ToVector2(), windDirectionNormalized);
             var coefficient = sailToWindDot == 0 ? 0 : (sailToWindDot /= 2) + .5f;
 
 #if DEBUG
-            if(DebuggingVariables.FastMovement)
+            if (DebuggingVariables.FastMovement)
             {
                 EffectiveRacingEntityValues.EffectiveMaxSpeed = BaseRacingEntityValues.EffectiveMaxSpeed;
             }
             else
 #endif
             {
-              EffectiveRacingEntityValues.EffectiveMaxSpeed = Math.Max(MinSpeed, BaseRacingEntityValues.EffectiveMaxSpeed * coefficient); 
+                EffectiveRacingEntityValues.EffectiveMaxSpeed = Math.Max(MinSpeed, BaseRacingEntityValues.EffectiveMaxSpeed * coefficient);
             }
 
-			//Change the sail visual. 
-			ShipSailInstance.UpdateSailVisual(windDirectionNormalized);
-		}
+            //Change the sail visual. 
+            ShipSailInstance.UpdateSailVisual(windDirectionNormalized);
+        }
 
         private void DoRamActivity()
         {
@@ -236,29 +243,29 @@ namespace Shiprekt.Entities
         #region Destroy
 
         private void CustomDestroy()
-		{
+        {
 
 
-		}
+        }
 
-		internal void Die()
-		{
+        internal void Die()
+        {
             ShipDeathEffectFactory.CreateNew().TriggerEffect(X, Y, RotationZ);
-            
-			Destroy();
-		}
+
+            Destroy();
+        }
 
         #endregion
 
         private static void CustomLoadStaticContent(string contentManagerName)
-		{
+        {
 
 
-		}
+        }
 
         public bool CanRamShip(Ship ship)
         {
-            if (ship == this) return false; 
+            if (ship == this) return false;
             if (Velocity.Length() < this.MinimumRamSpeed) return false;
             foreach (var pair in shipInvulnList)
             {
@@ -267,10 +274,10 @@ namespace Shiprekt.Entities
 
             var shipToShipDot = Vector2.Dot(RotationMatrix.Right.ToVector2(), ship.RotationMatrix.Right.ToVector2());
             var deg = Math.Abs(shipToShipDot * 180);
-            Debugger.CommandLineWrite($"Deg: {deg}"); 
+            Debugger.CommandLineWrite($"Deg: {deg}");
             //We will detect how big a ram is based on the shipToShipDot's difference from 0. 
-            if (deg < RamInstance.GlancingRamAngle/2) return true;
-            else return false; 
+            if (deg < RamInstance.GlancingRamAngle / 2) return true;
+            else return false;
         }
 
         public int GetRamShipDmg(Ship ship)
@@ -281,7 +288,7 @@ namespace Shiprekt.Entities
             if (deg < RamInstance.HeavyRamAngle)
             {
                 Debugger.CommandLineWrite("Heavy Ram");
-                return RamInstance.HeavyRamDamage;                
+                return RamInstance.HeavyRamDamage;
             }
             else if (deg < RamInstance.MediumRamAngle)
             {
@@ -295,7 +302,7 @@ namespace Shiprekt.Entities
             }
             else
             {
-                return 0; 
+                return 0;
             }
         }
 
@@ -314,24 +321,24 @@ namespace Shiprekt.Entities
     #region Extension Methods
 
     public static class Vector3Extensions
-	{
-		public static Vector3 Normalized(this Vector3 sender)
-		{
-			Vector3 normalized = sender;
-			normalized.Normalize();
-			return normalized; 
-		}
-	}
+    {
+        public static Vector3 Normalized(this Vector3 sender)
+        {
+            Vector3 normalized = sender;
+            normalized.Normalize();
+            return normalized;
+        }
+    }
 
-	public static class Vector2Extensions
-	{
-		public static Vector2 Normalized(this Vector2 sender)
-		{
-			Vector2 normalized = sender;
-			normalized.Normalize();
-			return normalized;
-		}
-	}
+    public static class Vector2Extensions
+    {
+        public static Vector2 Normalized(this Vector2 sender)
+        {
+            Vector2 normalized = sender;
+            normalized.Normalize();
+            return normalized;
+        }
+    }
 
     #endregion
 }
