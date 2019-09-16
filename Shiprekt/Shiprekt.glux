@@ -62,7 +62,7 @@
           </Properties>
           <Name>MatchLengthInSeconds</Name>
           <Type>int</Type>
-          <DefaultValue xsi:type="xsd:int">10</DefaultValue>
+          <DefaultValue xsi:type="xsd:int">120</DefaultValue>
         </CustomVariable>
       </CustomVariables>
       <Name>Screens\GameScreen</Name>
@@ -1184,6 +1184,18 @@
           <Type>bool</Type>
           <IsShared>true</IsShared>
         </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>bool</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>ShowSpawnPointCircles</Name>
+          <Type>bool</Type>
+          <DefaultValue xsi:type="xsd:boolean">true</DefaultValue>
+          <IsShared>true</IsShared>
+        </CustomVariable>
       </CustomVariables>
       <ImplementsIDrawableBatch>false</ImplementsIDrawableBatch>
       <Name>Entities\DebuggingVariables</Name>
@@ -2172,6 +2184,11 @@
             <Member>Radius</Member>
             <ValueAsFloat>15</ValueAsFloat>
           </CustomProperty>
+          <CustomProperty>
+            <Type>bool</Type>
+            <Member>Visible</Member>
+            <ValueAsBool>false</ValueAsBool>
+          </CustomProperty>
           <Properties>
             <PropertySave>
               <Name>SourceType</Name>
@@ -2569,6 +2586,16 @@
             <Type>float</Type>
             <Member>Radius</Member>
             <ValueAsFloat>16</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>bool</Type>
+            <Member>Visible</Member>
+            <ValueAsBool>false</ValueAsBool>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>Microsoft.Xna.Framework.Color</Type>
+            <Member>Color</Member>
+            <ValueAsString>Purple</ValueAsString>
           </CustomProperty>
           <Properties>
             <PropertySave>

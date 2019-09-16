@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using FlatRedBall;
@@ -20,7 +20,12 @@ namespace Shiprekt.Entities
         /// </summary>
         private void CustomInitialize()
         {
-
+#if DEBUG
+            if(DebuggingVariables.ShowSpawnPointCircles)
+            {
+                this.CircleInstance.Visible = true;
+            }
+#endif
 
         }
 
