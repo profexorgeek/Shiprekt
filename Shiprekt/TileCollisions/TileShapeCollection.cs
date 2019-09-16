@@ -58,6 +58,7 @@ namespace FlatRedBall.TileCollisions
 
                 mGridSize = value;
                 mShapes.MaxAxisAlignedRectanglesScale = mGridSize;
+                mShapes.MaxPolygonRadius = mGridSize;
             }
         }
 
@@ -450,7 +451,7 @@ namespace FlatRedBall.TileCollisions
             int rectanglesAfterIndex = Rectangles.GetFirstAfter(keyValueAfter, mSortAxis, 0, Rectangles.Count);
 
             int polygonsBeforeIndex = Polygons.GetFirstAfter(keyValueBefore, mSortAxis, 0, Polygons.Count);
-            int polygonsAfterIndex = Rectangles.GetFirstAfter(keyValueAfter, mSortAxis, 0, Polygons.Count);
+            int polygonsAfterIndex = Polygons.GetFirstAfter(keyValueAfter, mSortAxis, 0, Polygons.Count);
 
 
             float leftOfX = positionedObject.Position.X - GridSize;

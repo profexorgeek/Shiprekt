@@ -87,7 +87,7 @@ namespace Shiprekt.Entities.Effects
 			var magnitude = rand.Between(VelocityMin, VelocityMax);
 			var movementTime = rand.Between(MinTimeToStop, MaxTimeToStop);
 			particle.AnimationChains = chains;
-			particle.CurrentChainName = "WoodParticles";
+			particle.CurrentChainName = "WoodParticle";
 			particle.Animate = false;
 			particle.CurrentFrameIndex = rand.Next(0, particle.CurrentChain.Count);
 			particle.AlphaRate = -1f / ParticleLifeSeconds;
