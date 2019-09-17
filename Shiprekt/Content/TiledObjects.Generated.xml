@@ -21,9 +21,6 @@
   <objecttype name="ShipDeathEffect">
     <property name="EffectDurationSeconds" type="float" default="4" />
   </objecttype>
-  <objecttype name="ShotMissEffect">
-    <property name="EffectDurationSeconds" type="float" default="0.25" />
-  </objecttype>
   <objecttype name="ShipImpact">
     <property name="MinParticles" type="int" default="4" />
     <property name="MaxParticles" type="int" default="10" />
@@ -35,6 +32,9 @@
     <property name="ParticleLifeSeconds" type="float" default="5" />
     <property name="ParticleDrag" type="float" default="5" />
     <property name="StartScale" type="float" default="1" />
+  </objecttype>
+  <objecttype name="ShotMissEffect">
+    <property name="EffectDurationSeconds" type="float" default="0.25" />
   </objecttype>
   <objecttype name="Ship">
     <property name="CarData" type="Shiprekt.DataTypes.RacingEntityValues" default="DefaultValues in RacingEntityValues.csv" />

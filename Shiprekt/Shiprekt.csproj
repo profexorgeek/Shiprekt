@@ -82,6 +82,7 @@
     <Compile Include="Entities\Effects\ShotMissEffect.cs" />
     <Compile Include="Entities\Effects\ShotMissEffect.Generated.cs">
       <DependentUpon>ShotMissEffect.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Effects\ShipImpact.cs" />
     <Compile Include="Entities\Effects\ShipImpact.Generated.cs">
       <DependentUpon>ShipImpact.cs</DependentUpon>
