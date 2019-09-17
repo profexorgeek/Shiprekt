@@ -26,8 +26,15 @@ namespace Shiprekt.Entities.Effects
             lifeSecondsRemaining = EffectDurationSeconds;
             shotMissEmitter = EasyEmitter.BuildExplosion(GlobalContent.EffectChains[WaterMissChainName], EmitterPower.Medium, 20f);
             shotMissEmitter.AttachTo(this, false);
-            shotMissEmitter.RelativeZ = -2f;
-            shotMissEmitter.RelativeX = -4f;
+
+            // override some core emitter settings for ripples
+            shotMissEmitter.NumberPerEmission = 3;
+            //shotMissEmitter.TimedEmission = true;
+            shotMissEmitter.EmissionSettings.Alpha = 0.5f;
+            shotMissEmitter.EmissionSettings.RotationZVelocity = 0;
+            shotMissEmitter.EmissionSettings.RotationZVelocityRange = 0;
+            //shotMissEmitter.EmissionSettings.ScaleY = 2f;
+            //shotMissEmitter.SecondFrequency = 1f;
         }
 
         private void CustomActivity()
