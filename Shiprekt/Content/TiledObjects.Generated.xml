@@ -21,6 +21,9 @@
   <objecttype name="ShipDeathEffect">
     <property name="EffectDurationSeconds" type="float" default="4" />
   </objecttype>
+  <objecttype name="ShotMissEffect">
+    <property name="EffectDurationSeconds" type="float" default="0.25" />
+  </objecttype>
   <objecttype name="Ship">
     <property name="CarData" type="Shiprekt.DataTypes.RacingEntityValues" default="DefaultValues in RacingEntityValues.csv" />
     <property name="ShipEntityValuesInstance" type="Shiprekt.DataTypes.ShipEntityValues" default="DefaultValues in ShipEntityValues.csv" />
