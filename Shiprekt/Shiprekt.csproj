@@ -52,6 +52,7 @@
     <Compile Include="DataTypes\RacingEntityValues.Generated.cs" />
     <Compile Include="DataTypes\ShipEntityValues.Generated.cs" />
     <Compile Include="DataTypes\ShipType.cs" />
+    <Compile Include="DataTypes\Spreadsheet.Generated.cs" />
     <Compile Include="DataTypes\TileMapInfo.Generated.cs" />
     <Compile Include="Entities\Bird.cs" />
     <Compile Include="Entities\Bird.Generated.cs">
@@ -81,6 +82,9 @@
     <Compile Include="Entities\Effects\ShotMissEffect.cs" />
     <Compile Include="Entities\Effects\ShotMissEffect.Generated.cs">
       <DependentUpon>ShotMissEffect.cs</DependentUpon>
+    <Compile Include="Entities\Effects\ShipImpact.cs" />
+    <Compile Include="Entities\Effects\ShipImpact.Generated.cs">
+      <DependentUpon>ShipImpact.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\Effects\WakeEffect.cs" />
     <Compile Include="Entities\Effects\WakeEffect.Generated.cs">
@@ -112,6 +116,7 @@
     <Compile Include="Factories\ShipDeathEffectFactory.Generated.cs" />
     <Compile Include="Factories\ShipFactory.Generated.cs" />
     <Compile Include="Factories\ShotMissEffectFactory.Generated.cs" />
+    <Compile Include="Factories\ShipImpactFactory.Generated.cs" />
     <Compile Include="Factories\SpawnPointFactory.Generated.cs" />
     <Compile Include="Factories\WreckageFactory.Generated.cs" />
     <Compile Include="FileAliases.Generated.cs" />
