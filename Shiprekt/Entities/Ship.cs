@@ -13,6 +13,7 @@ using static Shiprekt.Entities.ShipSail;
 using FlatRedBall.Debugging;
 using Shiprekt.Utilities;
 using Shiprekt.Factories;
+using Shiprekt.Managers;
 
 namespace Shiprekt.Entities
 {
@@ -203,17 +204,20 @@ namespace Shiprekt.Entities
 
             bullet.Velocity = (bulletDirection * Bullet.BulletSpeed).ToVector3();
             bullet.TeamIndex = this.TeamIndex;
+            bullet.Owner = this;
             var bulletDuration = Bullet.BulletDistance / Bullet.BulletSpeed;
 
             bullet.Call(bullet.HitSurface).After(bulletDuration);
             timeUntilNextShotAvailable = SecondsBetweenShotsMin;
         }
 
-        internal void TakeDamage(int damageAmount)
+        internal void TakeDamage(int damageAmount, Ship whoDealtDamage)
         {
             Health -= damageAmount;
             if (Health <= 0)
             {
+                JoinedPlayerManager.AwardKill(whoDealtDamage.InputDevice);
+                JoinedPlayerManager.RecordDeath(this.InputDevice);
                 Die();
             }
         }
@@ -288,7 +292,10 @@ namespace Shiprekt.Entities
 
             var shipToShipDot = Vector2.Dot(RotationMatrix.Right.ToVector2(), ship.RotationMatrix.Right.ToVector2());
             var deg = Math.Abs(shipToShipDot * 180);
-            Debugger.CommandLineWrite($"Deg: {deg}");
+
+            // This should be controlled by a debugging variable so it can be easily
+            // toggled without having to search in code.
+            //Debugger.CommandLineWrite($"Deg: {deg}");
             //We will detect how big a ram is based on the shipToShipDot's difference from 0. 
             if (deg < RamInstance.GlancingRamAngle / 2) return true;
             else return false;

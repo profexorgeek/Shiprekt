@@ -32,7 +32,7 @@ namespace Shiprekt.Screens
 
                 bullet.Destroy();
 
-                ship.TakeDamage(Bullet.DamageToDeal);
+                ship.TakeDamage(Bullet.DamageToDeal, bullet.Owner);
             }
         }
 
@@ -97,7 +97,7 @@ namespace Shiprekt.Screens
         private void DoTheRamming(Ship rammer, Ship target)
         {
             var dmg = rammer.GetRamShipDmg(target);
-            target.TakeDamage(dmg);
+            target.TakeDamage(dmg, rammer);
 
             
             rammer.MarkShipRammed(target);

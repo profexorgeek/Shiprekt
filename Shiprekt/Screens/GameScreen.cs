@@ -158,14 +158,7 @@ namespace Shiprekt.Screens
 
         private void DebugInitialize()
         {
-            if(DebuggingVariables.CreateExtraShips)
-            {
-                var ship = ShipFactory.CreateNew(ShipList[0].X + 200, ShipList[0].Y);
-                ship.RotationZ = 1.57f;
-                ship.SetTeam(3);
-                ship.AfterDying += ReactToShipDying;
-                ship.InitializeRacingInput(InputManager.Xbox360GamePads[1]);
-            }
+
         }
 
         private void InitializeShips()
@@ -178,6 +171,18 @@ namespace Shiprekt.Screens
 
                 JoinedPlayerManager.JoinedPlayers.Add(player);
             }
+
+#if DEBUG
+            if (DebuggingVariables.CreateExtraShips)
+            {
+                var player = new JoinedPlayer();
+                player.InputDevice = InputManager.Xbox360GamePads[2];
+                player.ShipType = ShipType.RedStripes;
+
+                JoinedPlayerManager.JoinedPlayers.Add(player);
+            }
+#endif
+
             int index = 0;
             foreach(var player in JoinedPlayerManager.JoinedPlayers)
             {

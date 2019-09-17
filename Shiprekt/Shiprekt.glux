@@ -62,7 +62,7 @@
           </Properties>
           <Name>MatchLengthInSeconds</Name>
           <Type>int</Type>
-          <DefaultValue xsi:type="xsd:int">120</DefaultValue>
+          <DefaultValue xsi:type="xsd:int">60</DefaultValue>
         </CustomVariable>
       </CustomVariables>
       <Name>Screens\GameScreen</Name>
