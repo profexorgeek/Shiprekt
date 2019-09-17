@@ -10,8 +10,13 @@ namespace Shiprekt.Managers
 {
     public static class JoinedPlayerManager
     {
+        #region Fields/Properties
+
         static List<JoinedPlayer> joinedPlayers = new List<JoinedPlayer>();
+
         public static ICollection<JoinedPlayer> JoinedPlayers => joinedPlayers;
+
+        #endregion
 
         public static bool IsJoined(IInputDevice inputDevice)
         {
@@ -63,6 +68,16 @@ namespace Shiprekt.Managers
             }
 
             return player;
+        }
+
+        public static void AwardKill(IInputDevice killer)
+        {
+            joinedPlayers.First(item => item.InputDevice == killer).LastGameKills++;
+        }
+
+        public static void RecordDeath(IInputDevice playerWhoDied)
+        {
+            joinedPlayers.First(item => item.InputDevice == playerWhoDied).LastGameDeaths++;
         }
     }
 }
