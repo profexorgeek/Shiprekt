@@ -61,7 +61,7 @@ namespace Shiprekt.Entities
         private void CustomInitialize()
         {
             this.ForwardDirection = RacingDirection.Right;
-            timeUntilNextShotAvailable = SecondsBetweenShotsMin;
+            timeUntilNextShotAvailable = 0;
 
             InitializeMovementValues();
 
