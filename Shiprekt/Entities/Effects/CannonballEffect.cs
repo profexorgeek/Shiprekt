@@ -37,8 +37,10 @@ namespace Shiprekt.Entities.Effects
 
         private void CustomDestroy()
         {
-
-
+            for (var i = particles.Count - 1; i >= 0; i -= 1)
+            {
+                SpriteManager.RemoveSprite(particles[i]);
+            }
         }
 
         private static void CustomLoadStaticContent(string contentManagerName)
