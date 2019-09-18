@@ -48,6 +48,7 @@ namespace Shiprekt.Entities
         #region Events/Delegates
 
         public event Action<Ship> AfterDying;
+        public event Action<Bullet> BulletHit;
 
         #endregion
 
@@ -207,6 +208,7 @@ namespace Shiprekt.Entities
             bullet.Owner = this;
             var bulletDuration = Bullet.BulletDistance / Bullet.BulletSpeed;
 
+            bullet.Call(() => BulletHit(bullet)).After(bulletDuration);
             bullet.Call(bullet.HitSurface).After(bulletDuration);
             timeUntilNextShotAvailable = SecondsBetweenShotsMin;
         }
