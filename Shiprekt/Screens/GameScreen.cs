@@ -126,6 +126,8 @@ namespace Shiprekt.Screens
                     break;
             }
 
+            Camera.Main.UsePixelCoordinates3D(0);
+
             if (camera2 != null)
             {
                 SpriteManager.Cameras.Add(camera2);
