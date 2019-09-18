@@ -52,7 +52,6 @@
     <Compile Include="DataTypes\RacingEntityValues.Generated.cs" />
     <Compile Include="DataTypes\ShipEntityValues.Generated.cs" />
     <Compile Include="DataTypes\ShipType.cs" />
-    <Compile Include="DataTypes\Spreadsheet.Generated.cs" />
     <Compile Include="DataTypes\TileMapInfo.Generated.cs" />
     <Compile Include="Entities\Bird.cs" />
     <Compile Include="Entities\Bird.Generated.cs">
