@@ -341,6 +341,8 @@ namespace Shiprekt.Screens
                 SpriteManager.Cameras.RemoveAt(SpriteManager.Cameras.Count - 1);
             }
             Camera.Main.SetSplitScreenViewport(Camera.SplitScreenViewport.FullScreen);
+
+
         }
 
         static void CustomLoadStaticContent(string contentManagerName)

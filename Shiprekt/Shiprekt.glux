@@ -265,7 +265,7 @@
             </PropertySave>
             <PropertySave>
               <Name>CollisionElasticity</Name>
-              <ValueAsFloat>0.3</ValueAsFloat>
+              <ValueAsFloat>0.5</ValueAsFloat>
             </PropertySave>
             <PropertySave>
               <Name>CollisionType</Name>
