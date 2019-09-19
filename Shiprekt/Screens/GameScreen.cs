@@ -229,7 +229,9 @@ namespace Shiprekt.Screens
         private void InitializeCollision()
         {
             GroundCollision.MergeRectangles();
-            
+
+            // We need to do custom logic before/after so we disable it and do manual collisions:
+            ShipListVsGroundCollision.IsActive = false;
         }
         #endregion
 
@@ -237,6 +239,8 @@ namespace Shiprekt.Screens
 
         void CustomActivity(bool firstTimeCalled)
         {
+            DoCollisionActivity();
+
             DoCameraActivity();
 
             DoUiActivity();
@@ -256,6 +260,21 @@ namespace Shiprekt.Screens
             if (DebuggingVariables.EnableDebugKeyInput)
             {
                 DoDebugInput();
+            }
+        }
+
+        private void DoCollisionActivity()
+        {
+            foreach(var ship in ShipList)
+            {
+                ship.RecordBeforeCollisionState();
+            }
+
+            ShipListVsGroundCollision.DoCollisions();
+
+            foreach (var ship in ShipList)
+            {
+                ship.RecordAfterCollisionState();
             }
         }
 
