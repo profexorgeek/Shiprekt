@@ -129,6 +129,8 @@ namespace Shiprekt.Screens
                     break;
             }
 
+            Camera.Main.UsePixelCoordinates3D(0);
+
             if (camera2 != null)
             {
                 SpriteManager.Cameras.Add(camera2);
@@ -195,8 +197,17 @@ namespace Shiprekt.Screens
                 ship.SetSail(player.ShipType.ToSailColor());
                 ship.InitializeRacingInput(player.InputDevice);
                 ship.AfterDying += ReactToShipDying;
+                ship.BulletHit += ReactToBulletHit;
                 index++;
             }
+        }
+
+        private void ReactToBulletHit(Bullet bullet)
+        {
+            var hitGround = GroundCollision.CollideAgainst(bullet);
+            var shotMissEffect = ShotMissEffectFactory.CreateNew();
+            shotMissEffect.IsGroundHit = hitGround;
+            shotMissEffect.TriggerEffect(bullet.X, bullet.Y, bullet.RotationZ);
         }
 
         internal void OffsetTilemapLayers()

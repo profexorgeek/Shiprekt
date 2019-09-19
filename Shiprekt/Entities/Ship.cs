@@ -48,6 +48,7 @@ namespace Shiprekt.Entities
         #region Events/Delegates
 
         public event Action<Ship> AfterDying;
+        public event Action<Bullet> BulletHit;
 
         #endregion
 
@@ -118,7 +119,7 @@ namespace Shiprekt.Entities
 
                 shootRightInput = keyboard.GetKey(Microsoft.Xna.Framework.Input.Keys.E)
                     .Or(InputManager.Mouse.GetButton(Mouse.MouseButtons.RightButton));
-                sailTurningInput = InputManager.Keyboard.Get1DInput(Microsoft.Xna.Framework.Input.Keys.Right, Microsoft.Xna.Framework.Input.Keys.Left);
+                sailTurningInput = InputManager.Keyboard.Get1DInput(Microsoft.Xna.Framework.Input.Keys.Left, Microsoft.Xna.Framework.Input.Keys.Right);
                 IPressableInput gas = InputManager.Keyboard.GetKey(Microsoft.Xna.Framework.Input.Keys.Space);
                 Gas = new DelegateBasedPressableInput(() => !gas.IsDown, () => gas.WasJustReleased, () => gas.WasJustPressed).To1DInput();
             }
@@ -172,7 +173,7 @@ namespace Shiprekt.Entities
 
         private void DoSailTurningActivity()
         {
-            var turnSpeed = sailTurningInput.Value * ShipEntityValuesInstance.SailRotationSpeed;
+            var turnSpeed = sailTurningInput.Value * -ShipEntityValuesInstance.SailRotationSpeed;
             var left = ShipEntityValuesInstance.MaxSailRotation * ((float)Math.PI / 180);
             var right = 360 * ((float)Math.PI / 180) - ShipEntityValuesInstance.MaxSailRotation * ((float)Math.PI / 180);
             var middle = (float)Math.PI;
@@ -207,6 +208,7 @@ namespace Shiprekt.Entities
             bullet.Owner = this;
             var bulletDuration = Bullet.BulletDistance / Bullet.BulletSpeed;
 
+            bullet.Call(() => BulletHit(bullet)).After(bulletDuration);
             bullet.Call(bullet.HitSurface).After(bulletDuration);
             timeUntilNextShotAvailable = SecondsBetweenShotsMin;
         }

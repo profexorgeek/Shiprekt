@@ -58,8 +58,6 @@ namespace Shiprekt.Entities
         {
             Instructions.Clear();
 
-            ShotMissEffectFactory.CreateNew().TriggerEffect(X, Y, RotationZ);
-
             // broadcast this so that a collision can occur at screen level
             Destroy();
         }
