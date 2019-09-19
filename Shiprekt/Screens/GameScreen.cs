@@ -20,6 +20,7 @@ using Shiprekt.Managers;
 using Shiprekt.DataTypes;
 using Keys = Microsoft.Xna.Framework.Input.Keys;
 using FlatRedBall.TileEntities;
+using FlatRedBall.TileCollisions;
 
 namespace Shiprekt.Screens
 {
@@ -69,6 +70,8 @@ namespace Shiprekt.Screens
             DoInitialCloudSpawning();
 
             OffsetTilemapLayers();
+
+            InitializeCollision();
 
         }
 
@@ -211,6 +214,12 @@ namespace Shiprekt.Screens
 				layer.RelativeZ = floatValue;
 			}
 		}
+
+        private void InitializeCollision()
+        {
+            GroundCollision.MergeRectangles();
+            
+        }
         #endregion
 
         #region Activity

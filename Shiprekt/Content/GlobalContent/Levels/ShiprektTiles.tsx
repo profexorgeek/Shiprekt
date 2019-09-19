@@ -165,25 +165,21 @@
  <tile id="769">
   <objectgroup draworder="index">
    <object id="1" x="0" y="0" width="32" height="32"/>
-   <object id="2" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
  <tile id="770">
   <objectgroup draworder="index">
    <object id="1" x="0" y="0" width="32" height="32"/>
-   <object id="2" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
  <tile id="771">
   <objectgroup draworder="index">
    <object id="1" x="0" y="0" width="32" height="32"/>
-   <object id="2" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
  <tile id="772">
   <objectgroup draworder="index">
    <object id="1" x="0" y="0" width="32" height="32"/>
-   <object id="2" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
  <tile id="773">
