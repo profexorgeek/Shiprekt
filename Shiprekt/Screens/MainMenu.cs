@@ -129,7 +129,9 @@ namespace Shiprekt.Screens
 
         private void GoToGameScreen()
         {
-            this.MoveToScreen(typeof(Level1));
+            //this.MoveToScreen(typeof(Level1));
+
+            GameScreen.MoveToRandomLevel();
         }
 
         #endregion

@@ -483,47 +483,6 @@
         <string>GLUE</string>
       </Tags>
       <Source>GLUE</Source>
-      <BaseScreen>Screens\GameScreen</BaseScreen>
-      <Name>Screens\Level2</Name>
-      <ReferencedFiles>
-        <ReferencedFileSave>
-          <Name>gumproject/Screens/Level2Gum.gusx</Name>
-          <IsSharedStatic>true</IsSharedStatic>
-          <RuntimeType>Shiprekt.GumRuntimes.Level2GumRuntime</RuntimeType>
-          <ProjectsToExcludeFrom />
-        </ReferencedFileSave>
-        <ReferencedFileSave>
-          <Name>GlobalContent/Levels/Level2Map.tmx</Name>
-          <IsSharedStatic>true</IsSharedStatic>
-          <RuntimeType>FlatRedBall.TileGraphics.LayeredTileMap</RuntimeType>
-          <ProjectsToExcludeFrom />
-        </ReferencedFileSave>
-      </ReferencedFiles>
-      <NamedObjects>
-        <NamedObjectSave>
-          <Properties>
-            <PropertySave>
-              <Name>SourceType</Name>
-              <ValueAsObject xsi:type="SourceType">File</ValueAsObject>
-            </PropertySave>
-          </Properties>
-          <SourceType>File</SourceType>
-          <SourceFile>GlobalContent/Levels/Level2Map.tmx</SourceFile>
-          <SourceName>Entire File (LayeredTileMap)</SourceName>
-          <SourceClassType>LayeredTileMap</SourceClassType>
-          <InstanceName>Map</InstanceName>
-          <AttachToContainer>true</AttachToContainer>
-          <GenerateTimedEmit>true</GenerateTimedEmit>
-          <DefinedByBase>true</DefinedByBase>
-          <IndependentOfCamera>true</IndependentOfCamera>
-        </NamedObjectSave>
-      </NamedObjects>
-    </ScreenSave>
-    <ScreenSave>
-      <Tags>
-        <string>GLUE</string>
-      </Tags>
-      <Source>GLUE</Source>
       <Name>Screens\MainMenu</Name>
       <ReferencedFiles>
         <ReferencedFileSave>
@@ -1211,7 +1170,7 @@
           </Properties>
           <Name>FastMovement</Name>
           <Type>bool</Type>
-          <DefaultValue xsi:type="xsd:boolean">false</DefaultValue>
+          <DefaultValue xsi:type="xsd:boolean">true</DefaultValue>
           <IsShared>true</IsShared>
         </CustomVariable>
         <CustomVariable>

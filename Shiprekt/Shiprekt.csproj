@@ -176,10 +176,6 @@
     <Compile Include="Screens\Level1.Generated.cs">
       <DependentUpon>Level1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Screens\Level2.cs" />
-    <Compile Include="Screens\Level2.Generated.cs">
-      <DependentUpon>Level2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Screens\MainMenu.cs" />
     <Compile Include="Screens\MainMenu.Generated.cs">
       <DependentUpon>MainMenu.cs</DependentUpon>
@@ -272,10 +268,6 @@
     <None Include="content\globalcontent\levels\level1map.tmx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Level1Map</Name>
-    </None>
-    <None Include="content\globalcontent\levels\level2map.tmx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Level2Map</Name>
     </None>
     <None Include="content\globalcontent\levels\shiprekttiles.tsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
