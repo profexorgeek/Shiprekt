@@ -62,7 +62,29 @@
           </Properties>
           <Name>MatchLengthInSeconds</Name>
           <Type>int</Type>
-          <DefaultValue xsi:type="xsd:int">60</DefaultValue>
+          <DefaultValue xsi:type="xsd:int">120</DefaultValue>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>WindMagnitude</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">30</DefaultValue>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>TimeBetweenWindDirectionChange</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">30</DefaultValue>
         </CustomVariable>
       </CustomVariables>
       <Name>Screens\GameScreen</Name>

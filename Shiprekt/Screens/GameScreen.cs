@@ -41,7 +41,7 @@ namespace Shiprekt.Screens
             }
         }
 
-        Vector2 windVector = new Vector2(30, 5);
+        double windLastRandomized;
 
         #endregion
 
@@ -55,7 +55,7 @@ namespace Shiprekt.Screens
 
             JoinedPlayerManager.ResetGameStats();
 
-            windDirection = Vector2.UnitX;// FlatRedBallServices.Random.RadialVector2(1, 1);
+            RandomizeWind();
 
             // debug initialize needs to be before initializing cameras because
             // new ships may be added through debug logic.
@@ -144,6 +144,12 @@ namespace Shiprekt.Screens
             {
                 SpriteManager.Cameras.Add(camera4);
                 camera4.UsePixelCoordinates3D(0);
+            }
+
+            // before creating the final camera, set the min/maxes 
+            foreach(var camera in SpriteManager.Cameras)
+            {
+                camera.SetBordersAtZ(0, -Map.Height, Map.Width, 0, 0);
             }
 
             // if there is more than one camera, then we need a final camera for UI
@@ -244,6 +250,8 @@ namespace Shiprekt.Screens
 
             DoUiActivity();
 
+            DoWindChangeActivity();
+
             MurderLostBirds();
 
             DoBirdSpawning();
@@ -256,10 +264,46 @@ namespace Shiprekt.Screens
 
             DoEndGameActivity();
 
+            DoPauseUnpauseActivity();
+
             if (DebuggingVariables.EnableDebugKeyInput)
             {
                 DoDebugInput();
             }
+        }
+
+        private void DoPauseUnpauseActivity()
+        {
+            if(this.IsPaused)
+            {
+                if(ShipList.Any(item => item.InputDevice.DefaultPauseInput.WasJustPressed))
+                {
+                    UnpauseThisScreen();
+                }
+            }
+            else
+            {
+                if (ShipList.Any(item => item.InputDevice.DefaultPauseInput.WasJustPressed))
+                {
+                    PauseThisScreen();
+                }
+            }
+        }
+
+        private void DoWindChangeActivity()
+        {
+            if(PauseAdjustedSecondsSince(windLastRandomized) > TimeBetweenWindDirectionChange)
+            {
+                RandomizeWind();
+            }
+        }
+
+        private void RandomizeWind()
+        {
+            windDirection = FlatRedBallServices.Random.RadialVector2(1, 1);
+            windLastRandomized = PauseAdjustedCurrentTime;
+
+            System.Diagnostics.Debug.WriteLine($"Changed wind to {windDirection} at {PauseAdjustedCurrentTime.ToString("0.00")}");
         }
 
         private void DoCollisionActivity()
@@ -340,7 +384,7 @@ namespace Shiprekt.Screens
                 SpriteManager.Cameras.RemoveAt(SpriteManager.Cameras.Count - 1);
             }
             Camera.Main.SetSplitScreenViewport(Camera.SplitScreenViewport.FullScreen);
-
+            Camera.Main.ClearBorders();
 
         }
 
@@ -400,7 +444,7 @@ namespace Shiprekt.Screens
         }
         void SpawnCloud(float x, float y)
         {
-            var windVelocity = windVector;
+            var windVelocity = windDirection * WindMagnitude;
             var cloud = CloudFactory.CreateNew(x, y);
             cloud.Altitude = FlatRedBallServices.Random.Between(Cloud.CloudAltitudeMin, Cloud.CloudAltitudeMax);
             cloud.Velocity.X = windVelocity.X;
@@ -429,8 +473,6 @@ namespace Shiprekt.Screens
                 }
                 SecondsToNextCloud = FlatRedBallServices.Random.Between(0, SecondsToNextCloudMax);
 
-                var windVelocity = windVector;
-
                 // Consider half of game screen perimiter, from 0,0 to Width,-Height.
                 float spawnRangeMax = Map.Height + Map.Width;
                 // Find a number along that perimter, spawn based on that number with wind determining top/right/bottom/left.
@@ -439,7 +481,7 @@ namespace Shiprekt.Screens
                 // NOTE: For primary directions, clouds will spawn outside and be culled immediately until RNGesus sees fit to put them all on the appropriate side.
                 float cloudSpawnX = 0;
                 float cloudSpawnY = 0;
-                if (windVelocity.X >= 0 && windVelocity.Y >= 0)
+                if (windDirection.X >= 0 && windDirection.Y >= 0)
                 {
                     // Wind goes up/right
                     if (spawnPointInRange <= Map.Height)
@@ -455,7 +497,7 @@ namespace Shiprekt.Screens
                         cloudSpawnY = Map.Height + cloudRadiusEstimate;
                     }
                 }
-                else if (windVelocity.X >= 0 && windVelocity.Y <= 0)
+                else if (windDirection.X >= 0 && windDirection.Y <= 0)
                 {
                     // Wind goes down/right
                     if (spawnPointInRange <= Map.Height)
@@ -471,7 +513,7 @@ namespace Shiprekt.Screens
                         cloudSpawnY = -cloudRadiusEstimate;
                     }
                 }
-                else if (windVelocity.X <= 0 && windVelocity.Y >= 0)
+                else if (windDirection.X <= 0 && windDirection.Y >= 0)
                 {
                     // Wind goes up/left
                     if (spawnPointInRange <= Map.Height)
@@ -487,7 +529,7 @@ namespace Shiprekt.Screens
                         cloudSpawnY = Map.Height + cloudRadiusEstimate;
                     }
                 }
-                else if (windVelocity.X <= 0 && windVelocity.Y <= 0)
+                else if (windDirection.X <= 0 && windDirection.Y <= 0)
                 {
                     // Wind goes down/left
                     // Spawn from right/top
