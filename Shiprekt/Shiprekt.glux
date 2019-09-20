@@ -424,6 +424,23 @@
           <IndependentOfCamera>true</IndependentOfCamera>
           <LayerOn>HudLayer</LayerOn>
         </NamedObjectSave>
+        <NamedObjectSave>
+          <Properties>
+            <PropertySave>
+              <Name>SourceType</Name>
+              <ValueAsObject xsi:type="SourceType">FlatRedBallType</ValueAsObject>
+            </PropertySave>
+          </Properties>
+          <SourceType>FlatRedBallType</SourceType>
+          <SourceFile />
+          <SourceName />
+          <SourceClassType>PositionedObjectList&lt;T&gt;</SourceClassType>
+          <SourceClassGenericType>Entities\Effects\ShotMissEffect</SourceClassGenericType>
+          <InstanceName>ShotMissEffectList</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+        </NamedObjectSave>
       </NamedObjects>
     </ScreenSave>
     <ScreenSave>
@@ -975,22 +992,6 @@
           <SourceName />
           <SourceClassType>Entities\Effects\CannonballEffect</SourceClassType>
           <InstanceName>CannonballEffectInstance</InstanceName>
-          <AttachToContainer>true</AttachToContainer>
-          <GenerateTimedEmit>true</GenerateTimedEmit>
-          <IndependentOfCamera>true</IndependentOfCamera>
-        </NamedObjectSave>
-        <NamedObjectSave>
-          <Properties>
-            <PropertySave>
-              <Name>SourceType</Name>
-              <ValueAsObject xsi:type="SourceType">Entity</ValueAsObject>
-            </PropertySave>
-          </Properties>
-          <SourceType>Entity</SourceType>
-          <SourceFile />
-          <SourceName />
-          <SourceClassType>Entities\Effects\ShotMissEffect</SourceClassType>
-          <InstanceName>ShotMissEffectInstance</InstanceName>
           <AttachToContainer>true</AttachToContainer>
           <GenerateTimedEmit>true</GenerateTimedEmit>
           <IndependentOfCamera>true</IndependentOfCamera>
