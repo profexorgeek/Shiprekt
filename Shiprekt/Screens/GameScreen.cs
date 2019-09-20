@@ -41,10 +41,9 @@ namespace Shiprekt.Screens
             }
         }
 
+        Vector2 windVector = new Vector2(30, 5);
 
         #endregion
-        // TODO: Get wind from game.
-        static Vector2 TEMP_DEFAULT_WIND = new Vector2(30, 5);
 
         #region Initialize
 
@@ -401,7 +400,7 @@ namespace Shiprekt.Screens
         }
         void SpawnCloud(float x, float y)
         {
-            var windVelocity = TEMP_DEFAULT_WIND;
+            var windVelocity = windVector;
             var cloud = CloudFactory.CreateNew(x, y);
             cloud.Altitude = FlatRedBallServices.Random.Between(Cloud.CloudAltitudeMin, Cloud.CloudAltitudeMax);
             cloud.Velocity.X = windVelocity.X;
@@ -430,7 +429,7 @@ namespace Shiprekt.Screens
                 }
                 SecondsToNextCloud = FlatRedBallServices.Random.Between(0, SecondsToNextCloudMax);
 
-                var windVelocity = TEMP_DEFAULT_WIND;
+                var windVelocity = windVector;
 
                 // Consider half of game screen perimiter, from 0,0 to Width,-Height.
                 float spawnRangeMax = Map.Height + Map.Width;
@@ -525,6 +524,18 @@ namespace Shiprekt.Screens
                     }
                 }
             }
+        }
+
+        public static void MoveToRandomLevel()
+        {
+            var derivedTypes = typeof(GameScreen).Assembly
+                .GetTypes()
+                .Where(item => item.BaseType == typeof(GameScreen))
+                .ToArray();
+
+            var randomType = FlatRedBallServices.Random.In(derivedTypes);
+
+            FlatRedBall.Screens.ScreenManager.CurrentScreen.MoveToScreen(randomType);
         }
     }
 }
