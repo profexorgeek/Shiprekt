@@ -215,12 +215,15 @@ namespace Shiprekt.Entities
 
         internal void TakeDamage(int damageAmount, Ship whoDealtDamage)
         {
-            Health -= damageAmount;
-            if (Health <= 0)
+            if(Health > 0)
             {
-                JoinedPlayerManager.AwardKill(whoDealtDamage.InputDevice);
-                JoinedPlayerManager.RecordDeath(this.InputDevice);
-                Die();
+                Health -= damageAmount;
+                if (Health <= 0)
+                {
+                    JoinedPlayerManager.AwardKill(whoDealtDamage.InputDevice);
+                    JoinedPlayerManager.RecordDeath(this.InputDevice);
+                    Die();
+                }
             }
         }
 

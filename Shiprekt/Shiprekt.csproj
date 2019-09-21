@@ -61,6 +61,10 @@
     <Compile Include="Entities\Bullet.Generated.cs">
       <DependentUpon>Bullet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\CameraController.cs" />
+    <Compile Include="Entities\CameraController.Generated.cs">
+      <DependentUpon>CameraController.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Cloud.cs" />
     <Compile Include="Entities\Cloud.Generated.cs">
       <DependentUpon>Cloud.cs</DependentUpon>
@@ -112,6 +116,7 @@
     </Compile>
     <Compile Include="Factories\BirdFactory.Generated.cs" />
     <Compile Include="Factories\BulletFactory.Generated.cs" />
+    <Compile Include="Factories\CameraControllerFactory.Generated.cs" />
     <Compile Include="Factories\CloudFactory.Generated.cs" />
     <Compile Include="Factories\ShipDeathEffectFactory.Generated.cs" />
     <Compile Include="Factories\ShipFactory.Generated.cs" />

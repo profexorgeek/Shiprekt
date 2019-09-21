@@ -21,6 +21,7 @@ using Shiprekt.DataTypes;
 using Keys = Microsoft.Xna.Framework.Input.Keys;
 using FlatRedBall.TileEntities;
 using FlatRedBall.TileCollisions;
+using StateInterpolationPlugin;
 
 namespace Shiprekt.Screens
 {
@@ -147,9 +148,18 @@ namespace Shiprekt.Screens
             }
 
             // before creating the final camera, set the min/maxes 
-            foreach(var camera in SpriteManager.Cameras)
+            for(int i = 0; i < SpriteManager.Cameras.Count; i++)
             {
+                var camera = SpriteManager.Cameras[i];
+
                 camera.SetBordersAtZ(0, -Map.Height, Map.Width, 0, 0);
+
+                var cameraController = new CameraController();
+                this.CameraControllerList.Add(cameraController);
+                cameraController.TargetEntity = ShipList[i];
+                cameraController.Camera = camera;
+                cameraController.CurrentFollowTargetType = CameraController.FollowTargetType.Entity;
+                cameraController.FollowImmediately = true;
             }
 
             // if there is more than one camera, then we need a final camera for UI
@@ -173,6 +183,9 @@ namespace Shiprekt.Screens
 
         private void InitializeShips()
         {
+            ShipFactory.RemoveList(this.DeadShipList);
+
+
             if(JoinedPlayerManager.JoinedPlayers.Count == 0)
             {
                 var player = new JoinedPlayer();
@@ -265,8 +278,6 @@ namespace Shiprekt.Screens
         {
             DoCollisionActivity();
 
-            DoCameraActivity();
-
             DoUiActivity();
 
             DoWindChangeActivity();
@@ -340,16 +351,6 @@ namespace Shiprekt.Screens
             }
         }
 
-        private void DoCameraActivity()
-        {
-            for(int i = 0; i < ShipList.Count; i++)
-            {
-                var shipToFollow = ShipList[i];
-                SpriteManager.Cameras[i].X = shipToFollow.X;
-                SpriteManager.Cameras[i].Y = shipToFollow.Y;
-            }
-        }
-
         private void DoUiActivity()
         {
             var secondsLeft = SecondsLeft;
@@ -366,12 +367,50 @@ namespace Shiprekt.Screens
 
         private void ReactToShipDying(Ship ship)
         {
-            ship.ResetHealth();
+            // to prevent collisions, etc
+            ShipList.Remove(ship);
+            DeadShipList.Add(ship);
+
+            ship.Visible = false;
 
             var randomSpawnPoint = FlatRedBallServices.Random.In(SpawnPointList);
 
-            ship.X = randomSpawnPoint.X;
-            ship.Y = randomSpawnPoint.Y;
+            var controller = CameraControllerList.First(item => item.TargetEntity == ship);
+            controller.FollowImmediately = false;
+
+            float timeToWatchSinkingShip = 1;
+            float timeToTweenToNewPosition = 2;
+            float timeToLookAtNewPosition = .5f;
+
+            this.Call(() =>
+            {
+                controller.Tween("X", to: randomSpawnPoint.X, 
+                    during: timeToTweenToNewPosition, 
+                    interpolation: FlatRedBall.Glue.StateInterpolation.InterpolationType.Quadratic, 
+                    easing: FlatRedBall.Glue.StateInterpolation.Easing.InOut);
+
+                controller.Tween("Y", to: randomSpawnPoint.Y, 
+                    during: timeToTweenToNewPosition,
+                    interpolation: FlatRedBall.Glue.StateInterpolation.InterpolationType.Quadratic,
+                    easing: FlatRedBall.Glue.StateInterpolation.Easing.InOut);
+
+            })
+            .After(timeToWatchSinkingShip);
+
+            this.Call(() =>
+            {
+                ship.ResetHealth();
+                ship.X = randomSpawnPoint.X;
+                ship.Y = randomSpawnPoint.Y;
+
+                DeadShipList.Remove(ship);
+                ShipList.Add(ship);
+                controller.FollowImmediately = true;
+
+
+                ship.Visible = true;
+            })
+            .After(timeToWatchSinkingShip + timeToTweenToNewPosition + timeToLookAtNewPosition);
         }
 
         internal void UpdateShipSailsActivity()
