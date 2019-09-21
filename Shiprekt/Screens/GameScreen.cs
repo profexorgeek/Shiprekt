@@ -372,30 +372,25 @@ namespace Shiprekt.Screens
             DeadShipList.Add(ship);
 
             ship.Visible = false;
-
-            var randomSpawnPoint = FlatRedBallServices.Random.In(SpawnPointList);
+            var randomSpawnPoint = GetSpawnPoint();
 
             var controller = CameraControllerList.First(item => item.TargetEntity == ship);
             controller.FollowImmediately = false;
 
-            float timeToWatchSinkingShip = 1;
-            float timeToTweenToNewPosition = 2;
-            float timeToLookAtNewPosition = .5f;
-
             this.Call(() =>
             {
-                controller.Tween("X", to: randomSpawnPoint.X, 
-                    during: timeToTweenToNewPosition, 
-                    interpolation: FlatRedBall.Glue.StateInterpolation.InterpolationType.Quadratic, 
+                controller.Tween("X", to: randomSpawnPoint.X,
+                    during: CameraController.TimeToInterpolateToNewSpawnLocation,
+                    interpolation: FlatRedBall.Glue.StateInterpolation.InterpolationType.Quadratic,
                     easing: FlatRedBall.Glue.StateInterpolation.Easing.InOut);
 
-                controller.Tween("Y", to: randomSpawnPoint.Y, 
-                    during: timeToTweenToNewPosition,
+                controller.Tween("Y", to: randomSpawnPoint.Y,
+                    during: CameraController.TimeToInterpolateToNewSpawnLocation,
                     interpolation: FlatRedBall.Glue.StateInterpolation.InterpolationType.Quadratic,
                     easing: FlatRedBall.Glue.StateInterpolation.Easing.InOut);
 
             })
-            .After(timeToWatchSinkingShip);
+            .After(CameraController.TimeToWatchSinkingShip);
 
             this.Call(() =>
             {
@@ -410,7 +405,36 @@ namespace Shiprekt.Screens
 
                 ship.Visible = true;
             })
-            .After(timeToWatchSinkingShip + timeToTweenToNewPosition + timeToLookAtNewPosition);
+            .After(CameraController.TimeToWatchSinkingShip + CameraController.TimeToInterpolateToNewSpawnLocation +
+                CameraController.TimeToLookAtNewSpawnPointBeforeSpawning);
+        }
+
+        private SpawnPoint GetSpawnPoint()
+        {
+            // try at 1500 distance, then drop by 500 until we find a spawn point to spawn at
+            var distance = 1500f;
+            var filteredSpawnPoints = SpawnPointList.Where(item => ClosestDistanceToShip(item) < distance).ToArray();
+            if(filteredSpawnPoints.Length == 0)
+            {
+                distance -= 500;
+                filteredSpawnPoints = SpawnPointList.Where(item => ClosestDistanceToShip(item) < distance).ToArray();
+            }
+            if (filteredSpawnPoints.Length == 0)
+            {
+                distance -= 500;
+                filteredSpawnPoints = SpawnPointList.Where(item => ClosestDistanceToShip(item) < distance).ToArray();
+            }
+            if(filteredSpawnPoints.Length == 0)
+            {
+                filteredSpawnPoints = SpawnPointList.ToArray();
+            }
+
+            return FlatRedBallServices.Random.In(filteredSpawnPoints);
+        }
+
+        private float ClosestDistanceToShip(SpawnPoint spawnPoint)
+        {
+            return ShipList.Select(item => (item.Position - spawnPoint.Position).Length()).Min();
         }
 
         internal void UpdateShipSailsActivity()

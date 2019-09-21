@@ -1032,8 +1032,10 @@
               <ValueAsString>float</ValueAsString>
             </PropertySave>
           </Properties>
-          <Name>X</Name>
+          <Name>TimeToWatchSinkingShip</Name>
           <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">1</DefaultValue>
+          <IsShared>true</IsShared>
         </CustomVariable>
         <CustomVariable>
           <Properties>
@@ -1042,8 +1044,10 @@
               <ValueAsString>float</ValueAsString>
             </PropertySave>
           </Properties>
-          <Name>Y</Name>
+          <Name>TimeToInterpolateToNewSpawnLocation</Name>
           <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">2</DefaultValue>
+          <IsShared>true</IsShared>
         </CustomVariable>
         <CustomVariable>
           <Properties>
@@ -1052,8 +1056,10 @@
               <ValueAsString>float</ValueAsString>
             </PropertySave>
           </Properties>
-          <Name>Z</Name>
+          <Name>TimeToLookAtNewSpawnPointBeforeSpawning</Name>
           <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">0.5</DefaultValue>
+          <IsShared>true</IsShared>
         </CustomVariable>
       </CustomVariables>
       <ImplementsIDrawableBatch>false</ImplementsIDrawableBatch>
@@ -1264,7 +1270,7 @@
           </Properties>
           <Name>FastMovement</Name>
           <Type>bool</Type>
-          <DefaultValue xsi:type="xsd:boolean">true</DefaultValue>
+          <DefaultValue xsi:type="xsd:boolean">false</DefaultValue>
           <IsShared>true</IsShared>
         </CustomVariable>
         <CustomVariable>
@@ -1300,7 +1306,7 @@
           </Properties>
           <Name>CreateExtraShips</Name>
           <Type>bool</Type>
-          <DefaultValue xsi:type="xsd:boolean">true</DefaultValue>
+          <DefaultValue xsi:type="xsd:boolean">false</DefaultValue>
           <IsShared>true</IsShared>
         </CustomVariable>
         <CustomVariable>

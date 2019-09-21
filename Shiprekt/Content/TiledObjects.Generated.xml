@@ -14,6 +14,11 @@
     <property name="BulletDistance" type="float" default="200" />
     <property name="DamageToDeal" type="int" default="20" />
   </objecttype>
+  <objecttype name="CameraController">
+    <property name="TimeToWatchSinkingShip" type="float" default="1" />
+    <property name="TimeToInterpolateToNewSpawnLocation" type="float" default="2" />
+    <property name="TimeToLookAtNewSpawnPointBeforeSpawning" type="float" default="0.5" />
+  </objecttype>
   <objecttype name="Cloud">
     <property name="CloudAltitudeMin" type="float" default="100" />
     <property name="CloudAltitudeMax" type="float" default="200" />
