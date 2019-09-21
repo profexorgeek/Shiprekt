@@ -2,10 +2,38 @@
 <tileset version="1.2" tiledversion="1.2.4" name="ShiprektTiles" tilewidth="32" tileheight="32" tilecount="4096" columns="64">
  <image source="../shiprekt.png" width="2048" height="2048"/>
  <tile id="388" type="SpawnPoint"/>
+ <tile id="448">
+  <objectgroup draworder="index">
+   <object id="1" x="8" y="4">
+    <polygon points="0,0 10,1 20,19 16,24 -2,9"/>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="449">
+  <objectgroup draworder="index">
+   <object id="1" x="12" y="8">
+    <polygon points="0,0 4,17 11,17 12,0"/>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="450">
+  <objectgroup draworder="index">
+   <object id="1" x="6" y="11">
+    <polygon points="0,0 20,10 23,-2 4,-5"/>
+   </object>
+  </objectgroup>
+ </tile>
  <tile id="451">
   <objectgroup draworder="index">
    <object id="1" x="5" y="26">
     <polygon points="0,0 7,-18 19,-19 20,-2 9,3"/>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="452">
+  <objectgroup draworder="index">
+   <object id="1" x="14" y="3">
+    <polygon points="0,0 -12,22 7,26 15,20"/>
    </object>
   </objectgroup>
  </tile>

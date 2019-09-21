@@ -233,6 +233,25 @@ namespace Shiprekt.Screens
 
         private void InitializeCollision()
         {
+            var decorCollision = Map.Collisions.FirstOrDefault(item => item.Name == "Decor");
+            if(decorCollision != null)
+            {
+                foreach(var poly in decorCollision.Polygons)
+                {
+                    GroundCollision.Polygons.Add(poly);
+                }
+
+                if(GroundCollision.SortAxis == FlatRedBall.Math.Axis.X)
+                {
+                    GroundCollision.Polygons.SortXInsertionAscending();
+                }
+                else
+                {
+                    GroundCollision.Polygons.SortYInsertionAscending();
+                }
+            }
+
+
             GroundCollision.MergeRectangles();
 
             // We need to do custom logic before/after so we disable it and do manual collisions:
