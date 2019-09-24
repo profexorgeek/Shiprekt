@@ -274,6 +274,11 @@
       <Name>cannon03</Name>
       <Link>content\entities\ship\sfx\cannon03.xnb</Link>
     </None>
+    <None Include="..\builtxnbs\desktopgl\entities\ship\sfx\shipdeath01.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>shipdeath01</Name>
+      <Link>content\entities\ship\sfx\shipdeath01.xnb</Link>
+    </None>
     <None Include="..\builtxnbs\desktopgl\screens\gamescreen\gamesong.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>GameSong</Name>

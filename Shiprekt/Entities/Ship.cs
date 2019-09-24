@@ -299,8 +299,6 @@ namespace Shiprekt.Entities
 
         internal void Die()
         {
-            ShipDeathEffectFactory.CreateNew().TriggerEffect(X, Y, RotationZ);
-
             AfterDying(this);
         }
 
