@@ -336,6 +336,13 @@ namespace Shiprekt.Screens
             var angle = MathHelper.ToDegrees(windDirection.Angle().Value);
             GameScreenGum.WindDirectionDisplayInstance.Angle = angle;
 
+            for (int i = CloudList.Count - 1; i >= 0; i -= 1)
+            {
+                var cloud = CloudList[i];
+                cloud.Velocity.X = windDirection.X * WindMagnitude;
+                cloud.Velocity.Y = windDirection.Y * WindMagnitude;
+            }
+
             System.Diagnostics.Debug.WriteLine($"Changed wind to {windDirection} at {PauseAdjustedCurrentTime.ToString("0.00")}");
         }
 
@@ -533,8 +540,8 @@ namespace Shiprekt.Screens
             var windVelocity = windDirection * WindMagnitude;
             var cloud = CloudFactory.CreateNew(x, y);
             cloud.Altitude = FlatRedBallServices.Random.Between(Cloud.CloudAltitudeMin, Cloud.CloudAltitudeMax);
-            cloud.Velocity.X = windVelocity.X;
-            cloud.Velocity.Y = windVelocity.Y;
+            cloud.Velocity.X = windDirection.X * WindMagnitude;
+            cloud.Velocity.Y = windDirection.Y * WindMagnitude;
             cloud.PickRandomSprite();
         }
         void DoInitialCloudSpawning()
