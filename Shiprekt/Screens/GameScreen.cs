@@ -400,6 +400,7 @@ namespace Shiprekt.Screens
                 ship.ResetHealth();
                 ship.X = randomSpawnPoint.X;
                 ship.Y = randomSpawnPoint.Y;
+                ship.Velocity = Vector3.Zero;
 
                 DeadShipList.Remove(ship);
                 ShipList.Add(ship);

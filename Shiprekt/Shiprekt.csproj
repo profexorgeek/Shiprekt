@@ -99,7 +99,13 @@
       <DependentUpon>Ram.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\Ship.cs" />
+    <Compile Include="Entities\Ship.Event.cs">
+      <DependentUpon>Ship.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Ship.Generated.cs">
+      <DependentUpon>Ship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Ship.Generated.Event.cs">
       <DependentUpon>Ship.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\ShipSail.cs" />
@@ -253,6 +259,21 @@
     <Content Include="Content\shader.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="..\builtxnbs\desktopgl\entities\ship\sfx\cannon01.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>cannon01</Name>
+      <Link>content\entities\ship\sfx\cannon01.xnb</Link>
+    </None>
+    <None Include="..\builtxnbs\desktopgl\entities\ship\sfx\cannon02.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>cannon02</Name>
+      <Link>content\entities\ship\sfx\cannon02.xnb</Link>
+    </None>
+    <None Include="..\builtxnbs\desktopgl\entities\ship\sfx\cannon03.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>cannon03</Name>
+      <Link>content\entities\ship\sfx\cannon03.xnb</Link>
+    </None>
     <None Include="..\builtxnbs\desktopgl\screens\gamescreen\gamesong.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>GameSong</Name>
