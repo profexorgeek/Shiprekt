@@ -22,6 +22,7 @@ using Keys = Microsoft.Xna.Framework.Input.Keys;
 using FlatRedBall.TileEntities;
 using FlatRedBall.TileCollisions;
 using StateInterpolationPlugin;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Shiprekt.Screens
 {
@@ -316,7 +317,8 @@ namespace Shiprekt.Screens
         {
             if(PauseAdjustedSecondsSince(lastBirdSound) > nextBirdSoundTimeToWait)
             {
-                bird01.Play(volume: 1.0f, pitch: FlatRedBallServices.Random.Between(-1, 1), pan: 0);
+                var birdSound = (SoundEffect)GetFile("bird0" + (FlatRedBallServices.Random.Next(2) + 1));
+                birdSound.Play(volume: 1.0f, pitch: FlatRedBallServices.Random.Between(-BirdSfxOctiveRange/2.0f, BirdSfxOctiveRange/2.0f), pan: 0);
 
                 lastBirdSound = PauseAdjustedCurrentTime;
 

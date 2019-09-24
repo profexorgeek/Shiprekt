@@ -279,20 +279,35 @@
       <Name>shipdeath01</Name>
       <Link>content\entities\ship\sfx\shipdeath01.xnb</Link>
     </None>
-    <None Include="..\builtxnbs\desktopgl\screens\gamescreen\gamesong.ogg">
+    <None Include="..\builtxnbs\desktopgl\screens\gamescreen\game_song.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>GameSong</Name>
-      <Link>content\screens\gamescreen\gamesong.ogg</Link>
+      <Name>game_song</Name>
+      <Link>content\screens\gamescreen\game_song.ogg</Link>
     </None>
-    <None Include="..\builtxnbs\desktopgl\screens\gamescreen\gamesong.xnb">
+    <None Include="..\builtxnbs\desktopgl\screens\gamescreen\game_song.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>GameSong</Name>
-      <Link>content\screens\gamescreen\gamesong.xnb</Link>
+      <Name>game_song</Name>
+      <Link>content\screens\gamescreen\game_song.xnb</Link>
     </None>
     <None Include="..\builtxnbs\desktopgl\screens\gamescreen\sfx\bird01.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>bird01</Name>
       <Link>content\screens\gamescreen\sfx\bird01.xnb</Link>
+    </None>
+    <None Include="..\builtxnbs\desktopgl\screens\gamescreen\sfx\bird02.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>bird02</Name>
+      <Link>content\screens\gamescreen\sfx\bird02.xnb</Link>
+    </None>
+    <None Include="..\builtxnbs\desktopgl\screens\mainmenu\menu_song.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>menu_song</Name>
+      <Link>content\screens\mainmenu\menu_song.ogg</Link>
+    </None>
+    <None Include="..\builtxnbs\desktopgl\screens\mainmenu\menu_song.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>menu_song</Name>
+      <Link>content\screens\mainmenu\menu_song.xnb</Link>
     </None>
     <None Include="content\entities\ship\racingentityvalues.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
