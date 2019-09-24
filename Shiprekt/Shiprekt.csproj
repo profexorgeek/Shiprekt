@@ -279,6 +279,21 @@
       <Name>shipdeath01</Name>
       <Link>content\entities\ship\sfx\shipdeath01.xnb</Link>
     </None>
+    <None Include="..\builtxnbs\desktopgl\entities\ship\sfx\shipimpact01.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>shipimpact01</Name>
+      <Link>content\entities\ship\sfx\shipimpact01.xnb</Link>
+    </None>
+    <None Include="..\builtxnbs\desktopgl\entities\ship\sfx\shipimpact02.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>shipimpact02</Name>
+      <Link>content\entities\ship\sfx\shipimpact02.xnb</Link>
+    </None>
+    <None Include="..\builtxnbs\desktopgl\entities\ship\sfx\shipimpact03.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>shipimpact03</Name>
+      <Link>content\entities\ship\sfx\shipimpact03.xnb</Link>
+    </None>
     <None Include="..\builtxnbs\desktopgl\screens\gamescreen\game_song.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>game_song</Name>

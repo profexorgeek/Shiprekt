@@ -250,6 +250,15 @@ namespace Shiprekt.Entities
                     JoinedPlayerManager.RecordDeath(this.InputDevice);
                     Die();
                 }
+                else
+                {
+                    // didn't die, so just play a sound:
+                    var endingInt = FlatRedBallServices.Random.Next(3) + 1;
+
+                    var hitSound = (SoundEffect)GetFile("shipimpact0" + endingInt);
+
+                    hitSound.Play();
+                }
             }
         }
 
