@@ -22,6 +22,7 @@ using Keys = Microsoft.Xna.Framework.Input.Keys;
 using FlatRedBall.TileEntities;
 using FlatRedBall.TileCollisions;
 using StateInterpolationPlugin;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Shiprekt.Screens
 {
@@ -43,6 +44,9 @@ namespace Shiprekt.Screens
         }
 
         double windLastRandomized;
+
+        double nextBirdSoundTimeToWait;
+        double lastBirdSound;
 
         #endregion
 
@@ -282,9 +286,7 @@ namespace Shiprekt.Screens
 
             DoWindChangeActivity();
 
-            MurderLostBirds();
-
-            DoBirdSpawning();
+            DoBirdActivity();
 
             UpdateShipSailsActivity();
 
@@ -299,6 +301,28 @@ namespace Shiprekt.Screens
             if (DebuggingVariables.EnableDebugKeyInput)
             {
                 DoDebugInput();
+            }
+        }
+
+        private void DoBirdActivity()
+        {
+            MurderLostBirds();
+
+            DoBirdSpawning();
+
+            DoBirdSfxLogic();
+        }
+
+        private void DoBirdSfxLogic()
+        {
+            if(PauseAdjustedSecondsSince(lastBirdSound) > nextBirdSoundTimeToWait)
+            {
+                var birdSound = (SoundEffect)GetFile("bird0" + (FlatRedBallServices.Random.Next(2) + 1));
+                birdSound.Play(volume: 1.0f, pitch: FlatRedBallServices.Random.Between(-BirdSfxOctiveRange/2.0f, BirdSfxOctiveRange/2.0f), pan: 0);
+
+                lastBirdSound = PauseAdjustedCurrentTime;
+
+                nextBirdSoundTimeToWait = FlatRedBallServices.Random.Between(MinSecondsBetweenBirdSfx, MaxSecondsBetweenBirdSfx);
             }
         }
 
@@ -332,6 +356,16 @@ namespace Shiprekt.Screens
         {
             windDirection = FlatRedBallServices.Random.RadialVector2(1, 1);
             windLastRandomized = PauseAdjustedCurrentTime;
+
+            var angle = MathHelper.ToDegrees(windDirection.Angle().Value);
+            GameScreenGum.WindDirectionDisplayInstance.Angle = angle;
+
+            for (int i = CloudList.Count - 1; i >= 0; i -= 1)
+            {
+                var cloud = CloudList[i];
+                cloud.Velocity.X = windDirection.X * WindMagnitude;
+                cloud.Velocity.Y = windDirection.Y * WindMagnitude;
+            }
 
             System.Diagnostics.Debug.WriteLine($"Changed wind to {windDirection} at {PauseAdjustedCurrentTime.ToString("0.00")}");
         }
@@ -397,6 +431,7 @@ namespace Shiprekt.Screens
                 ship.ResetHealth();
                 ship.X = randomSpawnPoint.X;
                 ship.Y = randomSpawnPoint.Y;
+                ship.Velocity = Vector3.Zero;
 
                 DeadShipList.Remove(ship);
                 ShipList.Add(ship);
@@ -529,8 +564,8 @@ namespace Shiprekt.Screens
             var windVelocity = windDirection * WindMagnitude;
             var cloud = CloudFactory.CreateNew(x, y);
             cloud.Altitude = FlatRedBallServices.Random.Between(Cloud.CloudAltitudeMin, Cloud.CloudAltitudeMax);
-            cloud.Velocity.X = windVelocity.X;
-            cloud.Velocity.Y = windVelocity.Y;
+            cloud.Velocity.X = windDirection.X * WindMagnitude;
+            cloud.Velocity.Y = windDirection.Y * WindMagnitude;
             cloud.PickRandomSprite();
         }
         void DoInitialCloudSpawning()

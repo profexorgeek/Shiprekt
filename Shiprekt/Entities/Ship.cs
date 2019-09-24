@@ -14,11 +14,24 @@ using FlatRedBall.Debugging;
 using Shiprekt.Utilities;
 using Shiprekt.Factories;
 using Shiprekt.Managers;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Shiprekt.Entities
 {
     public partial class Ship
     {
+        #region Classes
+
+        private class ShipInvulnPeriod
+        {
+            public Ship Ship;
+            public float InvulnerableTimeLeft;
+        }
+
+        List<SoundEffect> shotSoundEffects = new List<SoundEffect>();
+
+        #endregion
+
         #region Fields/Properties
 
         public bool AllowedToDrive
@@ -47,7 +60,6 @@ namespace Shiprekt.Entities
 
         #region Events/Delegates
 
-        public event Action<Ship> AfterDying;
         public event Action<Bullet> BulletHit;
 
         #endregion
@@ -67,6 +79,7 @@ namespace Shiprekt.Entities
             InitializeMovementValues();
 
             Health = ShipEntityValuesInstance.MaxHealth;
+
 
 #if DEBUG
             DoDebugInitialize();
@@ -171,6 +184,33 @@ namespace Shiprekt.Entities
             }
         }
 
+        internal void Shoot(Vector2 bulletDirection)
+        {
+            var bullet = Factories.BulletFactory.CreateNew(this.X, this.Y);
+
+            bullet.Velocity = (bulletDirection * Bullet.BulletSpeed).ToVector3();
+            bullet.TeamIndex = this.TeamIndex;
+            bullet.Owner = this;
+
+            var bulletDuration = Bullet.BulletDistance / Bullet.BulletSpeed;
+            bullet.Call(() => BulletHit(bullet)).After(bulletDuration);
+            bullet.Call(bullet.HitSurface).After(bulletDuration);
+
+            PlayShotSound();
+
+            timeUntilNextShotAvailable = SecondsBetweenShotsMin;
+        }
+
+        private void PlayShotSound()
+        {
+            switch(FlatRedBallServices.Random.Next(3))
+            {
+                case 0: cannon01.Play(); break;
+                case 1: cannon02.Play(); break;
+                case 2: cannon03.Play(); break;
+            }
+        }
+
         private void DoSailTurningActivity()
         {
             var turnSpeed = sailTurningInput.Value * -ShipEntityValuesInstance.SailRotationSpeed;
@@ -199,20 +239,6 @@ namespace Shiprekt.Entities
             }
         }
 
-        internal void Shoot(Vector2 bulletDirection)
-        {
-            var bullet = Factories.BulletFactory.CreateNew(this.X, this.Y);
-
-            bullet.Velocity = (bulletDirection * Bullet.BulletSpeed).ToVector3();
-            bullet.TeamIndex = this.TeamIndex;
-            bullet.Owner = this;
-            var bulletDuration = Bullet.BulletDistance / Bullet.BulletSpeed;
-
-            bullet.Call(() => BulletHit(bullet)).After(bulletDuration);
-            bullet.Call(bullet.HitSurface).After(bulletDuration);
-            timeUntilNextShotAvailable = SecondsBetweenShotsMin;
-        }
-
         internal void TakeDamage(int damageAmount, Ship whoDealtDamage)
         {
             if(Health > 0)
@@ -223,6 +249,15 @@ namespace Shiprekt.Entities
                     JoinedPlayerManager.AwardKill(whoDealtDamage.InputDevice);
                     JoinedPlayerManager.RecordDeath(this.InputDevice);
                     Die();
+                }
+                else
+                {
+                    // didn't die, so just play a sound:
+                    var endingInt = FlatRedBallServices.Random.Next(3) + 1;
+
+                    var hitSound = (SoundEffect)GetFile("shipimpact0" + endingInt);
+
+                    hitSound.Play();
                 }
             }
         }
@@ -273,8 +308,6 @@ namespace Shiprekt.Entities
 
         internal void Die()
         {
-            ShipDeathEffectFactory.CreateNew().TriggerEffect(X, Y, RotationZ);
-
             AfterDying(this);
         }
 
@@ -337,11 +370,6 @@ namespace Shiprekt.Entities
             shipInvulnList.Add(new ShipInvulnPeriod() { Ship = ship, InvulnerableTimeLeft = RamCooldown });
         }
 
-        private class ShipInvulnPeriod
-        {
-            public Ship Ship;
-            public float InvulnerableTimeLeft;
-        }
     }
 
     #region Extension Methods
