@@ -156,7 +156,7 @@
           <Properties>
             <PropertySave>
               <Name>Volume</Name>
-              <ValueAsInt>77</ValueAsInt>
+              <ValueAsInt>15</ValueAsInt>
             </PropertySave>
             <PropertySave>
               <Name>ShouldLoopSong</Name>
@@ -624,7 +624,7 @@
           <Properties>
             <PropertySave>
               <Name>Volume</Name>
-              <ValueAsInt>79</ValueAsInt>
+              <ValueAsInt>25</ValueAsInt>
             </PropertySave>
             <PropertySave>
               <Name>ShouldLoopSong</Name>
@@ -2730,24 +2730,48 @@
           <ProjectsToExcludeFrom />
         </ReferencedFileSave>
         <ReferencedFileSave>
+          <Properties>
+            <PropertySave>
+              <Name>UseContentPipeline</Name>
+              <ValueAsBool>true</ValueAsBool>
+            </PropertySave>
+          </Properties>
           <Name>Entities/Ship/Sfx/shipdeath01.wav</Name>
           <IsSharedStatic>true</IsSharedStatic>
           <RuntimeType>Microsoft.Xna.Framework.Audio.SoundEffect</RuntimeType>
           <ProjectsToExcludeFrom />
         </ReferencedFileSave>
         <ReferencedFileSave>
+          <Properties>
+            <PropertySave>
+              <Name>UseContentPipeline</Name>
+              <ValueAsBool>true</ValueAsBool>
+            </PropertySave>
+          </Properties>
           <Name>Entities/Ship/Sfx/shipimpact03.wav</Name>
           <IsSharedStatic>true</IsSharedStatic>
           <RuntimeType>Microsoft.Xna.Framework.Audio.SoundEffect</RuntimeType>
           <ProjectsToExcludeFrom />
         </ReferencedFileSave>
         <ReferencedFileSave>
+          <Properties>
+            <PropertySave>
+              <Name>UseContentPipeline</Name>
+              <ValueAsBool>true</ValueAsBool>
+            </PropertySave>
+          </Properties>
           <Name>Entities/Ship/Sfx/shipimpact01.wav</Name>
           <IsSharedStatic>true</IsSharedStatic>
           <RuntimeType>Microsoft.Xna.Framework.Audio.SoundEffect</RuntimeType>
           <ProjectsToExcludeFrom />
         </ReferencedFileSave>
         <ReferencedFileSave>
+          <Properties>
+            <PropertySave>
+              <Name>UseContentPipeline</Name>
+              <ValueAsBool>true</ValueAsBool>
+            </PropertySave>
+          </Properties>
           <Name>Entities/Ship/Sfx/shipimpact02.wav</Name>
           <IsSharedStatic>true</IsSharedStatic>
           <RuntimeType>Microsoft.Xna.Framework.Audio.SoundEffect</RuntimeType>
