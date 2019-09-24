@@ -47,7 +47,7 @@
     <property name="Dead" type="bool" default="false" />
     <property name="Health" type="int" />
     <property name="MaxSailAccelerationBoost" type="float" default="20" />
-    <property name="MinSpeed" type="float" default="10" />
+    <property name="MinSpeed" type="float" default="30" />
     <property name="HeavyRamAngle" type="float" default="10" />
     <property name="MediumRamAngle" type="float" default="20" />
     <property name="GlancingRamAngle" type="float" default="30" />

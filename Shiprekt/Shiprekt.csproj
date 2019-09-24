@@ -127,6 +127,7 @@
     <Compile Include="FileAliases.Generated.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GlobalContent.Generated.cs" />
+    <Compile Include="GlueControl\GlueControlManager.cs" />
     <Compile Include="GumRuntimes\CircleRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\ColoredRectangleRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\ContainerRuntime.Generated.cs" />
@@ -160,6 +161,10 @@
       <DependentUpon>TestScreenGumRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\TextRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\WindDirectionDisplayRuntime.cs" />
+    <Compile Include="GumRuntimes\WindDirectionDisplayRuntime.Generated.cs">
+      <DependentUpon>WindDirectionDisplayRuntime.cs</DependentUpon>
+    </Compile>
     <Compile Include="Managers\JoinedPlayer.cs" />
     <Compile Include="Managers\JoinedPlayerManager.cs" />
     <Compile Include="Performance\IEntityFactory.Generated.cs" />
@@ -225,10 +230,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\DesktopGl\Debug\FlatRedBall.Forms.dll</HintPath>
     </Reference>
-    <Reference Include="GumCoreXnaPc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Libraries\DesktopGl\Debug\GumCoreXnaPc.dll</HintPath>
-    </Reference>
     <Reference Include="MonoGame.Framework, Version=3.5.1.1679, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\DesktopGl\Debug\MonoGame.Framework.dll</HintPath>
@@ -252,6 +253,16 @@
     <Content Include="Content\shader.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="..\builtxnbs\desktopgl\screens\gamescreen\gamesong.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>GameSong</Name>
+      <Link>content\screens\gamescreen\gamesong.ogg</Link>
+    </None>
+    <None Include="..\builtxnbs\desktopgl\screens\gamescreen\gamesong.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>GameSong</Name>
+      <Link>content\screens\gamescreen\gamesong.xnb</Link>
+    </None>
     <None Include="content\entities\ship\racingentityvalues.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>RacingEntityValues</Name>
@@ -304,6 +315,10 @@
     <None Include="content\gumproject\components\shipfront.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>shipfront</Name>
+    </None>
+    <None Include="content\gumproject\components\winddirectiondisplay.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>winddirectiondisplay</Name>
     </None>
     <None Include="content\gumproject\fontcache\font18arial.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -473,6 +488,10 @@
     <ProjectReference Include="..\..\FlatRedBall\Engines\FlatRedBallXNA\FlatRedBall\FlatRedBallDesktopGL.csproj">
       <Project>{10bda06c-7269-4cce-ae2a-d445f414520a}</Project>
       <Name>FlatRedBallDesktopGL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Gum\GumCore\GumCoreXnaPc\GumCoreDesktopGL.csproj">
+      <Project>{fc2030b0-e60b-434d-a513-400270b8d7c6}</Project>
+      <Name>GumCoreDesktopGL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -333,6 +333,9 @@ namespace Shiprekt.Screens
             windDirection = FlatRedBallServices.Random.RadialVector2(1, 1);
             windLastRandomized = PauseAdjustedCurrentTime;
 
+            var angle = MathHelper.ToDegrees(windDirection.Angle().Value);
+            GameScreenGum.WindDirectionDisplayInstance.Angle = angle;
+
             System.Diagnostics.Debug.WriteLine($"Changed wind to {windDirection} at {PauseAdjustedCurrentTime.ToString("0.00")}");
         }
 

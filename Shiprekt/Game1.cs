@@ -11,12 +11,14 @@ using System.Linq;
 
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Shiprekt.GlueControl;
 
 namespace Shiprekt
 {
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
+        GlueControlManager glueControlManager;
 
         public Game1() : base()
         {
@@ -62,6 +64,9 @@ namespace Shiprekt
             FlatRedBallServices.GraphicsOptions.TextureFilter = TextureFilter.Point;
 
             Camera.Main.BackgroundColor = Color.Black;
+
+            //glueControlManager = new GlueControlManager(8021);
+            //glueControlManager.Start();
 
             base.Initialize();
         }
