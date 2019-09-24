@@ -44,6 +44,9 @@ namespace Shiprekt.Screens
 
         double windLastRandomized;
 
+        double nextBirdSoundTimeToWait;
+        double lastBirdSound;
+
         #endregion
 
         #region Initialize
@@ -282,9 +285,7 @@ namespace Shiprekt.Screens
 
             DoWindChangeActivity();
 
-            MurderLostBirds();
-
-            DoBirdSpawning();
+            DoBirdActivity();
 
             UpdateShipSailsActivity();
 
@@ -299,6 +300,27 @@ namespace Shiprekt.Screens
             if (DebuggingVariables.EnableDebugKeyInput)
             {
                 DoDebugInput();
+            }
+        }
+
+        private void DoBirdActivity()
+        {
+            MurderLostBirds();
+
+            DoBirdSpawning();
+
+            DoBirdSfxLogic();
+        }
+
+        private void DoBirdSfxLogic()
+        {
+            if(PauseAdjustedSecondsSince(lastBirdSound) > nextBirdSoundTimeToWait)
+            {
+                bird01.Play(volume: 1.0f, pitch: FlatRedBallServices.Random.Between(-1, 1), pan: 0);
+
+                lastBirdSound = PauseAdjustedCurrentTime;
+
+                nextBirdSoundTimeToWait = FlatRedBallServices.Random.Between(MinSecondsBetweenBirdSfx, MaxSecondsBetweenBirdSfx);
             }
         }
 

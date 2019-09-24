@@ -289,6 +289,11 @@
       <Name>GameSong</Name>
       <Link>content\screens\gamescreen\gamesong.xnb</Link>
     </None>
+    <None Include="..\builtxnbs\desktopgl\screens\gamescreen\sfx\bird01.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>bird01</Name>
+      <Link>content\screens\gamescreen\sfx\bird01.xnb</Link>
+    </None>
     <None Include="content\entities\ship\racingentityvalues.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>RacingEntityValues</Name>
