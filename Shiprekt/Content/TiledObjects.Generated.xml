@@ -46,8 +46,8 @@
     <property name="ShipEntityValuesInstance" type="Shiprekt.DataTypes.ShipEntityValues" default="DefaultValues in ShipEntityValues.csv" />
     <property name="Dead" type="bool" default="false" />
     <property name="Health" type="int" />
-    <property name="MaxSailAccelerationBoost" type="float" default="20" />
-    <property name="MinSpeed" type="float" default="30" />
+    <property name="MaxSailAccelerationBoost" type="float" default="18" />
+    <property name="MinSpeed" type="float" default="33" />
     <property name="HeavyRamAngle" type="float" default="10" />
     <property name="MediumRamAngle" type="float" default="20" />
     <property name="GlancingRamAngle" type="float" default="30" />
@@ -55,7 +55,7 @@
     <property name="MediumRamDamage" type="int" default="10" />
     <property name="GlancingRamDamage" type="int" default="5" />
     <property name="RamCooldown" type="float" default="3" />
-    <property name="MinimumRamSpeed" type="float" default="50" />
+    <property name="MinimumRamSpeed" type="float" default="35" />
     <property name="SecondsBetweenShotsMin" type="float" default="1.5" />
   </objecttype>
   <objecttype name="SpawnPoint" />
