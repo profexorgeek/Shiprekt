@@ -10,15 +10,25 @@ using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Math.Geometry;
 using Shiprekt.Utilities;
 using Shiprekt.Factories;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Shiprekt.Entities
 {
+    public enum SurfaceType
+    {
+        Water,
+        Ground
+    }
+
     public partial class Bullet
     {
-        public int TeamIndex { get; set; }
+        #region Fields/Properties
         
+        public int TeamIndex { get; set; }
 
         public Ship Owner { get; set; }
+
+        #endregion
 
         /// <summary>
         /// Initialization logic which is execute only one time for this Entity (unless the Entity is pooled).
@@ -34,6 +44,29 @@ namespace Shiprekt.Entities
         {
             CannonballSpriteInstance.RelativeYVelocity = Math.Max(-100, CannonballSpriteInstance.RelativeYVelocity);
         }
+
+        internal void HitSurface(SurfaceType surfaceType)
+        {
+            Instructions.Clear();
+
+            var randomInt = FlatRedBallServices.Random.Next(2) + 1;
+            SoundEffect file = null;
+
+            if(surfaceType == SurfaceType.Water)
+            {
+                file = (SoundEffect)GetFile($"cannonballsink0{randomInt}");
+            }
+            else
+            {
+                // do we have ground hits sfx? Not yet, but if we do, add the logic here to pick one of the sounds
+            }
+
+            file?.Play();
+
+            // broadcast this so that a collision can occur at screen level
+            Destroy();
+        }
+
 
         private void CustomDestroy()
         {
@@ -54,12 +87,5 @@ namespace Shiprekt.Entities
             CannonballSpriteInstance.RelativeYAcceleration = -(CannonballSpriteInstance.RelativeYVelocity / time) * 2;
         }
 
-        internal void HitSurface()
-        {
-            Instructions.Clear();
-
-            // broadcast this so that a collision can occur at screen level
-            Destroy();
-        }
     }
 }
