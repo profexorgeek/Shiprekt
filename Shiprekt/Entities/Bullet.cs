@@ -10,15 +10,19 @@ using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Math.Geometry;
 using Shiprekt.Utilities;
 using Shiprekt.Factories;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Shiprekt.Entities
 {
     public partial class Bullet
     {
-        public int TeamIndex { get; set; }
+        #region Fields/Properties
         
+        public int TeamIndex { get; set; }
 
         public Ship Owner { get; set; }
+
+        #endregion
 
         /// <summary>
         /// Initialization logic which is execute only one time for this Entity (unless the Entity is pooled).
@@ -34,6 +38,20 @@ namespace Shiprekt.Entities
         {
             CannonballSpriteInstance.RelativeYVelocity = Math.Max(-100, CannonballSpriteInstance.RelativeYVelocity);
         }
+
+        internal void HitSurface()
+        {
+            Instructions.Clear();
+
+            var randomInt = FlatRedBallServices.Random.Next(2) + 1;
+            var file = (SoundEffect)GetFile($"cannonballsink0{randomInt}");
+
+            file.Play();
+
+            // broadcast this so that a collision can occur at screen level
+            Destroy();
+        }
+
 
         private void CustomDestroy()
         {
@@ -54,12 +72,5 @@ namespace Shiprekt.Entities
             CannonballSpriteInstance.RelativeYAcceleration = -(CannonballSpriteInstance.RelativeYVelocity / time) * 2;
         }
 
-        internal void HitSurface()
-        {
-            Instructions.Clear();
-
-            // broadcast this so that a collision can occur at screen level
-            Destroy();
-        }
     }
 }

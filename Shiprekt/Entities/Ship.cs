@@ -192,13 +192,25 @@ namespace Shiprekt.Entities
             bullet.TeamIndex = this.TeamIndex;
             bullet.Owner = this;
 
-            var bulletDuration = Bullet.BulletDistance / Bullet.BulletSpeed;
-            bullet.Call(() => BulletHit(bullet)).After(bulletDuration);
-            bullet.Call(bullet.HitSurface).After(bulletDuration);
+            SetFutureBulletDestroyLogic(bullet);
 
             PlayShotSound();
 
             timeUntilNextShotAvailable = SecondsBetweenShotsMin;
+        }
+
+        private void SetFutureBulletDestroyLogic(Bullet bullet)
+        {
+            var bulletDuration = Bullet.BulletDistance / Bullet.BulletSpeed;
+
+            bullet.Call(() =>
+            {
+                BulletHit(bullet);
+                bullet.HitSurface();
+            })
+            .After(bulletDuration);
+
+
         }
 
         private void PlayShotSound()

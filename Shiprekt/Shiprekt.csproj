@@ -259,6 +259,16 @@
     <Content Include="Content\shader.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="..\builtxnbs\desktopgl\entities\bullet\sfx\cannonballsink01.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>cannonballsink01</Name>
+      <Link>content\entities\bullet\sfx\cannonballsink01.xnb</Link>
+    </None>
+    <None Include="..\builtxnbs\desktopgl\entities\bullet\sfx\cannonballsink02.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>cannonballsink02</Name>
+      <Link>content\entities\bullet\sfx\cannonballsink02.xnb</Link>
+    </None>
     <None Include="..\builtxnbs\desktopgl\entities\ship\sfx\cannon01.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>cannon01</Name>
