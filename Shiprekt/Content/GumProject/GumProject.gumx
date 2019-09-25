@@ -29,6 +29,10 @@
     <ElementType>Component</ElementType>
   </ComponentReference>
   <ComponentReference>
+    <Name>PauseComponent</Name>
+    <ElementType>Component</ElementType>
+  </ComponentReference>
+  <ComponentReference>
     <Name>ShipFront</Name>
     <ElementType>Component</ElementType>
   </ComponentReference>

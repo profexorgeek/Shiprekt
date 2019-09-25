@@ -191,6 +191,12 @@
       <SetsValue>false</SetsValue>
     </Variable>
     <Variable>
+      <Type>bool</Type>
+      <Name>PauseComponentInstance.Visible</Name>
+      <Value xsi:type="xsd:boolean">true</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
       <IsFile>true</IsFile>
       <Type>string</Type>
       <Name>TextInstance.CustomFontFile</Name>
@@ -574,6 +580,11 @@
   <Instance>
     <Name>WindDirectionDisplayInstance</Name>
     <BaseType>WindDirectionDisplay</BaseType>
+    <DefinedByBase>false</DefinedByBase>
+  </Instance>
+  <Instance>
+    <Name>PauseComponentInstance</Name>
+    <BaseType>PauseComponent</BaseType>
     <DefinedByBase>false</DefinedByBase>
   </Instance>
 </ScreenSave>

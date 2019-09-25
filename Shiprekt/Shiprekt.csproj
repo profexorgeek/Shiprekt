@@ -155,6 +155,8 @@
       <DependentUpon>MainMenuGumRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\NineSliceRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\PauseComponentRuntime.cs" />
+    <Compile Include="GumRuntimes\PauseComponentRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\PolygonRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\RectangleRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\ShipFrontRuntime.cs" />
@@ -382,6 +384,10 @@
     <None Include="content\gumproject\components\joinableshipandstatus.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>joinableshipandstatus</Name>
+    </None>
+    <None Include="content\gumproject\components\pausecomponent.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>pausecomponent</Name>
     </None>
     <None Include="content\gumproject\components\shipfront.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

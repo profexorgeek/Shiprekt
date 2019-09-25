@@ -77,6 +77,7 @@ namespace Shiprekt.Screens
 
             InitializeCollision();
 
+            PauseComponentInstance.Visible = false;
         }
 
         private void PositionShipsOnSpawnPoints()
@@ -336,6 +337,7 @@ namespace Shiprekt.Screens
                 if(ShipList.Any(item => item.InputDevice.DefaultPauseInput.WasJustPressed))
                 {
                     UnpauseThisScreen();
+                    PauseComponentInstance.Visible = false;
                 }
             }
             else
@@ -343,6 +345,7 @@ namespace Shiprekt.Screens
                 if (ShipList.Any(item => item.InputDevice.DefaultPauseInput.WasJustPressed))
                 {
                     PauseThisScreen();
+                    PauseComponentInstance.Visible = true;
                 }
             }
         }
