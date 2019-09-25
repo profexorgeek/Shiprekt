@@ -230,6 +230,9 @@ namespace Shiprekt.Screens
             var shotMissEffect = ShotMissEffectFactory.CreateNew();
             shotMissEffect.IsGroundHit = hitGround;
             shotMissEffect.TriggerEffect(bullet.X, bullet.Y, bullet.RotationZ);
+
+            bullet.HitSurface(hitGround ? SurfaceType.Ground : SurfaceType.Water);
+
         }
 
         internal void OffsetTilemapLayers()

@@ -206,7 +206,6 @@ namespace Shiprekt.Entities
             bullet.Call(() =>
             {
                 BulletHit(bullet);
-                bullet.HitSurface();
             })
             .After(bulletDuration);
 

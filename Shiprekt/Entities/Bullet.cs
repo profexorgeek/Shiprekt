@@ -14,6 +14,12 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace Shiprekt.Entities
 {
+    public enum SurfaceType
+    {
+        Water,
+        Ground
+    }
+
     public partial class Bullet
     {
         #region Fields/Properties
@@ -39,14 +45,23 @@ namespace Shiprekt.Entities
             CannonballSpriteInstance.RelativeYVelocity = Math.Max(-100, CannonballSpriteInstance.RelativeYVelocity);
         }
 
-        internal void HitSurface()
+        internal void HitSurface(SurfaceType surfaceType)
         {
             Instructions.Clear();
 
             var randomInt = FlatRedBallServices.Random.Next(2) + 1;
-            var file = (SoundEffect)GetFile($"cannonballsink0{randomInt}");
+            SoundEffect file = null;
 
-            file.Play();
+            if(surfaceType == SurfaceType.Water)
+            {
+                file = (SoundEffect)GetFile($"cannonballsink0{randomInt}");
+            }
+            else
+            {
+                // do we have ground hits sfx? Not yet, but if we do, add the logic here to pick one of the sounds
+            }
+
+            file?.Play();
 
             // broadcast this so that a collision can occur at screen level
             Destroy();
