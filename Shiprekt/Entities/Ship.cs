@@ -266,7 +266,7 @@ namespace Shiprekt.Entities
                 }
                 else
                 {
-                    FireSmokeEmitterInstance.IsEmitting = Health == 1 ;
+                    FireSmokeEmitterInstance.IsEmitting = Health <= 21 ;
 
                     // didn't die, so just play a sound:
                     var endingInt = FlatRedBallServices.Random.Next(3) + 1;
