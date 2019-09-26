@@ -16,29 +16,40 @@ namespace Shiprekt.Entities.Effects
     {
         // If we ever get more than dirt/water, this might need to be an enum system.
         public bool IsGroundHit { get; set; } = false;
-        const string GroundMissChainName = "SmokeParticles";
-        const string WaterMissChainName = "WakeParticle2";
+        const string GroundMissChainName = "CannonballMissDirt";
+        const string WaterMissWakeChainName = "CannonballMissWater";
+        const string WaterMissSprayChainName = "WakeParticle2";
         float lifeSecondsRemaining;
-        EasyEmitter waterShotMissEmitter;
+        EasyEmitter waterShotMissSprayEmitter;
+        EasyEmitter waterShotMissWakeEmitter;
         EasyEmitter groundShotMissEmitter;
 
         private void CustomInitialize()
         {
             lifeSecondsRemaining = EffectDurationSeconds;
 
-            waterShotMissEmitter = EasyEmitter.BuildExplosion(GlobalContent.EffectChains[WaterMissChainName], EmitterPower.Tiny, 6f, 7f, 3f, 16f);
-            waterShotMissEmitter.AttachTo(this, false);
+            waterShotMissSprayEmitter = EasyEmitter.BuildExplosion(GlobalContent.EffectChains[WaterMissWakeChainName], EmitterPower.Tiny, 6f, 7f, 3f, 16f);
+            waterShotMissSprayEmitter.AttachTo(this, false);
+
+            // override some core emitter settings for spray
+            waterShotMissSprayEmitter.NumberPerEmission = 10;
+            waterShotMissSprayEmitter.EmissionSettings.Alpha = 0.25f;
+            waterShotMissSprayEmitter.EmissionSettings.RotationZVelocity = 0;
+            waterShotMissSprayEmitter.EmissionSettings.RotationZVelocityRange = 0;
+
+            waterShotMissWakeEmitter = EasyEmitter.BuildExplosion(GlobalContent.EffectChains[WaterMissSprayChainName], EmitterPower.Tiny, 6f, 7f, 3f, 16f);
+            waterShotMissWakeEmitter.AttachTo(this, false);
 
             // override some core emitter settings for ripples
-            waterShotMissEmitter.NumberPerEmission = 10;
-            waterShotMissEmitter.EmissionSettings.Alpha = 0.25f;
-            waterShotMissEmitter.EmissionSettings.RotationZVelocity = 0;
-            waterShotMissEmitter.EmissionSettings.RotationZVelocityRange = 0;
+            waterShotMissWakeEmitter.NumberPerEmission = 1;
+            waterShotMissWakeEmitter.EmissionSettings.Alpha = 0.25f;
+            waterShotMissWakeEmitter.EmissionSettings.RotationZVelocity = 0;
+            waterShotMissWakeEmitter.EmissionSettings.RotationZVelocityRange = 0;
 
             groundShotMissEmitter = EasyEmitter.BuildExplosion(GlobalContent.EffectChains[GroundMissChainName], EmitterPower.Tiny, 6f, 7f, 3f, 16f);
             groundShotMissEmitter.AttachTo(this, false);
 
-            // override some core emitter settings for ripples
+            // override some core emitter settings for "poof"
             groundShotMissEmitter.NumberPerEmission = 10;
             groundShotMissEmitter.EmissionSettings.Alpha = 0.3f;
             groundShotMissEmitter.EmissionSettings.RotationZVelocity = 0;
@@ -47,7 +58,7 @@ namespace Shiprekt.Entities.Effects
 
         private void CustomActivity()
         {
-            waterShotMissEmitter.TimedEmit();
+            waterShotMissSprayEmitter.TimedEmit();
             DoLifeCountdown();
         }
 
@@ -77,7 +88,8 @@ namespace Shiprekt.Entities.Effects
             else
             {
                 Z = 0;
-                waterShotMissEmitter.Emit();
+                waterShotMissSprayEmitter.Emit();
+                waterShotMissWakeEmitter.Emit();
             }
         }
 
