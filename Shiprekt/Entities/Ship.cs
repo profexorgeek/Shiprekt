@@ -76,6 +76,8 @@ namespace Shiprekt.Entities
             this.ForwardDirection = RacingDirection.Right;
             timeUntilNextShotAvailable = 0;
 
+            this.FireSmokeEmitterInstance.IsEmitting = false;
+
             InitializeMovementValues();
 
             Health = ShipEntityValuesInstance.MaxHealth;
@@ -257,12 +259,15 @@ namespace Shiprekt.Entities
                 Health -= damageAmount;
                 if (Health <= 0)
                 {
+                    FireSmokeEmitterInstance.IsEmitting = false;
                     JoinedPlayerManager.AwardKill(whoDealtDamage.InputDevice);
                     JoinedPlayerManager.RecordDeath(this.InputDevice);
                     Die();
                 }
                 else
                 {
+                    FireSmokeEmitterInstance.IsEmitting = Health == 1 ;
+
                     // didn't die, so just play a sound:
                     var endingInt = FlatRedBallServices.Random.Next(3) + 1;
 

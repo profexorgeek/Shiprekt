@@ -77,6 +77,10 @@
     <Compile Include="Entities\Effects\CannonballEffect.Generated.cs">
       <DependentUpon>CannonballEffect.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Effects\FireSmokeEmitter.cs" />
+    <Compile Include="Entities\Effects\FireSmokeEmitter.Generated.cs">
+      <DependentUpon>FireSmokeEmitter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Effects\ParticleSprite.cs" />
     <Compile Include="Entities\Effects\ShipDeathEffect.cs" />
     <Compile Include="Entities\Effects\ShipDeathEffect.Generated.cs">
@@ -156,7 +160,9 @@
     </Compile>
     <Compile Include="GumRuntimes\NineSliceRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\PauseComponentRuntime.cs" />
-    <Compile Include="GumRuntimes\PauseComponentRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\PauseComponentRuntime.Generated.cs">
+      <DependentUpon>PauseComponentRuntime.cs</DependentUpon>
+    </Compile>
     <Compile Include="GumRuntimes\PolygonRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\RectangleRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\ShipFrontRuntime.cs" />
