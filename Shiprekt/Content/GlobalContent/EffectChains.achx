@@ -147,4 +147,26 @@
       <BottomCoordinate>32</BottomCoordinate>
     </Frame>
   </AnimationChain>
+  <AnimationChain>
+    <Name>CannonballMissWater</Name>
+    <Frame>
+      <TextureName>shiprekt.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>82</LeftCoordinate>
+      <RightCoordinate>88</RightCoordinate>
+      <TopCoordinate>0</TopCoordinate>
+      <BottomCoordinate>6</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>CannonballMissDirt</Name>
+    <Frame>
+      <TextureName>shiprekt.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>80</LeftCoordinate>
+      <RightCoordinate>88</RightCoordinate>
+      <TopCoordinate>9</TopCoordinate>
+      <BottomCoordinate>16</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
 </AnimationChainArraySave>
