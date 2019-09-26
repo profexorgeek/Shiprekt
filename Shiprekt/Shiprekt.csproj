@@ -154,6 +154,8 @@
     <Compile Include="GumRuntimes\Level2GumRuntime.Generated.cs">
       <DependentUpon>Level2GumRuntime.cs</DependentUpon>
     </Compile>
+    <Compile Include="GumRuntimes\Level3GumRuntime.cs" />
+    <Compile Include="GumRuntimes\Level3GumRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\MainMenuGumRuntime.cs" />
     <Compile Include="GumRuntimes\MainMenuGumRuntime.Generated.cs">
       <DependentUpon>MainMenuGumRuntime.cs</DependentUpon>
@@ -203,6 +205,10 @@
     <Compile Include="Screens\Level2.cs" />
     <Compile Include="Screens\Level2.Generated.cs">
       <DependentUpon>Level2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Level3.cs" />
+    <Compile Include="Screens\Level3.Generated.cs">
+      <DependentUpon>Level3.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\MainMenu.cs" />
     <Compile Include="Screens\MainMenu.Generated.cs">
@@ -372,6 +378,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Level2Map</Name>
     </None>
+    <None Include="content\globalcontent\levels\level3map.tmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Level3Map</Name>
+    </None>
     <None Include="content\globalcontent\levels\shiprekttiles.tsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>shiprekttiles</Name>
@@ -430,6 +440,10 @@
     <None Include="content\gumproject\screens\level2gum.gusx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Level2Gum</Name>
+    </None>
+    <None Include="content\gumproject\screens\level3gum.gusx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Level3Gum</Name>
     </None>
     <None Include="content\gumproject\screens\mainmenugum.gusx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

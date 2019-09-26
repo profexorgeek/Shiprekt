@@ -670,6 +670,48 @@
         <string>GLUE</string>
       </Tags>
       <Source>GLUE</Source>
+      <BaseScreen>Screens\GameScreen</BaseScreen>
+      <Name>Screens\Level3</Name>
+      <ReferencedFiles>
+        <ReferencedFileSave>
+          <Name>gumproject/Screens/Level3Gum.gusx</Name>
+          <IsSharedStatic>true</IsSharedStatic>
+          <RuntimeType>Shiprekt.GumRuntimes.Level3GumRuntime</RuntimeType>
+          <ProjectsToExcludeFrom />
+        </ReferencedFileSave>
+        <ReferencedFileSave>
+          <Name>GlobalContent/Levels/Level3Map.tmx</Name>
+          <IsSharedStatic>true</IsSharedStatic>
+          <RuntimeType>FlatRedBall.TileGraphics.LayeredTileMap</RuntimeType>
+          <ProjectsToExcludeFrom />
+        </ReferencedFileSave>
+      </ReferencedFiles>
+      <NamedObjects>
+        <NamedObjectSave>
+          <Properties>
+            <PropertySave>
+              <Name>SourceType</Name>
+              <ValueAsObject xsi:type="SourceType">File</ValueAsObject>
+            </PropertySave>
+          </Properties>
+          <SourceType>File</SourceType>
+          <SourceFile>GlobalContent/Levels/Level3Map.tmx</SourceFile>
+          <SourceName>Entire File (LayeredTileMap)</SourceName>
+          <SourceClassType>LayeredTileMap</SourceClassType>
+          <InstanceName>Map</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <AddToManagers>false</AddToManagers>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <DefinedByBase>true</DefinedByBase>
+          <IndependentOfCamera>true</IndependentOfCamera>
+        </NamedObjectSave>
+      </NamedObjects>
+    </ScreenSave>
+    <ScreenSave>
+      <Tags>
+        <string>GLUE</string>
+      </Tags>
+      <Source>GLUE</Source>
       <Name>Screens\MainMenu</Name>
       <ReferencedFiles>
         <ReferencedFileSave>
