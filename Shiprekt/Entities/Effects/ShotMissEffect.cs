@@ -59,6 +59,8 @@ namespace Shiprekt.Entities.Effects
         private void CustomActivity()
         {
             waterShotMissSprayEmitter.TimedEmit();
+            waterShotMissWakeEmitter.TimedEmit();
+            groundShotMissEmitter.TimedEmit();
             DoLifeCountdown();
         }
 
