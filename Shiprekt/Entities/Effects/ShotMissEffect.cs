@@ -28,23 +28,23 @@ namespace Shiprekt.Entities.Effects
         {
             lifeSecondsRemaining = EffectDurationSeconds;
 
-            waterShotMissSprayEmitter = EasyEmitter.BuildExplosion(GlobalContent.EffectChains[WaterMissWakeChainName], EmitterPower.Tiny, 6f, 7f, 3f, 16f);
-            waterShotMissSprayEmitter.AttachTo(this, false);
-
-            // override some core emitter settings for spray
-            waterShotMissSprayEmitter.NumberPerEmission = 10;
-            waterShotMissSprayEmitter.EmissionSettings.Alpha = 0.25f;
-            waterShotMissSprayEmitter.EmissionSettings.RotationZVelocity = 0;
-            waterShotMissSprayEmitter.EmissionSettings.RotationZVelocityRange = 0;
-
-            waterShotMissWakeEmitter = EasyEmitter.BuildExplosion(GlobalContent.EffectChains[WaterMissSprayChainName], EmitterPower.Tiny, 6f, 7f, 3f, 16f);
+            waterShotMissWakeEmitter = EasyEmitter.BuildExplosion(GlobalContent.EffectChains[WaterMissWakeChainName], EmitterPower.Tiny, 6f, 7f, 3f, 16f);
             waterShotMissWakeEmitter.AttachTo(this, false);
 
-            // override some core emitter settings for ripples
-            waterShotMissWakeEmitter.NumberPerEmission = 1;
+            // override some core emitter settings for spray
+            waterShotMissWakeEmitter.NumberPerEmission = 10;
             waterShotMissWakeEmitter.EmissionSettings.Alpha = 0.25f;
             waterShotMissWakeEmitter.EmissionSettings.RotationZVelocity = 0;
             waterShotMissWakeEmitter.EmissionSettings.RotationZVelocityRange = 0;
+
+            waterShotMissSprayEmitter = EasyEmitter.BuildExplosion(GlobalContent.EffectChains[WaterMissSprayChainName], EmitterPower.Tiny, 6f, 7f, 3f, 16f);
+            waterShotMissSprayEmitter.AttachTo(this, false);
+
+            // override some core emitter settings for ripples
+            waterShotMissSprayEmitter.NumberPerEmission = 1;
+            waterShotMissSprayEmitter.EmissionSettings.Alpha = 0.25f;
+            waterShotMissSprayEmitter.EmissionSettings.RotationZVelocity = 0;
+            waterShotMissSprayEmitter.EmissionSettings.RotationZVelocityRange = 0;
 
             groundShotMissEmitter = EasyEmitter.BuildExplosion(GlobalContent.EffectChains[GroundMissChainName], EmitterPower.Tiny, 6f, 7f, 3f, 16f);
             groundShotMissEmitter.AttachTo(this, false);
