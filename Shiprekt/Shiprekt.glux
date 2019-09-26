@@ -2160,7 +2160,7 @@
           </Properties>
           <Name>EmissionFrequency</Name>
           <Type>float</Type>
-          <DefaultValue xsi:type="xsd:float">0.15</DefaultValue>
+          <DefaultValue xsi:type="xsd:float">0.1</DefaultValue>
           <IsShared>true</IsShared>
         </CustomVariable>
       </CustomVariables>
@@ -2177,7 +2177,7 @@
           </Properties>
           <SourceType>File</SourceType>
           <SourceFile>GlobalContent/EffectChains.achx</SourceFile>
-          <SourceName>SmokeParticles (AnimationChain)</SourceName>
+          <SourceName>FireSmokeParticles (AnimationChain)</SourceName>
           <InstanceName>SmokeParticles</InstanceName>
           <AttachToContainer>true</AttachToContainer>
           <GenerateTimedEmit>true</GenerateTimedEmit>

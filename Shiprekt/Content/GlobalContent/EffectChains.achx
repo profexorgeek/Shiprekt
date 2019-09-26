@@ -169,4 +169,31 @@
       <BottomCoordinate>16</BottomCoordinate>
     </Frame>
   </AnimationChain>
+  <AnimationChain>
+    <Name>FireSmokeParticles</Name>
+    <Frame>
+      <TextureName>shiprekt.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>288</LeftCoordinate>
+      <RightCoordinate>304</RightCoordinate>
+      <TopCoordinate>16</TopCoordinate>
+      <BottomCoordinate>32</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>shiprekt.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>288</LeftCoordinate>
+      <RightCoordinate>304</RightCoordinate>
+      <TopCoordinate>0</TopCoordinate>
+      <BottomCoordinate>16</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>shiprekt.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>303</LeftCoordinate>
+      <RightCoordinate>319</RightCoordinate>
+      <TopCoordinate>2</TopCoordinate>
+      <BottomCoordinate>18</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
 </AnimationChainArraySave>

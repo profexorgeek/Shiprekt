@@ -17,9 +17,9 @@ namespace Shiprekt.Entities.Effects
         double lastEmitTime;
         SpriteList emittedSprites = new SpriteList();
 
-        Color darkColor = new Color(.2f, .2f, .2f);
-        Color yellowColor = new Color(1f, 1f, 0f);
-        Color redColor = new Color(1f, 0f, 0f);
+        Color darkColor = new Color(1f, 1f, 1f);
+        Color yellowColor = new Color(1f, 1f, 0.5f);
+        Color redColor = new Color(1f, 0.5f, 0.5f);
 
         float particleLife = 5;
 
@@ -89,19 +89,20 @@ namespace Shiprekt.Entities.Effects
             sprite.CurrentFrameIndex = FlatRedBallServices.Random.Next(SmokeParticles.Count);
 
             sprite.TimeCreated = TimeManager.CurrentTime;
-            sprite.TextureScale = 2;
+            sprite.TextureScale = 1;
             sprite.UpdateToCurrentAnimationFrame();
             sprite.TextureScale = -1;
-            sprite.ScaleXVelocity = 1.4f;
-            sprite.ScaleYVelocity = 1.4f;
+            sprite.ScaleXVelocity = 1.25f;
+            sprite.ScaleYVelocity = 1.25f;
             sprite.X = this.X;
             sprite.Y = this.Y;
             sprite.Z = this.Z;
-            sprite.ZVelocity = 22;
+            sprite.ZVelocity = 50;
             sprite.ColorOperation = FlatRedBall.Graphics.ColorOperation.Modulate;
             sprite.Drag = 0;
             sprite.Detach();
-            sprite.RotationZVelocity = FlatRedBallServices.Random.Between(.2f, .8f);
+            sprite.RotationZ = FlatRedBallServices.Random.Between(-3.14f, 3.14f);
+            sprite.RotationZVelocity = FlatRedBallServices.Random.Between(-0.9f, 0.9f);
 
             this.emittedSprites.Add(sprite);
 
