@@ -14,7 +14,6 @@ namespace Shiprekt.Entities.Effects
     public partial class CannonballEffect
     {
         float timeToNextEmit;
-        List<Sprite> particles = new List<Sprite>();
         float timeToGenerateSprites;
 
         public float EffectStrength { get; set; } = 1f;
@@ -32,15 +31,10 @@ namespace Shiprekt.Entities.Effects
             {
                 DoEmission();
             }
-            DoSpriteRemoval();
         }
 
         private void CustomDestroy()
         {
-            for (var i = particles.Count - 1; i >= 0; i -= 1)
-            {
-                SpriteManager.RemoveSprite(particles[i]);
-            }
         }
 
         private static void CustomLoadStaticContent(string contentManagerName)
@@ -57,26 +51,14 @@ namespace Shiprekt.Entities.Effects
             {
                 for (var i = 0; i < EmissionCount; i++)
                 {
-                    particles.Add(CreateWakeParticle());
+                    CreateSmokeParticle();
                 }
                 timeToNextEmit = EmissionFreqSeconds;
             }
         }
 
-        void DoSpriteRemoval()
-        {
-            for (var i = particles.Count - 1; i > -1; i--)
-            {
-                if (particles[i].Alpha <= 0)
-                {
-                    var particle = particles[i];
-                    particles.Remove(particle);
-                    SpriteManager.RemoveSprite(particle);
-                }
-            }
-        }
 
-        Sprite CreateWakeParticle()
+        Sprite CreateSmokeParticle()
         {
             var chains = GlobalContent.EffectChains;
             var rand = FlatRedBallServices.Random;
@@ -102,6 +84,8 @@ namespace Shiprekt.Entities.Effects
             particle.Y = this.Y;
             particle.Z = 3f;
             particle.TextureScale = StartScale;
+
+            SpriteManager.RemoveSpriteAtTime(particle, ParticleLifeSeconds);
 
             return particle;
         }
