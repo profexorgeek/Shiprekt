@@ -692,6 +692,12 @@ namespace Shiprekt.Screens
                         ShipList[i].Die();
                     }
                 }
+
+                // CTRL + D - damage the first ship
+                if(kb.KeyReleased(Keys.D))
+                {
+                    ShipList[0].TakeDamage(Bullet.DamageToDeal, null);
+                }
             }
         }
 
