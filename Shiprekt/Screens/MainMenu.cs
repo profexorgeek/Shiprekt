@@ -155,7 +155,7 @@ namespace Shiprekt.Screens
 
             var bullet = BulletFactory.CreateNew();
             var worldPos = new Vector3();
-            var z = 10;
+            var z = 20;
             var bulletVelocity = 600f;
 
             Vector2 gumPos = new Vector2();

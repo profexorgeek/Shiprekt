@@ -190,6 +190,7 @@ namespace Shiprekt.Entities
         internal void Shoot(Vector2 bulletDirection)
         {
             var bullet = Factories.BulletFactory.CreateNew(this.X, this.Y);
+            bullet.InitializeArcAndShadow(); 
 
             bullet.Velocity = (bulletDirection * Bullet.BulletSpeed).ToVector3();
             bullet.TeamIndex = this.TeamIndex;

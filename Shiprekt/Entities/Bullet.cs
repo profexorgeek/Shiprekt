@@ -36,8 +36,7 @@ namespace Shiprekt.Entities
         /// added to managers will not have this method called.
         /// </summary>
         private void CustomInitialize()
-        {
-            InitializeArc();
+        {           
         }
 
         private void CustomActivity()
@@ -80,7 +79,7 @@ namespace Shiprekt.Entities
 
         }
 
-        private void InitializeArc()
+        public void InitializeArcAndShadow()
         {
             CannonballSpriteInstance.RelativeYVelocity = 100;
             var time = BulletDistance / BulletSpeed;
