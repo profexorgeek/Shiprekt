@@ -515,6 +515,11 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
+      <Type>RockingState</Type>
+      <Name>RockingState</Name>
+      <SetsValue>false</SetsValue>
+    </Variable>
+    <Variable>
       <Type>SailDesignState</Type>
       <Name>ShipFrontInstance.SailDesignState</Name>
       <Value xsi:type="xsd:string">Green</Value>
@@ -524,13 +529,37 @@
     <Variable>
       <Type>float</Type>
       <Name>ShipFrontInstance.X</Name>
-      <Value xsi:type="xsd:float">20</Value>
+      <Value xsi:type="xsd:float">0</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>HorizontalAlignment</Type>
+      <Name>ShipFrontInstance.X Origin</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>ShipFrontInstance.X Units</Name>
+      <Value xsi:type="xsd:int">6</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
       <Name>ShipFrontInstance.Y</Name>
-      <Value xsi:type="xsd:float">97</Value>
+      <Value xsi:type="xsd:float">0</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>VerticalAlignment</Type>
+      <Name>ShipFrontInstance.Y Origin</Name>
+      <Value xsi:type="xsd:int">2</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>ShipFrontInstance.Y Units</Name>
+      <Value xsi:type="xsd:int">5</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -682,6 +711,38 @@
         <Type>bool</Type>
         <Name>ShipFrontInstance.Visible</Name>
         <Value xsi:type="xsd:boolean">false</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+    </State>
+  </Category>
+  <Category>
+    <Name>Rocking</Name>
+    <State>
+      <Name>None</Name>
+      <Variable>
+        <Type>float</Type>
+        <Name>ShipFrontInstance.Rotation</Name>
+        <Value xsi:type="xsd:float">0</Value>
+        <Category>Flip and Rotation</Category>
+        <SetsValue>true</SetsValue>
+      </Variable>
+    </State>
+    <State>
+      <Name>Left</Name>
+      <Variable>
+        <Type>float</Type>
+        <Name>ShipFrontInstance.Rotation</Name>
+        <Value xsi:type="xsd:float">25</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+    </State>
+    <State>
+      <Name>Right</Name>
+      <Variable>
+        <Type>float</Type>
+        <Name>ShipFrontInstance.Rotation</Name>
+        <Value xsi:type="xsd:float">-25</Value>
+        <Category>Flip and Rotation</Category>
         <SetsValue>true</SetsValue>
       </Variable>
     </State>

@@ -171,9 +171,20 @@ namespace Shiprekt.Screens
             bullet.Position = worldPos;
             bullet.YVelocity = 600;
             bullet.YAcceleration = -600;
-            
-            if (left) bullet.XVelocity = -bulletVelocity;
-            else bullet.XVelocity = bulletVelocity;
+
+            if (left)
+            {
+                bullet.XVelocity = -bulletVelocity;
+                ship.StopAnimations();
+                ship.RockRightAnimation.Play(); 
+            }
+            else
+            {
+                bullet.XVelocity = bulletVelocity;
+                ship.StopAnimations(); 
+                ship.RockLeftAnimation.Play(); 
+            }
+
             bullet.Call(bullet.Destroy).After(3);             
         }
 
