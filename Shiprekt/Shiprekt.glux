@@ -740,7 +740,42 @@
           <RuntimeType>Microsoft.Xna.Framework.Media.Song</RuntimeType>
           <ProjectsToExcludeFrom />
         </ReferencedFileSave>
+        <ReferencedFileSave>
+          <Name>Entities/Ship/Sfx/cannon01.wav</Name>
+          <IsSharedStatic>true</IsSharedStatic>
+          <RuntimeType>Microsoft.Xna.Framework.Audio.SoundEffect</RuntimeType>
+          <ProjectsToExcludeFrom />
+        </ReferencedFileSave>
+        <ReferencedFileSave>
+          <Name>Entities/Ship/Sfx/cannon02.wav</Name>
+          <IsSharedStatic>true</IsSharedStatic>
+          <RuntimeType>Microsoft.Xna.Framework.Audio.SoundEffect</RuntimeType>
+          <ProjectsToExcludeFrom />
+        </ReferencedFileSave>
+        <ReferencedFileSave>
+          <Name>Entities/Ship/Sfx/cannon03.wav</Name>
+          <IsSharedStatic>true</IsSharedStatic>
+          <RuntimeType>Microsoft.Xna.Framework.Audio.SoundEffect</RuntimeType>
+          <ProjectsToExcludeFrom />
+        </ReferencedFileSave>
       </ReferencedFiles>
+      <NamedObjects>
+        <NamedObjectSave>
+          <Properties>
+            <PropertySave>
+              <Name>SourceType</Name>
+              <ValueAsObject xsi:type="SourceType">FlatRedBallType</ValueAsObject>
+            </PropertySave>
+          </Properties>
+          <SourceType>FlatRedBallType</SourceType>
+          <SourceClassType>PositionedObjectList&lt;T&gt;</SourceClassType>
+          <SourceClassGenericType>Entities\Bullet</SourceClassGenericType>
+          <InstanceName>BulletList</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+        </NamedObjectSave>
+      </NamedObjects>
     </ScreenSave>
     <ScreenSave>
       <Tags>

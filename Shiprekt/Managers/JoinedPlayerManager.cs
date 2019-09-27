@@ -49,6 +49,12 @@ namespace Shiprekt.Managers
             }
         }
 
+        public static JoinedPlayer GetPlayer(IInputDevice device)
+        {
+            var player = joinedPlayers.FirstOrDefault(item => item.InputDevice == device);
+            return player;
+        }
+
         internal static void ResetGameStats()
         {
             foreach(var player in JoinedPlayers)

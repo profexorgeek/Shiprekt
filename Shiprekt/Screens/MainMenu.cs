@@ -14,6 +14,10 @@ using FlatRedBall.Localization;
 using FlatRedBall.Gui;
 using Shiprekt.Managers;
 using Shiprekt.DataTypes;
+using Microsoft.Xna.Framework;
+using Shiprekt.Factories;
+using FlatRedBall.Debugging;
+using Shiprekt.Entities;
 
 namespace Shiprekt.Screens
 {
@@ -64,6 +68,12 @@ namespace Shiprekt.Screens
 
         void CustomActivity(bool firstTimeCalled)
         {
+            JoinActivity();
+            ShipFiringActivity();
+        }
+
+        private void JoinActivity()
+        {
             int minimumPlayers = 1;
 
             foreach (var gamePad in InputManager.Xbox360GamePads)
@@ -87,8 +97,6 @@ namespace Shiprekt.Screens
 
             }
 
-
-
             var keyboard = InputManager.Keyboard;
 
             if (!JoinedPlayerManager.IsJoined(keyboard) && keyboard.AnyKeyPushed())
@@ -106,6 +114,76 @@ namespace Shiprekt.Screens
                 GoToGameScreen();
             }
 
+        }
+
+        private void ShipFiringActivity()
+        {
+            foreach (var gamePad in InputManager.Xbox360GamePads)
+            {
+                var boomLeft = gamePad.ButtonPushed(Xbox360GamePad.Button.LeftTrigger);
+                var boomRight = gamePad.ButtonPushed(Xbox360GamePad.Button.RightTrigger);
+                
+                if (boomLeft || boomRight)
+                {
+                    var player = JoinedPlayerManager.GetPlayer(gamePad); 
+                    if (player != null)
+                    {
+                        Shoot(boomLeft, player);
+                        PlayShotSound(); 
+                    }
+                }
+
+            }
+            var keyboard = InputManager.Keyboard;
+            var betterPlayer = JoinedPlayerManager.GetPlayer(keyboard); 
+            if (betterPlayer != null)
+            {
+                var boomLeft = keyboard.KeyPushed(Microsoft.Xna.Framework.Input.Keys.Q) || InputManager.Mouse.ButtonPushed(Mouse.MouseButtons.LeftButton);
+                var boomRight = keyboard.KeyPushed(Microsoft.Xna.Framework.Input.Keys.E) || InputManager.Mouse.ButtonPushed(Mouse.MouseButtons.RightButton);
+                if (boomLeft || boomRight)
+                {
+                    Shoot(boomLeft, betterPlayer);
+                    PlayShotSound();
+                }
+            }
+        }
+
+        void Shoot(bool left, JoinedPlayer player)
+        {
+            var ship = MainMenuGum.JoinedPlayerContainer.Children
+            .FirstOrDefault(item => item.SailDesignState == player.ShipType.ToGum());
+
+            var bullet = BulletFactory.CreateNew();
+            var worldPos = new Vector3();
+            var z = 10;
+            var bulletVelocity = 600f;
+
+            Vector2 gumPos = new Vector2();
+            if (left)
+                gumPos = ship.GunLeftAbsolutePosition;
+            else
+                gumPos = ship.GunRightAbsolutePosition; 
+
+            worldPos.X = Camera.Main.WorldXAt(gumPos.X, z) + ship.GetAbsoluteWidth() / 2;
+            worldPos.Y = Camera.Main.WorldYAt(gumPos.Y, z) - ship.GetAbsoluteHeight() / 2;
+            worldPos.Z = z;
+
+            bullet.Position = worldPos;
+            bullet.YVelocity = 600;
+            bullet.YAcceleration = -600;
+            if (left) bullet.XVelocity = -bulletVelocity;
+            else bullet.XVelocity = bulletVelocity;
+            bullet.Call(bullet.Destroy).After(3);             
+        }
+
+        private void PlayShotSound()
+        {
+            switch (FlatRedBallServices.Random.Next(3))
+            {
+                case 0: cannon01.Play(); break;
+                case 1: cannon02.Play(); break;
+                case 2: cannon03.Play(); break;
+            }
         }
 
         private void JoinWith(IInputDevice gamePad)

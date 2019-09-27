@@ -155,7 +155,9 @@
       <DependentUpon>Level2GumRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\Level3GumRuntime.cs" />
-    <Compile Include="GumRuntimes\Level3GumRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\Level3GumRuntime.Generated.cs">
+      <DependentUpon>Level3GumRuntime.cs</DependentUpon>
+    </Compile>
     <Compile Include="GumRuntimes\MainMenuGumRuntime.cs" />
     <Compile Include="GumRuntimes\MainMenuGumRuntime.Generated.cs">
       <DependentUpon>MainMenuGumRuntime.cs</DependentUpon>

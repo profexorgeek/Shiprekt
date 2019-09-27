@@ -32,6 +32,7 @@ namespace Shiprekt.Entities
         }
         float SecondsToNextStateChange;
         float CurrentFlightSpeed;
+        bool FollowingShip = false; 
 
         /// <summary>
         /// Initialization logic which is execute only one time for this Entity (unless the Entity is pooled).

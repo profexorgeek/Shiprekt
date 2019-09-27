@@ -153,6 +153,90 @@
     </Variable>
     <Variable>
       <Type>float</Type>
+      <Name>GunLeft.Height</Name>
+      <Value xsi:type="xsd:float">6</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>bool</Type>
+      <Name>GunLeft.Visible</Name>
+      <Value xsi:type="xsd:boolean">false</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>GunLeft.Width</Name>
+      <Value xsi:type="xsd:float">6</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>GunLeft.X</Name>
+      <Value xsi:type="xsd:float">27</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>HorizontalAlignment</Type>
+      <Name>GunLeft.X Origin</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>GunLeft.Y</Name>
+      <Value xsi:type="xsd:float">148</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>VerticalAlignment</Type>
+      <Name>GunLeft.Y Origin</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>GunRight.Height</Name>
+      <Value xsi:type="xsd:float">6</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>bool</Type>
+      <Name>GunRight.Visible</Name>
+      <Value xsi:type="xsd:boolean">false</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>GunRight.Width</Name>
+      <Value xsi:type="xsd:float">6</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>GunRight.X</Name>
+      <Value xsi:type="xsd:float">69</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>HorizontalAlignment</Type>
+      <Name>GunRight.X Origin</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>GunRight.Y</Name>
+      <Value xsi:type="xsd:float">148</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>VerticalAlignment</Type>
+      <Name>GunRight.Y Origin</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
       <Name>Height</Name>
       <Value xsi:type="xsd:float">172</Value>
       <SetsValue>true</SetsValue>
@@ -478,6 +562,12 @@
     <State>
       <Name>Normal</Name>
       <Variable>
+        <Type>bool</Type>
+        <Name>FrameInstance.Visible</Name>
+        <Value xsi:type="xsd:boolean">true</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
         <Type>float</Type>
         <Name>FrameInstance.Y</Name>
         <Value xsi:type="xsd:float">23</Value>
@@ -495,15 +585,15 @@
         <Value xsi:type="xsd:boolean">false</Value>
         <SetsValue>true</SetsValue>
       </Variable>
+    </State>
+    <State>
+      <Name>Winner</Name>
       <Variable>
         <Type>bool</Type>
         <Name>FrameInstance.Visible</Name>
         <Value xsi:type="xsd:boolean">true</Value>
         <SetsValue>true</SetsValue>
       </Variable>
-    </State>
-    <State>
-      <Name>Winner</Name>
       <Variable>
         <Type>float</Type>
         <Name>FrameInstance.Y</Name>
@@ -519,12 +609,6 @@
       <Variable>
         <Type>bool</Type>
         <Name>RightCrown.Visible</Name>
-        <Value xsi:type="xsd:boolean">true</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>bool</Type>
-        <Name>FrameInstance.Visible</Name>
         <Value xsi:type="xsd:boolean">true</Value>
         <SetsValue>true</SetsValue>
       </Variable>
@@ -635,6 +719,16 @@
   <Instance>
     <Name>PressToJoin</Name>
     <BaseType>Text</BaseType>
+    <DefinedByBase>false</DefinedByBase>
+  </Instance>
+  <Instance>
+    <Name>GunLeft</Name>
+    <BaseType>Container</BaseType>
+    <DefinedByBase>false</DefinedByBase>
+  </Instance>
+  <Instance>
+    <Name>GunRight</Name>
+    <BaseType>Container</BaseType>
     <DefinedByBase>false</DefinedByBase>
   </Instance>
   <Behaviors />
