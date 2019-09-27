@@ -61,6 +61,7 @@ namespace Shiprekt.Entities
         #region Events/Delegates
 
         public event Action<Bullet> BulletHit;
+        public event Action BulletShot;
 
         #endregion
 
@@ -199,6 +200,8 @@ namespace Shiprekt.Entities
             PlayShotSound();
 
             timeUntilNextShotAvailable = SecondsBetweenShotsMin;
+
+            BulletShot();
         }
 
         private void SetFutureBulletDestroyLogic(Bullet bullet)

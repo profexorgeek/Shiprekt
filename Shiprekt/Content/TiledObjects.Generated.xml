@@ -18,6 +18,8 @@
     <property name="TimeToWatchSinkingShip" type="float" default="1" />
     <property name="TimeToInterpolateToNewSpawnLocation" type="float" default="2" />
     <property name="TimeToLookAtNewSpawnPointBeforeSpawning" type="float" default="0.5" />
+    <property name="ShakeMagnitude" type="float" default="5" />
+    <property name="ShakeDuration" type="float" default="0.3" />
   </objecttype>
   <objecttype name="Cloud">
     <property name="CloudAltitudeMin" type="float" default="100" />

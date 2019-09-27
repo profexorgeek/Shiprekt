@@ -221,6 +221,10 @@ namespace Shiprekt.Screens
                 ship.InitializeRacingInput(player.InputDevice);
                 ship.AfterDying += ReactToShipDying;
                 ship.BulletHit += ReactToBulletHit;
+
+                // create local var:
+                var shipIndex = index;
+                ship.BulletShot += () => CameraControllerList[shipIndex].DoShake();
                 index++;
             }
         }
