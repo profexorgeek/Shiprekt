@@ -153,7 +153,7 @@ namespace Shiprekt.Screens
             var ship = MainMenuGum.JoinedPlayerContainer.Children
             .FirstOrDefault(item => item.SailDesignState == player.ShipType.ToGum());
 
-            var bullet = BulletFactory.CreateNew();
+            var bullet = BulletFactory.CreateNew(); 
             var worldPos = new Vector3();
             var z = 20;
             var bulletVelocity = 600f;
@@ -171,6 +171,7 @@ namespace Shiprekt.Screens
             bullet.Position = worldPos;
             bullet.YVelocity = 600;
             bullet.YAcceleration = -600;
+            
             if (left) bullet.XVelocity = -bulletVelocity;
             else bullet.XVelocity = bulletVelocity;
             bullet.Call(bullet.Destroy).After(3);             
