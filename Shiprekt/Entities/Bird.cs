@@ -32,7 +32,7 @@ namespace Shiprekt.Entities
         }
         float SecondsToNextStateChange;
         float CurrentFlightSpeed;
-        bool FollowingShip = false; 
+        bool FollowingShip = false;
 
         /// <summary>
         /// Initialization logic which is execute only one time for this Entity (unless the Entity is pooled).
@@ -45,9 +45,19 @@ namespace Shiprekt.Entities
 
         private void CustomActivity()
         {
-            DoFlightStateManagement();
-            Velocity.X = (float)Math.Cos(RotationZ) * CurrentFlightSpeed;
-            Velocity.Y = (float)Math.Sin(RotationZ) * CurrentFlightSpeed;
+            if (CurrentState == VariableState.Steering)
+            {
+                DoFlightStateManagement();
+                Velocity.X = (float)Math.Cos(RotationZ) * CurrentFlightSpeed;
+                Velocity.Y = (float)Math.Sin(RotationZ) * CurrentFlightSpeed;
+            }
+            //Maintain max velocity. 
+            else if (CurrentState == VariableState.Launched)
+            {
+                var xVel = Math.Abs(Velocity.X);
+                var newVel = Math.Min(xVel, MaxXVelocity);
+                Velocity.X = newVel * Math.Sign(Velocity.X); 
+            }
         }
 
         private void CustomDestroy()
@@ -81,6 +91,11 @@ namespace Shiprekt.Entities
                 SecondsToNextStateChange = FlatRedBallServices.Random.Between(0, MaxSecondsToFlightStateChange);
             }
             SecondsToNextStateChange -= TimeManager.SecondDifference;
+        }
+
+        public void SetRandomAnimationFrame()
+        {
+            BirdSprite.CurrentFrameIndex = FlatRedBallServices.Random.Next(0, BirdSprite.CurrentChain.Count); 
         }
     }
 }

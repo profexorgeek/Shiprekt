@@ -53,6 +53,10 @@
     <Compile Include="DataTypes\ShipEntityValues.Generated.cs" />
     <Compile Include="DataTypes\ShipType.cs" />
     <Compile Include="DataTypes\TileMapInfo.Generated.cs" />
+    <Compile Include="Entities\BirbSpawner.cs" />
+    <Compile Include="Entities\BirbSpawner.Generated.cs">
+      <DependentUpon>BirbSpawner.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Bird.cs" />
     <Compile Include="Entities\Bird.Generated.cs">
       <DependentUpon>Bird.cs</DependentUpon>
@@ -85,6 +89,10 @@
     <Compile Include="Entities\Effects\ShipDeathEffect.cs" />
     <Compile Include="Entities\Effects\ShipDeathEffect.Generated.cs">
       <DependentUpon>ShipDeathEffect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Effects\ShipImpactMenu.cs" />
+    <Compile Include="Entities\Effects\ShipImpactMenu.Generated.cs">
+      <DependentUpon>ShipImpactMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\Effects\ShotMissEffect.cs" />
     <Compile Include="Entities\Effects\ShotMissEffect.Generated.cs">
@@ -128,8 +136,10 @@
     <Compile Include="Factories\BulletFactory.Generated.cs" />
     <Compile Include="Factories\CameraControllerFactory.Generated.cs" />
     <Compile Include="Factories\CloudFactory.Generated.cs" />
+    <Compile Include="Factories\FireSmokeEmitterFactory.Generated.cs" />
     <Compile Include="Factories\ShipDeathEffectFactory.Generated.cs" />
     <Compile Include="Factories\ShipFactory.Generated.cs" />
+    <Compile Include="Factories\ShipImpactMenuFactory.Generated.cs" />
     <Compile Include="Factories\ShotMissEffectFactory.Generated.cs" />
     <Compile Include="Factories\ShipImpactFactory.Generated.cs" />
     <Compile Include="Factories\SpawnPointFactory.Generated.cs" />

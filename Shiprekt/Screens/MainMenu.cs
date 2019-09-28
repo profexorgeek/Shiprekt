@@ -82,7 +82,8 @@ namespace Shiprekt.Screens
             }
             JoinActivity();
             ShipFiringActivity();
-            CannonballCollisionActivity();
+            BulletCollisionActivity();
+            BulletActivity();
         }
 
         private void JoinActivity()
@@ -127,6 +128,16 @@ namespace Shiprekt.Screens
                 GoToGameScreen();
             }
 
+        }
+        private void BulletActivity()
+        {
+            foreach(var bullet in BulletList)
+            {
+                if (bullet.Y < SeaLevel)
+                {
+                    bullet.Destroy(); 
+                }
+            }
         }
 
         private void ShipFiringActivity()
@@ -200,9 +211,8 @@ namespace Shiprekt.Screens
                 ship.StopAnimations();
                 ship.RockLeftAnimation.Play();
             }
-
-            bullet.Call(bullet.Destroy).After(3);
         }
+
 
         private void PlayShotSound()
         {
@@ -240,7 +250,7 @@ namespace Shiprekt.Screens
             GameScreen.MoveToRandomLevel();
         }
 
-        private void CannonballCollisionActivity()
+        private void BulletCollisionActivity()
         {
             var z = 20;
             foreach (var bullet in BulletList)
@@ -262,10 +272,16 @@ namespace Shiprekt.Screens
                     var bottom = Camera.Main.WorldYAt(shipSprite.GetAbsoluteBottom() * scaleFactor, z);
                     if (bullet.X >= left && bullet.X <= right && bullet.Y <= top && bullet.Y >= bottom)
                     {
-                        var impact = ShipImpactFactory.CreateNew(LayerInstance);
+                        var impact = ShipImpactMenuFactory.CreateNew(LayerInstance);
                         impact.Position = bullet.Position;
                         impact.Z = 20; 
                         impact.EmitEffectParticles(bullet.Position.ToVector2(), -bullet.Velocity.Normalized().ToVector2());
+
+                        var diceRoll = FlatRedBallServices.Random.Next(0, 101); 
+                        if (diceRoll < ChanceOfBirbSpawn)
+                        {
+                            BirbSpawnerInstance.SpawnBirbs(bullet.Position);
+                        }
                         
                         bullet.Destroy();
                         break;
@@ -278,7 +294,6 @@ namespace Shiprekt.Screens
 
         void CustomDestroy()
         {
-
 
         }
 

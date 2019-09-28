@@ -586,6 +586,21 @@
           <IndependentOfCamera>true</IndependentOfCamera>
           <LayerOn>HudLayer</LayerOn>
         </NamedObjectSave>
+        <NamedObjectSave>
+          <Properties>
+            <PropertySave>
+              <Name>SourceType</Name>
+              <ValueAsObject xsi:type="SourceType">FlatRedBallType</ValueAsObject>
+            </PropertySave>
+          </Properties>
+          <SourceType>FlatRedBallType</SourceType>
+          <SourceClassType>PositionedObjectList&lt;T&gt;</SourceClassType>
+          <SourceClassGenericType>Entities\Effects\ShipImpactMenu</SourceClassGenericType>
+          <InstanceName>ShipImpactMenuList</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+        </NamedObjectSave>
       </NamedObjects>
     </ScreenSave>
     <ScreenSave>
@@ -712,6 +727,30 @@
         <string>GLUE</string>
       </Tags>
       <Source>GLUE</Source>
+      <CustomVariables>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>SeaLevel</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">-234</DefaultValue>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>ChanceOfBirbSpawn</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">20</DefaultValue>
+        </CustomVariable>
+      </CustomVariables>
       <Name>Screens\MainMenu</Name>
       <ReferencedFiles>
         <ReferencedFileSave>
@@ -786,6 +825,24 @@
             </PropertySave>
           </Properties>
           <SourceType>FlatRedBallType</SourceType>
+          <SourceFile />
+          <SourceName />
+          <SourceClassType>Layer</SourceClassType>
+          <InstanceName>LayerInstance</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <AttachToCamera>true</AttachToCamera>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+          <Is2D>true</Is2D>
+        </NamedObjectSave>
+        <NamedObjectSave>
+          <Properties>
+            <PropertySave>
+              <Name>SourceType</Name>
+              <ValueAsObject xsi:type="SourceType">FlatRedBallType</ValueAsObject>
+            </PropertySave>
+          </Properties>
+          <SourceType>FlatRedBallType</SourceType>
           <SourceClassType>PositionedObjectList&lt;T&gt;</SourceClassType>
           <SourceClassGenericType>Entities\Bullet</SourceClassGenericType>
           <InstanceName>BulletList</InstanceName>
@@ -801,15 +858,57 @@
             </PropertySave>
           </Properties>
           <SourceType>FlatRedBallType</SourceType>
-          <SourceFile />
-          <SourceName />
-          <SourceClassType>Layer</SourceClassType>
-          <InstanceName>LayerInstance</InstanceName>
+          <SourceClassType>PositionedObjectList&lt;T&gt;</SourceClassType>
+          <SourceClassGenericType>Entities\Effects\ShipImpactMenu</SourceClassGenericType>
+          <InstanceName>ShipImpactMenuList</InstanceName>
           <AttachToContainer>true</AttachToContainer>
-          <AttachToCamera>true</AttachToCamera>
           <GenerateTimedEmit>true</GenerateTimedEmit>
           <IndependentOfCamera>true</IndependentOfCamera>
-          <Is2D>true</Is2D>
+        </NamedObjectSave>
+        <NamedObjectSave>
+          <Properties>
+            <PropertySave>
+              <Name>SourceType</Name>
+              <ValueAsObject xsi:type="SourceType">FlatRedBallType</ValueAsObject>
+            </PropertySave>
+          </Properties>
+          <SourceType>FlatRedBallType</SourceType>
+          <SourceClassType>PositionedObjectList&lt;T&gt;</SourceClassType>
+          <SourceClassGenericType>Entities\Effects\FireSmokeEmitter</SourceClassGenericType>
+          <InstanceName>FireSmokeEmitterList</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+        </NamedObjectSave>
+        <NamedObjectSave>
+          <Properties>
+            <PropertySave>
+              <Name>SourceType</Name>
+              <ValueAsObject xsi:type="SourceType">FlatRedBallType</ValueAsObject>
+            </PropertySave>
+          </Properties>
+          <SourceType>FlatRedBallType</SourceType>
+          <SourceClassType>PositionedObjectList&lt;T&gt;</SourceClassType>
+          <SourceClassGenericType>Entities\Bird</SourceClassGenericType>
+          <InstanceName>BirdList</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+        </NamedObjectSave>
+        <NamedObjectSave>
+          <Properties>
+            <PropertySave>
+              <Name>SourceType</Name>
+              <ValueAsObject xsi:type="SourceType">Entity</ValueAsObject>
+            </PropertySave>
+          </Properties>
+          <SourceType>Entity</SourceType>
+          <SourceClassType>Entities\BirbSpawner</SourceClassType>
+          <InstanceName>BirbSpawnerInstance</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+          <LayerOn>LayerInstance</LayerOn>
         </NamedObjectSave>
       </NamedObjects>
     </ScreenSave>
@@ -835,6 +934,184 @@
         <string>GLUE</string>
       </Tags>
       <Source>GLUE</Source>
+      <CustomVariables>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>X</Name>
+          <Type>float</Type>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>Y</Name>
+          <Type>float</Type>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>Z</Name>
+          <Type>float</Type>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>int</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>MaxBirbs</Name>
+          <Type>int</Type>
+          <DefaultValue xsi:type="xsd:int">8</DefaultValue>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>int</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>MinBirbs</Name>
+          <Type>int</Type>
+          <DefaultValue xsi:type="xsd:int">4</DefaultValue>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>MinSpeed</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">100</DefaultValue>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>MaxSpeed</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">500</DefaultValue>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>DefaultFlyAngleDeg</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">90</DefaultValue>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>MaxFlyVariationDeg</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">45</DefaultValue>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>MaxBirbDrag</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">5</DefaultValue>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>MinBirbDrag</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">1</DefaultValue>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>BirbXAccel</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">100</DefaultValue>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>BirbMaxVelocity</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">300</DefaultValue>
+        </CustomVariable>
+      </CustomVariables>
+      <ImplementsIDrawableBatch>false</ImplementsIDrawableBatch>
+      <Name>Entities\BirbSpawner</Name>
+      <NamedObjects>
+        <NamedObjectSave>
+          <Properties>
+            <PropertySave>
+              <Name>SourceType</Name>
+              <ValueAsObject xsi:type="SourceType">FlatRedBallType</ValueAsObject>
+            </PropertySave>
+          </Properties>
+          <SourceType>FlatRedBallType</SourceType>
+          <SourceClassType>PositionedObjectList&lt;T&gt;</SourceClassType>
+          <SourceClassGenericType>Entities\Bird</SourceClassGenericType>
+          <InstanceName>BirdList</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+        </NamedObjectSave>
+      </NamedObjects>
+      <Is2D>true</Is2D>
+    </EntitySave>
+    <EntitySave>
+      <Tags>
+        <string>GLUE</string>
+      </Tags>
+      <Source>GLUE</Source>
+      <States>
+        <StateSave>
+          <InstructionSaves />
+          <Name>Steering</Name>
+        </StateSave>
+        <StateSave>
+          <InstructionSaves />
+          <Name>Launched</Name>
+        </StateSave>
+      </States>
       <CustomVariables>
         <CustomVariable>
           <Properties>
@@ -934,6 +1211,38 @@
           <DefaultValue xsi:type="xsd:float">200</DefaultValue>
           <IsShared>true</IsShared>
         </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>bool</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>SteeringEnabled</Name>
+          <Type>bool</Type>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>VariableState</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>CurrentState</Name>
+          <Type>VariableState</Type>
+          <DefaultValue xsi:type="xsd:string">Steering</DefaultValue>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>MaxXVelocity</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">100</DefaultValue>
+        </CustomVariable>
       </CustomVariables>
       <ImplementsIDrawableBatch>false</ImplementsIDrawableBatch>
       <Name>Entities\Bird</Name>
@@ -970,6 +1279,9 @@
           <InstanceName>BirdSprite</InstanceName>
           <AttachToContainer>true</AttachToContainer>
           <GenerateTimedEmit>true</GenerateTimedEmit>
+          <VariablesToReset>
+            <string>Alpha</string>
+          </VariablesToReset>
           <IndependentOfCamera>true</IndependentOfCamera>
         </NamedObjectSave>
         <NamedObjectSave>
@@ -1016,6 +1328,9 @@
           <InstanceName>BirdShadowSprite</InstanceName>
           <AttachToContainer>true</AttachToContainer>
           <GenerateTimedEmit>true</GenerateTimedEmit>
+          <VariablesToReset>
+            <string>Alpha</string>
+          </VariablesToReset>
           <IndependentOfCamera>true</IndependentOfCamera>
         </NamedObjectSave>
       </NamedObjects>
@@ -1828,6 +2143,97 @@
           <Properties>
             <PropertySave>
               <Name>Type</Name>
+              <ValueAsString>bool</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>IsEmitting</Name>
+          <Type>bool</Type>
+          <DefaultValue xsi:type="xsd:boolean">true</DefaultValue>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>EmissionFrequency</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">0.1</DefaultValue>
+          <IsShared>true</IsShared>
+        </CustomVariable>
+      </CustomVariables>
+      <ImplementsIVisible>true</ImplementsIVisible>
+      <ImplementsIDrawableBatch>false</ImplementsIDrawableBatch>
+      <Name>Entities\Effects\FireSmokeEmitter</Name>
+      <NamedObjects>
+        <NamedObjectSave>
+          <Properties>
+            <PropertySave>
+              <Name>SourceType</Name>
+              <ValueAsObject xsi:type="SourceType">File</ValueAsObject>
+            </PropertySave>
+          </Properties>
+          <SourceType>File</SourceType>
+          <SourceFile>GlobalContent/EffectChains.achx</SourceFile>
+          <SourceName>FireSmokeParticles (AnimationChain)</SourceName>
+          <InstanceName>SmokeParticles</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+        </NamedObjectSave>
+      </NamedObjects>
+      <ReferencedFiles>
+        <ReferencedFileSave>
+          <Name>GlobalContent/EffectChains.achx</Name>
+          <IsSharedStatic>true</IsSharedStatic>
+          <RuntimeType>FlatRedBall.Graphics.Animation.AnimationChainList</RuntimeType>
+          <ProjectsToExcludeFrom />
+        </ReferencedFileSave>
+      </ReferencedFiles>
+      <CreatedByOtherEntities>true</CreatedByOtherEntities>
+      <Is2D>true</Is2D>
+    </EntitySave>
+    <EntitySave>
+      <Tags>
+        <string>GLUE</string>
+      </Tags>
+      <Source>GLUE</Source>
+      <CustomVariables>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>X</Name>
+          <Type>float</Type>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>Y</Name>
+          <Type>float</Type>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>Z</Name>
+          <Type>float</Type>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
               <ValueAsString>float</ValueAsString>
             </PropertySave>
           </Properties>
@@ -2002,6 +2408,7 @@
           <Name>MaxAngleVarianceDeg</Name>
           <Type>float</Type>
           <DefaultValue xsi:type="xsd:float">90</DefaultValue>
+          <SetByDerived>true</SetByDerived>
         </CustomVariable>
         <CustomVariable>
           <Properties>
@@ -2083,6 +2490,83 @@
       </CustomVariables>
       <ImplementsIDrawableBatch>false</ImplementsIDrawableBatch>
       <Name>Entities\Effects\ShipImpact</Name>
+      <CreatedByOtherEntities>true</CreatedByOtherEntities>
+      <Is2D>true</Is2D>
+    </EntitySave>
+    <EntitySave>
+      <Tags>
+        <string>GLUE</string>
+      </Tags>
+      <Source>GLUE</Source>
+      <CustomVariables>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>X</Name>
+          <Type>float</Type>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>Y</Name>
+          <Type>float</Type>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>Z</Name>
+          <Type>float</Type>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>Gravity</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">-100</DefaultValue>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>SeaLevel</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">-234</DefaultValue>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>MaxAngleVarianceDeg</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">45</DefaultValue>
+          <DefinedByBase>true</DefinedByBase>
+        </CustomVariable>
+      </CustomVariables>
+      <BaseEntity>Entities\Effects\ShipImpact</BaseEntity>
+      <ImplementsIDrawableBatch>false</ImplementsIDrawableBatch>
+      <Name>Entities\Effects\ShipImpactMenu</Name>
       <CreatedByOtherEntities>true</CreatedByOtherEntities>
       <Is2D>true</Is2D>
     </EntitySave>
@@ -2256,96 +2740,6 @@
       <ImplementsIVisible>true</ImplementsIVisible>
       <ImplementsIDrawableBatch>false</ImplementsIDrawableBatch>
       <Name>Entities\Effects\WakeEffect</Name>
-      <Is2D>true</Is2D>
-    </EntitySave>
-    <EntitySave>
-      <Tags>
-        <string>GLUE</string>
-      </Tags>
-      <Source>GLUE</Source>
-      <CustomVariables>
-        <CustomVariable>
-          <Properties>
-            <PropertySave>
-              <Name>Type</Name>
-              <ValueAsString>float</ValueAsString>
-            </PropertySave>
-          </Properties>
-          <Name>X</Name>
-          <Type>float</Type>
-        </CustomVariable>
-        <CustomVariable>
-          <Properties>
-            <PropertySave>
-              <Name>Type</Name>
-              <ValueAsString>float</ValueAsString>
-            </PropertySave>
-          </Properties>
-          <Name>Y</Name>
-          <Type>float</Type>
-        </CustomVariable>
-        <CustomVariable>
-          <Properties>
-            <PropertySave>
-              <Name>Type</Name>
-              <ValueAsString>float</ValueAsString>
-            </PropertySave>
-          </Properties>
-          <Name>Z</Name>
-          <Type>float</Type>
-        </CustomVariable>
-        <CustomVariable>
-          <Properties>
-            <PropertySave>
-              <Name>Type</Name>
-              <ValueAsString>bool</ValueAsString>
-            </PropertySave>
-          </Properties>
-          <Name>IsEmitting</Name>
-          <Type>bool</Type>
-          <DefaultValue xsi:type="xsd:boolean">true</DefaultValue>
-        </CustomVariable>
-        <CustomVariable>
-          <Properties>
-            <PropertySave>
-              <Name>Type</Name>
-              <ValueAsString>float</ValueAsString>
-            </PropertySave>
-          </Properties>
-          <Name>EmissionFrequency</Name>
-          <Type>float</Type>
-          <DefaultValue xsi:type="xsd:float">0.1</DefaultValue>
-          <IsShared>true</IsShared>
-        </CustomVariable>
-      </CustomVariables>
-      <ImplementsIVisible>true</ImplementsIVisible>
-      <ImplementsIDrawableBatch>false</ImplementsIDrawableBatch>
-      <Name>Entities\Effects\FireSmokeEmitter</Name>
-      <NamedObjects>
-        <NamedObjectSave>
-          <Properties>
-            <PropertySave>
-              <Name>SourceType</Name>
-              <ValueAsObject xsi:type="SourceType">File</ValueAsObject>
-            </PropertySave>
-          </Properties>
-          <SourceType>File</SourceType>
-          <SourceFile>GlobalContent/EffectChains.achx</SourceFile>
-          <SourceName>FireSmokeParticles (AnimationChain)</SourceName>
-          <InstanceName>SmokeParticles</InstanceName>
-          <AttachToContainer>true</AttachToContainer>
-          <GenerateTimedEmit>true</GenerateTimedEmit>
-          <IndependentOfCamera>true</IndependentOfCamera>
-        </NamedObjectSave>
-      </NamedObjects>
-      <ReferencedFiles>
-        <ReferencedFileSave>
-          <Name>GlobalContent/EffectChains.achx</Name>
-          <IsSharedStatic>true</IsSharedStatic>
-          <RuntimeType>FlatRedBall.Graphics.Animation.AnimationChainList</RuntimeType>
-          <ProjectsToExcludeFrom />
-        </ReferencedFileSave>
-      </ReferencedFiles>
       <Is2D>true</Is2D>
     </EntitySave>
     <EntitySave>
@@ -3641,6 +4035,18 @@
     </TranslatedFileSave>
     <TranslatedFileSave>
       <FileName>Entities/Effects/CannonballEffect.cs</FileName>
+      <TranslationStyle>PerformTranslate</TranslationStyle>
+    </TranslatedFileSave>
+    <TranslatedFileSave>
+      <FileName>Entities/Effects/ShipDeathEffect.cs</FileName>
+      <TranslationStyle>PerformTranslate</TranslationStyle>
+    </TranslatedFileSave>
+    <TranslatedFileSave>
+      <FileName>Entities/BirbSpawner.cs</FileName>
+      <TranslationStyle>PerformTranslate</TranslationStyle>
+    </TranslatedFileSave>
+    <TranslatedFileSave>
+      <FileName>Entities/BirbSpawner.Generated.cs</FileName>
       <TranslationStyle>PerformTranslate</TranslationStyle>
     </TranslatedFileSave>
   </TranslatedFiles>
