@@ -79,7 +79,6 @@ namespace Shiprekt.Entities.Effects
 
 		Sprite CreateShipImpactParticle(Vector2 position, Vector2 movementVector)
 		{
-
 			var chains = GlobalContent.EffectChains;
 			var rand = FlatRedBallServices.Random;
 			var particle = SpriteManager.AddParticleSprite(GlobalContent.shiprekt);
@@ -99,7 +98,7 @@ namespace Shiprekt.Entities.Effects
 			particle.RotationZ = rand.Between(-3.14f, 3.14f);
 			particle.X = position.X;
 			particle.Y = position.Y;
-			particle.Z = 3f;
+			particle.Z = this.Z;
 			particle.TextureScale = StartScale;
 			particle.Call(() => { particle.Velocity = Vector3.Zero; }).After(movementTime);
 			return particle;

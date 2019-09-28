@@ -7,21 +7,20 @@ namespace Shiprekt.GumRuntimes
 {
     public partial class JoinableShipAndStatusRuntime
     {
-        public Vector2 GunLeftAbsolutePosition
+        public ContainerRuntime GetGunLeft { get => GunLeft; }
+
+
+        public ContainerRuntime GetGunRight { get => GunRight; }
+
+
+        public ShipFrontRuntime ShipFront
         {
             get
             {
-                return new Vector2(GunLeft.AbsoluteX, GunLeft.AbsoluteY); 
+                return ShipFrontInstance;
             }
         }
 
-        public Vector2 GunRightAbsolutePosition
-        {
-            get
-            {
-                return new Vector2(GunRight.AbsoluteX, GunRight.AbsoluteY);
-            }
-        }
         partial void CustomInitialize () 
         {
         }
