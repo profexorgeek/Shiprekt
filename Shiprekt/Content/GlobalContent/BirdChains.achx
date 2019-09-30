@@ -73,4 +73,55 @@
       <BottomCoordinate>144</BottomCoordinate>
     </Frame>
   </AnimationChain>
+  <AnimationChain>
+    <Name>SideBirb</Name>
+    <Frame>
+      <TextureName>shiprekt.png</TextureName>
+      <FrameLength>0.15</FrameLength>
+      <LeftCoordinate>224</LeftCoordinate>
+      <RightCoordinate>256</RightCoordinate>
+      <TopCoordinate>128</TopCoordinate>
+      <BottomCoordinate>144</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>shiprekt.png</TextureName>
+      <FrameLength>0.15</FrameLength>
+      <LeftCoordinate>256</LeftCoordinate>
+      <RightCoordinate>288</RightCoordinate>
+      <TopCoordinate>128</TopCoordinate>
+      <BottomCoordinate>144</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>shiprekt.png</TextureName>
+      <FrameLength>0.15</FrameLength>
+      <LeftCoordinate>288</LeftCoordinate>
+      <RightCoordinate>320</RightCoordinate>
+      <TopCoordinate>128</TopCoordinate>
+      <BottomCoordinate>144</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>shiprekt.png</TextureName>
+      <FrameLength>0.15</FrameLength>
+      <LeftCoordinate>224</LeftCoordinate>
+      <RightCoordinate>256</RightCoordinate>
+      <TopCoordinate>144</TopCoordinate>
+      <BottomCoordinate>160</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>shiprekt.png</TextureName>
+      <FrameLength>0.15</FrameLength>
+      <LeftCoordinate>256</LeftCoordinate>
+      <RightCoordinate>288</RightCoordinate>
+      <TopCoordinate>144</TopCoordinate>
+      <BottomCoordinate>160</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>shiprekt.png</TextureName>
+      <FrameLength>0.15</FrameLength>
+      <LeftCoordinate>288</LeftCoordinate>
+      <RightCoordinate>320</RightCoordinate>
+      <TopCoordinate>144</TopCoordinate>
+      <BottomCoordinate>160</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
 </AnimationChainArraySave>
