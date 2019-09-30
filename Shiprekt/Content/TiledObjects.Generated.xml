@@ -7,21 +7,31 @@
     <property name="MinFlightSpeed" type="float" default="8" />
     <property name="MinBirdAltitude" type="float" default="20" />
     <property name="MaxBirdAltitude" type="float" default="200" />
+    <property name="SteeringEnabled" type="bool" />
+    <property name="CurrentState" type="VariableState" default="Steering" />
+    <property name="MaxXVelocity" type="float" default="100" />
   </objecttype>
   <objecttype name="Bullet">
     <property name="BulletSpeed" type="float" default="300" />
     <property name="ReloadTimeInSeconds" type="float" default="3" />
     <property name="BulletDistance" type="float" default="200" />
     <property name="DamageToDeal" type="int" default="20" />
+    <property name="CannonballEffectInstanceZ" type="float" default="3" />
   </objecttype>
   <objecttype name="CameraController">
     <property name="TimeToWatchSinkingShip" type="float" default="1" />
     <property name="TimeToInterpolateToNewSpawnLocation" type="float" default="2" />
     <property name="TimeToLookAtNewSpawnPointBeforeSpawning" type="float" default="0.5" />
+    <property name="ShakeMagnitude" type="float" default="5" />
+    <property name="ShakeDuration" type="float" default="0.3" />
   </objecttype>
   <objecttype name="Cloud">
     <property name="CloudAltitudeMin" type="float" default="100" />
     <property name="CloudAltitudeMax" type="float" default="200" />
+  </objecttype>
+  <objecttype name="FireSmokeEmitter">
+    <property name="IsEmitting" type="bool" default="true" />
+    <property name="EmissionFrequency" type="float" default="0.1" />
   </objecttype>
   <objecttype name="ShipDeathEffect">
     <property name="EffectDurationSeconds" type="float" default="4" />
@@ -37,6 +47,11 @@
     <property name="ParticleLifeSeconds" type="float" default="5" />
     <property name="ParticleDrag" type="float" default="5" />
     <property name="StartScale" type="float" default="1" />
+  </objecttype>
+  <objecttype name="ShipImpactMenu">
+    <property name="Gravity" type="float" default="-100" />
+    <property name="SeaLevel" type="float" default="-234" />
+    <property name="MaxAngleVarianceDeg" type="float" default="45" />
   </objecttype>
   <objecttype name="ShotMissEffect">
     <property name="EffectDurationSeconds" type="float" default="0.25" />

@@ -221,6 +221,10 @@ namespace Shiprekt.Screens
                 ship.InitializeRacingInput(player.InputDevice);
                 ship.AfterDying += ReactToShipDying;
                 ship.BulletHit += ReactToBulletHit;
+
+                // create local var:
+                var shipIndex = index;
+                ship.BulletShot += () => CameraControllerList[shipIndex].DoShake();
                 index++;
             }
         }
@@ -364,7 +368,7 @@ namespace Shiprekt.Screens
             windLastRandomized = PauseAdjustedCurrentTime;
 
             var angle = MathHelper.ToDegrees(windDirection.Angle().Value);
-            GameScreenGum.WindDirectionDisplayInstance.Angle = angle;
+            GameScreenGum.WindDirectionDisplayInstance.WindAngle = angle;
 
             for (int i = CloudList.Count - 1; i >= 0; i -= 1)
             {

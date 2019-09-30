@@ -61,7 +61,7 @@ namespace Shiprekt.Entities.Effects
         Sprite CreateSmokeParticle()
         {
             var chains = GlobalContent.EffectChains;
-            var rand = FlatRedBallServices.Random;
+            var rand = FlatRedBallServices.Random;            
             var particle = SpriteManager.AddParticleSprite(GlobalContent.shiprekt);
             var lateralRotation = (float)(RotationZ - (Math.PI / 2f));
             var magnitude = rand.Between(-LateralVelocityMax, LateralVelocityMax);
@@ -82,7 +82,7 @@ namespace Shiprekt.Entities.Effects
             particle.ScaleYVelocity = ScaleVelocity;
             particle.X = this.X;
             particle.Y = this.Y;
-            particle.Z = 3f;
+            particle.Z = this.Z;
             particle.TextureScale = StartScale;
 
             SpriteManager.RemoveSpriteAtTime(particle, ParticleLifeSeconds);

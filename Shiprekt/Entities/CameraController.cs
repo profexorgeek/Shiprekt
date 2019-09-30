@@ -20,6 +20,9 @@ namespace Shiprekt.Entities
             Position
         }
 
+        float shakeMagnitude = 0;
+        float shakeAngle = 0;
+
         public FollowTargetType CurrentFollowTargetType
         {
             get; set;
@@ -61,9 +64,29 @@ namespace Shiprekt.Entities
                 }
             }
 
-            Camera.X = X;
-            Camera.Y = Y;
+            if (shakeMagnitude > 0)
+            {
+                Vector2 offset = new Vector2(0, 0);
+                offset = new Vector2((float)(Math.Sin(shakeAngle) * shakeMagnitude), (float)(Math.Cos(shakeAngle) * shakeMagnitude));
+                shakeMagnitude -= TimeManager.SecondDifference * ShakeMagnitude / ShakeDuration;
 
+                shakeAngle = FlatRedBallServices.Random.AngleRadians();
+
+                Camera.X = X + offset.X;
+                Camera.Y = Y + offset.Y;
+            }
+            else
+            {
+                Camera.X = X;
+                Camera.Y = Y;
+            }
+
+
+        }
+
+        public void DoShake()
+        {
+            shakeMagnitude = ShakeMagnitude;
         }
 
         private void CustomDestroy()
