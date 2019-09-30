@@ -26,13 +26,13 @@
     <Variable>
       <Type>int</Type>
       <Name>Background.Texture Left</Name>
-      <Value xsi:type="xsd:int">512</Value>
+      <Value xsi:type="xsd:int">320</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
       <Name>Background.Texture Top</Name>
-      <Value xsi:type="xsd:int">0</Value>
+      <Value xsi:type="xsd:int">64</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -112,13 +112,13 @@
     <Variable>
       <Type>int</Type>
       <Name>PointerSprite.Texture Left</Name>
-      <Value xsi:type="xsd:int">584</Value>
+      <Value xsi:type="xsd:int">392</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
       <Name>PointerSprite.Texture Top</Name>
-      <Value xsi:type="xsd:int">25</Value>
+      <Value xsi:type="xsd:int">89</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
