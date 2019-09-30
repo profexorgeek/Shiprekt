@@ -157,12 +157,12 @@ namespace Shiprekt.Screens
             {
                 var camera = SpriteManager.Cameras[i];
 
-                camera.SetBordersAtZ(0, -Map.Height, Map.Width, 0, 0);
 
                 var cameraController = new CameraController();
                 this.CameraControllerList.Add(cameraController);
                 cameraController.TargetEntity = ShipList[i];
                 cameraController.Camera = camera;
+                cameraController.SetBordersAtZ(-Map.Height, Map.Width);
                 cameraController.CurrentFollowTargetType = CameraController.FollowTargetType.Entity;
                 cameraController.FollowImmediately = true;
             }

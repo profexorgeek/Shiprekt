@@ -14,14 +14,23 @@ namespace Shiprekt.Entities
 {
     public partial class CameraController
     {
+        #region Enums
+
         public enum FollowTargetType
         {
             Entity,
             Position
         }
 
+        #endregion
+
         float shakeMagnitude = 0;
         float shakeAngle = 0;
+
+        float minX;
+        float minY;
+        float maxX;
+        float maxY;
 
         public FollowTargetType CurrentFollowTargetType
         {
@@ -64,6 +73,12 @@ namespace Shiprekt.Entities
                 }
             }
 
+            X = Math.Max(minX, X);
+            Y = Math.Max(minY, Y);
+
+            X = Math.Min(maxX, X);
+            Y = Math.Min(maxY, Y);
+
             if (shakeMagnitude > 0)
             {
                 Vector2 offset = new Vector2(0, 0);
@@ -81,6 +96,19 @@ namespace Shiprekt.Entities
                 Camera.Y = Y;
             }
 
+
+        }
+
+        public void SetBordersAtZ(float minY, float maxX)
+        {
+            Camera.SetBordersAtZ(0, minY, maxX, 0, 0);
+
+            this.minX = Camera.MinimumX + shakeMagnitude;
+            this.minY = Camera.MinimumY + shakeMagnitude;
+            this.maxX = Camera.MaximumX - shakeMagnitude;
+            this.maxY = Camera.MaximumY - shakeMagnitude;
+
+            Camera.ClearBorders();
 
         }
 
