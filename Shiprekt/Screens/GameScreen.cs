@@ -368,7 +368,7 @@ namespace Shiprekt.Screens
             windLastRandomized = PauseAdjustedCurrentTime;
 
             var angle = MathHelper.ToDegrees(windDirection.Angle().Value);
-            GameScreenGum.WindDirectionDisplayInstance.Angle = angle;
+            GameScreenGum.WindDirectionDisplayInstance.WindAngle = angle;
 
             for (int i = CloudList.Count - 1; i >= 0; i -= 1)
             {
