@@ -31,7 +31,22 @@ namespace Shiprekt.Screens
 
         void CustomInitialize()
         {
+            ResetCamera();
+
             UpdateUiToReflectJoinedPlayers();
+        }
+
+        private void ResetCamera()
+        {
+            var camera = Camera.Main;
+            camera.Detach();
+            camera.ClearMinimumsAndMaximums();
+            camera.X = 0;
+            camera.Y = 0;
+            camera.Z = 40;
+
+            //camera.UsePixelCoordinates();
+            camera.UsePixelCoordinates3D(0);
         }
 
         private void UpdateUiToReflectJoinedPlayers()
