@@ -101,6 +101,13 @@ namespace Shiprekt.Entities
 
         public void SetBordersAtZ(float minY, float maxX)
         {
+            this.Camera.UsePixelCoordinates3D(0);
+
+            // this is pixel perfect when resolution is 1080 / 2 = 540
+            // If the resolution is smaller, we need to zoom out
+            var zMultiple = 540 / (float)Camera.DestinationRectangle.Height;
+            this.Camera.Z *= zMultiple;
+
             Camera.SetBordersAtZ(0, minY, maxX, 0, 0);
 
             this.minX = Camera.MinimumX + shakeMagnitude;

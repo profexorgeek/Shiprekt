@@ -36,8 +36,9 @@
                 ResolutionWidth = 1920,
                 ResolutionHeight = 1080,
                 Is2D = false,
+                AspectRatio = 1.7777777777777777777777777778m,
                 IsFullScreen = false,
-                AllowWidowResizing = false,
+                AllowWidowResizing = true,
                 ResizeBehavior = ResizeBehavior.StretchVisibleArea,
                 ScaleGum = 200f,
                 ResizeBehaviorGum = ResizeBehavior.StretchVisibleArea,
@@ -71,7 +72,7 @@
                 CameraSetup.graphicsDeviceManager = graphicsDeviceManager;
                 ResetWindow();
                 ResetCamera(cameraToSetUp);
-                SetGumValues();
+                ResetGumResolutionValues();
                 FlatRedBall.FlatRedBallServices.GraphicsOptions.SizeOrOrientationChanged += HandleResolutionChange;
             }
             internal static void ResetWindow () 
@@ -128,9 +129,9 @@
                     FlatRedBall.Camera.Main.OrthogonalHeight = FlatRedBall.Camera.Main.DestinationRectangle.Height / (Data.Scale/ 100.0f);
                     FlatRedBall.Camera.Main.FixAspectRatioYConstant();
                 }
-                SetGumValues();
+                ResetGumResolutionValues();
             }
-            private static void SetGumValues () 
+            public static void ResetGumResolutionValues () 
             {
                 if (Data.ResizeBehaviorGum == ResizeBehavior.IncreaseVisibleArea)
                 {
@@ -197,16 +198,60 @@
                     destinationRectangleWidth = FlatRedBall.Math.MathFunctions.RoundToInt(destinationRectangleHeight * (float)aspectRatio);
                     x = (FlatRedBall.FlatRedBallServices.GraphicsOptions.ResolutionWidth - destinationRectangleWidth) / 2;
                 }
-                FlatRedBall.Camera.Main.DestinationRectangle = new Microsoft.Xna.Framework.Rectangle(x, y, destinationRectangleWidth, destinationRectangleHeight);
-                if (dominantInternalCoordinates == WidthOrHeight.Height)
+                foreach (var camera in FlatRedBall.SpriteManager.Cameras)
                 {
-                    FlatRedBall.Camera.Main.OrthogonalHeight = desiredHeight;
-                    FlatRedBall.Camera.Main.FixAspectRatioYConstant();
-                }
-                else
-                {
-                    FlatRedBall.Camera.Main.OrthogonalWidth = desiredWidth;
-                    FlatRedBall.Camera.Main.FixAspectRatioXConstant();
+                    int currentX = x;
+                    int currentY = y;
+                    int currentWidth = destinationRectangleWidth;
+                    int currentHeight = destinationRectangleHeight;
+                    switch(camera.CurrentSplitScreenViewport)
+                    {
+                        case  Camera.SplitScreenViewport.TopLeft:
+                            currentWidth /= 2;
+                            currentHeight /= 2;
+                            break;
+                        case  Camera.SplitScreenViewport.TopRight:
+                            currentX = x + destinationRectangleWidth / 2;
+                            currentWidth /= 2;
+                            currentHeight /= 2;
+                            break;
+                        case  Camera.SplitScreenViewport.BottomLeft:
+                            currentY = y + destinationRectangleHeight / 2;
+                            currentWidth /= 2;
+                            currentHeight /= 2;
+                            break;
+                        case  Camera.SplitScreenViewport.BottomRight:
+                            currentX = x + destinationRectangleWidth / 2;
+                            currentY = y + destinationRectangleHeight / 2;
+                            currentWidth /= 2;
+                            currentHeight /= 2;
+                            break;
+                        case  Camera.SplitScreenViewport.TopHalf:
+                            currentHeight /= 2;
+                            break;
+                        case  Camera.SplitScreenViewport.BottomHalf:
+                            currentY = y + destinationRectangleHeight / 2;
+                            currentHeight /= 2;
+                            break;
+                        case  Camera.SplitScreenViewport.LeftHalf:
+                            currentWidth /= 2;
+                            break;
+                        case  Camera.SplitScreenViewport.RightHalf:
+                            currentX = x + destinationRectangleWidth / 2;
+                            currentWidth /= 2;
+                            break;
+                    }
+                    camera.DestinationRectangle = new Microsoft.Xna.Framework.Rectangle(currentX, currentY, currentWidth, currentHeight);
+                    if (dominantInternalCoordinates == WidthOrHeight.Height)
+                    {
+                        camera.OrthogonalHeight = desiredHeight;
+                        camera.FixAspectRatioYConstant();
+                    }
+                    else
+                    {
+                        camera.OrthogonalWidth = desiredWidth;
+                        camera.FixAspectRatioXConstant();
+                    }
                 }
             }
             

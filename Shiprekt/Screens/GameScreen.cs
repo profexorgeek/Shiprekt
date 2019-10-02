@@ -134,22 +134,18 @@ namespace Shiprekt.Screens
                     break;
             }
 
-            Camera.Main.UsePixelCoordinates3D(0);
 
             if (camera2 != null)
             {
                 SpriteManager.Cameras.Add(camera2);
-                camera2.UsePixelCoordinates3D(0);
             }
             if (camera3 != null)
             {
                 SpriteManager.Cameras.Add(camera3);
-                camera3.UsePixelCoordinates3D(0);
             }
             if (camera4 != null)
             {
                 SpriteManager.Cameras.Add(camera4);
-                camera4.UsePixelCoordinates3D(0);
             }
 
             // before creating the final camera, set the min/maxes 
@@ -179,6 +175,13 @@ namespace Shiprekt.Screens
                 SpriteManager.RemoveLayer(HudLayer);
                 topMostCamera.AddLayer(HudLayer);
             }
+
+
+            // Hack! Not sure exactly how to do this in a different way,
+            // but....one day to go!
+            FlatRedBallServices.GraphicsOptions.SetResolution(
+                FlatRedBallServices.GraphicsOptions.ResolutionWidth,
+                FlatRedBallServices.GraphicsOptions.ResolutionHeight);
         }
 
         private void DebugInitialize()
