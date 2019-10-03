@@ -31,9 +31,23 @@ namespace Shiprekt.Screens
 
         void CustomInitialize()
         {
+            UpdateUiLayer();
+
             ResetCamera();
 
             UpdateUiToReflectJoinedPlayers();
+        }
+
+        private void UpdateUiLayer()
+        {
+            // this was built for the game running at 60%, so force the layer:
+            LayerInstance.LayerCameraSettings = new FlatRedBall.Graphics.LayerCameraSettings
+            {
+                Orthogonal = true,
+                OrthogonalWidth = (int)(.6 * 1920),
+                OrthogonalHeight = (int)(.6 * 1080),
+
+            };
         }
 
         private void ResetCamera()
@@ -201,14 +215,17 @@ namespace Shiprekt.Screens
             else
                 runtime = ship.GetGunRight;
 
-            var screenX = runtime.GetAbsoluteX() * (CameraSetup.Data.ScaleGum / 100) * (CameraSetup.Data.Scale / 100);
-            var screenY = runtime.GetAbsoluteY() * (CameraSetup.Data.ScaleGum / 100) * (CameraSetup.Data.Scale / 100); 
+            var gumCamera =
+                RenderingLibrary.SystemManagers.Default.Renderer.Camera;
+
+            var screenX = runtime.GetAbsoluteX() * gumCamera.Zoom + Camera.Main.DestinationRectangle.Left;
+            var screenY = runtime.GetAbsoluteY() * gumCamera.Zoom + Camera.Main.DestinationRectangle.Top; 
 
             var bullet = BulletFactory.CreateNew(LayerInstance);
             bullet.Position = new Vector3()
             {
-                X = Camera.Main.WorldXAt(screenX, z),
-                Y = Camera.Main.WorldYAt(screenY, z),
+                X = Camera.Main.WorldXAt(screenX, z, LayerInstance),
+                Y = Camera.Main.WorldYAt(screenY, z, LayerInstance),
                 Z = z,
             };
             bullet.YVelocity = 100;
