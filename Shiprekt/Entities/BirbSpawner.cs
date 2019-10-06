@@ -15,7 +15,6 @@ namespace Shiprekt.Entities
 {
     public partial class BirbSpawner
     {
-        List<Bird> birbList = new List<Bird>(); 
         /// <summary>
         /// Initialization logic which is execute only one time for this Entity (unless the Entity is pooled).
         /// This method is called when the Entity is added to managers. Entities which are instantiated but not
@@ -35,13 +34,13 @@ namespace Shiprekt.Entities
 
         private void ManageBirbs()
         {
-            for (int i = birbList.Count - 1; i > -1; i--)
+            for (int i = MenuBirbList.Count - 1; i > -1; i--)
             {
-                var birb = birbList[i];
+                var birb = MenuBirbList[i];
                 if (birb.X < Camera.Main.AbsoluteLeftXEdgeAt(birb.Z) || birb.X > Camera.Main.AbsoluteRightXEdgeAt(birb.Z))
                 {
                     birb.Destroy();
-                    birbList.Remove(birb);
+                    MenuBirbList.Remove(birb);
                 }
             }
         }
@@ -63,9 +62,8 @@ namespace Shiprekt.Entities
             var numBirbs = FlatRedBallServices.Random.Next(MinBirbs, MaxBirbs);
             for (int i = 0; i < numBirbs; i++)
             {
-                var birb = BirdFactory.CreateNew(this.LayerProvidedByContainer);
-                birbList.Add(birb);
-                birb.CurrentState = Bird.VariableState.Launched;
+                var birb = MenuBirbFactory.CreateNew(this.LayerProvidedByContainer);
+                MenuBirbList.Add(birb); 
                 birb.SetRandomAnimationFrame(); 
 
                 //Position
@@ -83,9 +81,6 @@ namespace Shiprekt.Entities
                 birb.XAcceleration = BirbXAccel * sign; 
                 
                 birb.Drag = FlatRedBallServices.Random.Between(MinBirbDrag, MaxBirbDrag);
-
-                //Animate
-                birb.Animating = true;
             }
         }
     }

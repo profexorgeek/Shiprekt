@@ -51,13 +51,6 @@ namespace Shiprekt.Entities
                 Velocity.X = (float)Math.Cos(RotationZ) * CurrentFlightSpeed;
                 Velocity.Y = (float)Math.Sin(RotationZ) * CurrentFlightSpeed;
             }
-            //Maintain max velocity. 
-            else if (CurrentState == VariableState.Launched)
-            {
-                var xVel = Math.Abs(Velocity.X);
-                var newVel = Math.Min(xVel, MaxXVelocity);
-                Velocity.X = newVel * Math.Sign(Velocity.X); 
-            }
         }
 
         private void CustomDestroy()
@@ -93,9 +86,6 @@ namespace Shiprekt.Entities
             SecondsToNextStateChange -= TimeManager.SecondDifference;
         }
 
-        public void SetRandomAnimationFrame()
-        {
-            BirdSprite.CurrentFrameIndex = FlatRedBallServices.Random.Next(0, BirdSprite.CurrentChain.Count); 
-        }
+
     }
 }

@@ -40,6 +40,10 @@
         {
           "SelectedProperties": [],
           "Name": "BirdSprite"
+        },
+        {
+          "SelectedProperties": [],
+          "Name": "BirdShadowSprite"
         }
       ]
     },
@@ -50,6 +54,10 @@
         {
           "SelectedProperties": [],
           "Name": "CloudSprite"
+        },
+        {
+          "SelectedProperties": [],
+          "Name": "CloudShadowSprite"
         }
       ]
     },
@@ -64,6 +72,14 @@
         {
           "SelectedProperties": [],
           "Name": "CircleInstance"
+        },
+        {
+          "SelectedProperties": [],
+          "Name": "ShadowSpriteInstance"
+        },
+        {
+          "SelectedProperties": [],
+          "Name": "CannonballEffectInstance"
         }
       ]
     },
@@ -110,6 +126,31 @@
         {
           "SelectedProperties": [],
           "Name": "MiddleCircle"
+        }
+      ]
+    },
+    {
+      "Name": "Entities\\BirbSpawner",
+      "SelectedProperties": [],
+      "InstanceManagementValuesList": [
+        {
+          "SelectedProperties": [],
+          "Name": "BirdList"
+        }
+      ]
+    },
+    {
+      "Name": "Entities\\CameraController",
+      "SelectedProperties": [],
+      "InstanceManagementValuesList": []
+    },
+    {
+      "Name": "Entities\\MenuBirb",
+      "SelectedProperties": [],
+      "InstanceManagementValuesList": [
+        {
+          "SelectedProperties": [],
+          "Name": "BirbSprite"
         }
       ]
     }

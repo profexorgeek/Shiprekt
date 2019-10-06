@@ -9,7 +9,6 @@
     <property name="MaxBirdAltitude" type="float" default="200" />
     <property name="SteeringEnabled" type="bool" />
     <property name="CurrentState" type="VariableState" default="Steering" />
-    <property name="MaxXVelocity" type="float" default="100" />
   </objecttype>
   <objecttype name="Bullet">
     <property name="BulletSpeed" type="float" default="300" />
@@ -55,6 +54,9 @@
   </objecttype>
   <objecttype name="ShotMissEffect">
     <property name="EffectDurationSeconds" type="float" default="0.25" />
+  </objecttype>
+  <objecttype name="MenuBirb">
+    <property name="MaxXVelocity" type="float" default="300" />
   </objecttype>
   <objecttype name="Ship">
     <property name="CarData" type="Shiprekt.DataTypes.RacingEntityValues" default="DefaultValues in RacingEntityValues.csv" />
