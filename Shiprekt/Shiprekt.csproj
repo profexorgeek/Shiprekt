@@ -148,6 +148,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="GlobalContent.Generated.cs" />
     <Compile Include="GlueControl\GlueControlManager.cs" />
+    <Compile Include="GlueControl\GlueControlManager.Generated.cs" />
     <Compile Include="GumRuntimes\CircleRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\ColoredRectangleRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\ContainerRuntime.Generated.cs" />
