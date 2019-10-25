@@ -106,6 +106,10 @@
     <Compile Include="Entities\Effects\WakeEffect.Generated.cs">
       <DependentUpon>WakeEffect.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\MenuBirb.cs" />
+    <Compile Include="Entities\MenuBirb.Generated.cs">
+      <DependentUpon>MenuBirb.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Ram.cs" />
     <Compile Include="Entities\Ram.Generated.cs">
       <DependentUpon>Ram.cs</DependentUpon>
@@ -137,6 +141,7 @@
     <Compile Include="Factories\CameraControllerFactory.Generated.cs" />
     <Compile Include="Factories\CloudFactory.Generated.cs" />
     <Compile Include="Factories\FireSmokeEmitterFactory.Generated.cs" />
+    <Compile Include="Factories\MenuBirbFactory.Generated.cs" />
     <Compile Include="Factories\ShipDeathEffectFactory.Generated.cs" />
     <Compile Include="Factories\ShipFactory.Generated.cs" />
     <Compile Include="Factories\ShipImpactMenuFactory.Generated.cs" />
